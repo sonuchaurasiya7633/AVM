@@ -3,42 +3,42 @@ import { Sparkles, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Generates gold coins flying from ALL 4 SIDES (Bottom, Top, Left, Right)
-const generateAllSidesGoldCoins = (count = 48) => {
-  const directions = ['bottom', 'left', 'right', 'top', 'bottom', 'bottom']; // weighted towards bottom and sides
+const generateAllSidesGoldCoins = (count = 16) => {
+  const directions = ['bottom', 'left', 'right', 'top'];
   
   return Array.from({ length: count }, (_, i) => {
     const direction = directions[i % directions.length];
-    const size = 32 + Math.random() * 32; // 32px to 64px
-    const delay = Math.random() * 1.8; // staggered across 0-1.8s
-    const duration = 3.2 + Math.random() * 2.6; // 3.2s to 5.8s
-    const rotateZ = (Math.random() - 0.5) * 720;
-    const rotateX = (Math.random() - 0.5) * 1080;
-    const rotateY = (Math.random() - 0.5) * 1080;
+    const size = 28 + Math.random() * 20; // 28px to 48px
+    const delay = Math.random() * 0.8;
+    const duration = 2.2 + Math.random() * 1.0;
+    const rotateZ = (Math.random() - 0.5) * 360;
+    const rotateX = (Math.random() - 0.5) * 360;
+    const rotateY = (Math.random() - 0.5) * 360;
 
     let initial = {};
     let animate = {};
 
     if (direction === 'bottom') {
       const startX = Math.random() * 100;
-      const driftX = (Math.random() - 0.5) * 160;
+      const driftX = (Math.random() - 0.5) * 100;
       initial = { y: '110vh', x: `${startX}vw`, scale: 0.5, opacity: 0 };
-      animate = { y: '-15vh', x: `calc(${startX}vw + ${driftX}px)`, scale: [0.5, 1.2, 1, 0.9], opacity: [0, 1, 1, 1, 0] };
+      animate = { y: '-15vh', x: `calc(${startX}vw + ${driftX}px)`, scale: [0.5, 1.1, 1, 0.9], opacity: [0, 1, 1, 1, 0] };
     } else if (direction === 'top') {
       const startX = Math.random() * 100;
-      const driftX = (Math.random() - 0.5) * 140;
+      const driftX = (Math.random() - 0.5) * 100;
       initial = { y: '-15vh', x: `${startX}vw`, scale: 0.5, opacity: 0 };
-      animate = { y: '110vh', x: `calc(${startX}vw + ${driftX}px)`, scale: [0.5, 1.1, 1, 0.8], opacity: [0, 1, 1, 1, 0] };
+      animate = { y: '110vh', x: `calc(${startX}vw + ${driftX}px)`, scale: [0.5, 1.0, 1, 0.8], opacity: [0, 1, 1, 1, 0] };
     } else if (direction === 'left') {
-      const startY = Math.random() * 90 + 5;
-      const driftY = (Math.random() - 0.5) * 160;
+      const startY = Math.random() * 80 + 10;
+      const driftY = (Math.random() - 0.5) * 100;
       initial = { x: '-15vw', y: `${startY}vh`, scale: 0.5, opacity: 0 };
-      animate = { x: '115vw', y: `calc(${startY}vh + ${driftY}px)`, scale: [0.5, 1.15, 1, 0.9], opacity: [0, 1, 1, 1, 0] };
+      animate = { x: '115vw', y: `calc(${startY}vh + ${driftY}px)`, scale: [0.5, 1.1, 1, 0.9], opacity: [0, 1, 1, 1, 0] };
     } else {
       // right
-      const startY = Math.random() * 90 + 5;
-      const driftY = (Math.random() - 0.5) * 160;
+      const startY = Math.random() * 80 + 10;
+      const driftY = (Math.random() - 0.5) * 100;
       initial = { x: '115vw', y: `${startY}vh`, scale: 0.5, opacity: 0 };
-      animate = { x: '-15vw', y: `calc(${startY}vh + ${driftY}px)`, scale: [0.5, 1.15, 1, 0.9], opacity: [0, 1, 1, 1, 0] };
+      animate = { x: '-15vw', y: `calc(${startY}vh + ${driftY}px)`, scale: [0.5, 1.1, 1, 0.9], opacity: [0, 1, 1, 1, 0] };
     }
 
     return {
@@ -51,20 +51,20 @@ const generateAllSidesGoldCoins = (count = 48) => {
       rotateY,
       initial,
       animate,
-      symbol: i % 3 === 0 ? '₹' : i % 3 === 1 ? '✦' : '₹',
+      symbol: i % 2 === 0 ? '₹' : '✦',
     };
   });
 };
 
 export const FlyingMoneyAnimation = () => {
   const [active, setActive] = useState(true);
-  const [coins] = useState(() => generateAllSidesGoldCoins(52));
+  const [coins] = useState(() => generateAllSidesGoldCoins(16));
 
   useEffect(() => {
-    // Dismiss automatically after 5.8 seconds
+    // Dismiss automatically after 3.2 seconds
     const timer = setTimeout(() => {
       setActive(false);
-    }, 5800);
+    }, 3200);
 
     return () => clearTimeout(timer);
   }, []);
