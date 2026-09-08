@@ -33,12 +33,19 @@
     --card-surface: #042016;
   }
 
+  html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
     background-color: var(--bg-base);
     color: var(--text-primary);
     overflow-x: hidden;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    transition: background-color 0.25s ease, color 0.25s ease;
+    background-attachment: fixed;
     /* Bespoke Full-Grain Supple Leather Micro-Texture */
     background-image: 
       radial-gradient(rgba(201, 163, 92, 0.05) 1px, transparent 0),
@@ -48,11 +55,22 @@
   }
 
   html:not(.dark) body {
+    background-attachment: fixed;
     background-image: 
       radial-gradient(rgba(184, 142, 60, 0.08) 1px, transparent 0),
       radial-gradient(rgba(2, 38, 26, 0.04) 1px, transparent 0);
     background-size: 28px 28px, 14px 14px;
   }
+}
+
+/* Universal GPU Layer Optimization for 60fps Buttery Scrolling */
+.specular-card,
+.royal-obsidian-card,
+.leather-badge-container,
+.leather-folio-card,
+.gold-shimmer-btn {
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Reusable Full-Leather Semantic Classes */

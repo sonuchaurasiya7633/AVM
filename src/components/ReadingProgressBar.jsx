@@ -1,26 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export const ReadingProgressBar = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const barRef = useRef(null);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight > 0) {
-        const currentProgress = (window.scrollY / totalHeight) * 100;
-        setScrollProgress(currentProgress);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (totalHeight > 0 && barRef.current) {
+            const currentProgress = (window.scrollY / totalHeight) * 100;
+            barRef.current.style.width = `${currentProgress}%`;
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-[3px] z-[60] bg-transparent">
+    <div className="fixed top-0 left-0 right-0 h-[3px] z-[60] bg-transparent pointer-events-none">
       <div
-        className="h-full bg-gold-gradient transition-all duration-150 ease-out shadow-luxury-gold"
-        style={{ width: `${scrollProgress}%` }}
+        ref={barRef}
+        className="h-full bg-gold-gradient shadow-luxury-gold will-change-[width]"
+        style={{ width: '0%' }}
       />
     </div>
   );

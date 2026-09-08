@@ -74,6 +74,9 @@ export const Home = () => {
               <img
                 src={dronePlotsHeroImg}
                 alt="AVM Plotted Township Aerial Drone Perspective"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-full object-cover scale-105 filter brightness-[0.62] contrast-[1.12] transition-all duration-700 ease-out"
               />
             </div>
