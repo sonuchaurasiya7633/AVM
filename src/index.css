@@ -1,0 +1,486 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Palatial Italian Alabaster & Warm Architectural Parchment */
+    --bg-base: #F8F5EE;
+    --bg-surface: #FFFFFF;
+    --bg-card: #F2ECE0;
+    --bg-input: #E7DFCE;
+    --text-primary: #0A1C14;
+    --text-secondary: #1C3B2D;
+    --text-muted: #536F62;
+    --border-gold: rgba(184, 142, 60, 0.55);
+    --border-subtle: rgba(10, 28, 20, 0.14);
+    --shadow-theme: 0 16px 36px rgba(10, 28, 20, 0.08);
+    --card-surface: #FFFFFF;
+  }
+
+  html.dark {
+    /* 100x Sovereign Obsidian & 24K Liquid Champagne Gold */
+    --bg-base: #010A07;
+    --bg-surface: #031D14;
+    --bg-card: #05261B;
+    --bg-input: #073324;
+    --text-primary: #FCF9F2;
+    --text-secondary: #E8DFC9;
+    --text-muted: #A3B8AD;
+    --border-gold: rgba(226, 193, 120, 0.45);
+    --border-subtle: rgba(226, 193, 120, 0.22);
+    --shadow-theme: 0 25px 55px rgba(0, 0, 0, 0.85);
+    --card-surface: #042016;
+  }
+
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    transition: background-color 0.25s ease, color 0.25s ease;
+    /* Bespoke Full-Grain Supple Leather Micro-Texture */
+    background-image: 
+      radial-gradient(rgba(201, 163, 92, 0.05) 1px, transparent 0),
+      radial-gradient(rgba(0, 0, 0, 0.28) 1px, transparent 0);
+    background-size: 28px 28px, 14px 14px;
+    background-position: 0 0, 14px 14px;
+  }
+
+  html:not(.dark) body {
+    background-image: 
+      radial-gradient(rgba(184, 142, 60, 0.08) 1px, transparent 0),
+      radial-gradient(rgba(2, 38, 26, 0.04) 1px, transparent 0);
+    background-size: 28px 28px, 14px 14px;
+  }
+}
+
+/* Reusable Full-Leather Semantic Classes */
+.bg-theme-base {
+  background-color: var(--bg-base);
+}
+.bg-theme-surface {
+  background: radial-gradient(circle at 50% 20%, #063E2C 0%, #03261B 65%, #01140D 100%);
+  box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.12), inset 0 -4px 12px rgba(0, 0, 0, 0.75), 0 20px 45px rgba(0, 0, 0, 0.65);
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  position: relative;
+}
+html:not(.dark) .bg-theme-surface {
+  background: radial-gradient(circle at 50% 20%, #FAF6F0 0%, #F3ECE2 70%, #E8DECf 100%);
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.8), inset 0 -2px 6px rgba(0, 0, 0, 0.08), 0 15px 35px rgba(74, 46, 27, 0.08);
+  border: 1.5px solid rgba(184, 134, 42, 0.45);
+  position: relative;
+}
+
+.bg-theme-card {
+  background: radial-gradient(circle at 50% 20%, #084834 0%, #042E20 65%, #021710 100%);
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1), inset 0 -3px 8px rgba(0, 0, 0, 0.7), 0 15px 35px rgba(0, 0, 0, 0.55);
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  position: relative;
+}
+html:not(.dark) .bg-theme-card {
+  background: radial-gradient(circle at 50% 20%, #F5EDE4 0%, #EBDDCF 70%, #E0CFBF 100%);
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.6), inset 0 -2px 5px rgba(0, 0, 0, 0.07), 0 10px 25px rgba(74, 46, 27, 0.07);
+  border: 1.5px solid rgba(184, 134, 42, 0.35);
+  position: relative;
+}
+
+.bg-theme-input {
+  background-color: var(--bg-input);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+}
+.text-theme-primary {
+  color: var(--text-primary);
+}
+.text-theme-secondary {
+  color: var(--text-secondary);
+}
+.text-theme-muted {
+  color: var(--text-muted);
+}
+.border-theme-gold {
+  border-color: var(--border-gold);
+}
+.border-theme-subtle {
+  border-color: var(--border-subtle);
+}
+.shadow-theme-card {
+  box-shadow: var(--shadow-theme);
+}
+
+/* Custom Luxury Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #D4AF37, #9E7B3B);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E2C178;
+}
+
+/* Eye-Friendly Gold foil & metallic text gradients */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #FFF0C8 0%, #E2C178 40%, #C9A35C 80%, #A88235 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html:not(.dark) .text-gold-gradient {
+  background: linear-gradient(135deg, #B88E3C 0%, #946E26 60%, #5E4310 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Bespoke Ultra-Luxury Handcrafted Leather Design System (100% Prominently Visible) */
+.leather-badge-container {
+  background: radial-gradient(circle at 50% 25%, #05402E 0%, #02261A 60%, #01120B 100%);
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.15), inset 0 -4px 14px rgba(0, 0, 0, 0.85), 0 25px 50px rgba(0, 0, 0, 0.7);
+  border: 3px solid #C9A35C;
+  position: relative;
+}
+
+.leather-cognac-container {
+  background: radial-gradient(circle at 50% 25%, #522A14 0%, #2F170A 60%, #170B04 100%);
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.2), inset 0 -4px 14px rgba(0, 0, 0, 0.85), 0 25px 50px rgba(0, 0, 0, 0.7);
+  border: 3px solid #C9A35C;
+  position: relative;
+}
+
+/* Artisan Saddle Stitching with Distinct Silk Thread (Highly Visible) */
+.leather-stitch-border {
+  border: 2px dashed rgba(226, 193, 120, 0.9) !important;
+  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.leather-stitch-outline {
+  outline: 2px dashed rgba(226, 193, 120, 0.85) !important;
+  outline-offset: -7px;
+}
+
+/* Visibly Handcrafted Stitched Leather Card Folio */
+.leather-folio-card {
+  background: radial-gradient(circle at 50% 15%, #042E20 0%, #021C13 65%, #01100A 100%);
+  border: 2px solid #C9A35C;
+  box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.12), inset 0 -4px 12px rgba(0, 0, 0, 0.8), 0 20px 45px rgba(0, 0, 0, 0.75);
+  position: relative;
+  border-radius: 1.5rem;
+}
+.leather-folio-card::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 2px dashed rgba(226, 193, 120, 0.75);
+  border-radius: calc(1.5rem - 6px);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Visible Handcrafted Stitched Leather Belt for Ticker */
+.leather-belt-ticker {
+  background: linear-gradient(180deg, #1C0F08 0%, #3D2214 30%, #26150C 70%, #140A05 100%);
+  border-top: 2px dashed #D4AF37;
+  border-bottom: 2px dashed #D4AF37;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.9), inset 0 -2px 4px rgba(0, 0, 0, 0.9), 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* Handcrafted Leather Badge / Pill */
+.leather-pill {
+  background: linear-gradient(135deg, #4A2815 0%, #2E170C 50%, #170A05 100%);
+  border: 1.5px dashed rgba(226, 193, 120, 0.85);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.leather-pill-emerald {
+  background: linear-gradient(135deg, #064E38 0%, #032A1C 50%, #01160E 100%);
+  border: 1.5px dashed rgba(226, 193, 120, 0.85);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Metallic Polished Brass Screws / Rivets */
+.brass-screw {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FFF0C8 0%, #D4AF37 50%, #7A5818 100%);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 6px rgba(0, 0, 0, 0.85);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+}
+.brass-screw::after {
+  content: '';
+  width: 10px;
+  height: 2px;
+  background: #3A2A0C;
+  border-radius: 1px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Hot-Stamped Gold Foil Leather Deboss */
+.leather-deboss-gold {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.95), 0 -1px 0 rgba(255, 235, 175, 0.45);
+}
+
+/* Antique Solid Brass Corner Reinforcement Brackets */
+.leather-corner-bracket-tl {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border-top: 3px solid #D4AF37;
+  border-left: 3px solid #D4AF37;
+  border-top-left-radius: 1.25rem;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+  z-index: 10;
+}
+.leather-corner-bracket-tr {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  border-top: 3px solid #D4AF37;
+  border-right: 3px solid #D4AF37;
+  border-top-right-radius: 1.25rem;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+  z-index: 10;
+}
+.leather-corner-bracket-bl {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border-bottom: 3px solid #D4AF37;
+  border-left: 3px solid #D4AF37;
+  border-bottom-left-radius: 1.25rem;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+  z-index: 10;
+}
+.leather-corner-bracket-br {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  border-bottom: 3px solid #D4AF37;
+  border-right: 3px solid #D4AF37;
+  border-bottom-right-radius: 1.25rem;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+  z-index: 10;
+}
+
+/* Live Ticker Animation */
+@keyframes tickerSlide {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  display: flex;
+  width: 200%;
+  animation: tickerSlide 26s linear infinite;
+}
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* Ultra-Luxury Card & Glass Utilities */
+.luxury-glass {
+  background: rgba(4, 34, 23, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.luxury-card-hover {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.luxury-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(212, 175, 55, 0.2);
+  border-color: rgba(212, 175, 55, 0.6);
+}
+
+/* ------------------------------------------------------------- */
+/* 100x ULTRA-LUXURY PINNACLE DESIGN SYSTEM (HOROLOGY & OBSIDIAN) */
+/* ------------------------------------------------------------- */
+
+/* Engine-Turned Horological Guilloché Micro-Pattern */
+.guilloche-pattern {
+  background-color: #03140E;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 4px, rgba(212, 175, 55, 0.04) 5px, transparent 6px),
+    repeating-conic-gradient(from 0deg at 50% 50%, rgba(212, 175, 55, 0.03) 0deg 15deg, transparent 15deg 30deg);
+}
+
+/* Royal Obsidian Frosted Glass Card */
+.royal-obsidian-card {
+  background: radial-gradient(circle at 50% 0%, rgba(10, 38, 28, 0.95) 0%, rgba(4, 18, 13, 0.98) 70%, #020906 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(226, 193, 120, 0.35);
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 240, 200, 0.2),
+    inset 0 -3px 8px rgba(0, 0, 0, 0.8),
+    0 25px 60px rgba(0, 0, 0, 0.75),
+    0 0 30px rgba(212, 175, 55, 0.08);
+}
+
+/* 24K Liquid Champagne Gold Specular Border */
+@keyframes liquidSheen {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.gold-specular-border {
+  position: relative;
+}
+.gold-specular-border::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    90deg,
+    rgba(212, 175, 55, 0.2) 0%,
+    rgba(255, 245, 205, 0.8) 50%,
+    rgba(212, 175, 55, 0.2) 100%
+  );
+  background-size: 200% 100%;
+  animation: liquidSheen 6s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Ambient Golden Aura Glow */
+.luxury-aura-glow {
+  box-shadow: 0 0 45px rgba(212, 175, 55, 0.18), inset 0 0 25px rgba(212, 175, 55, 0.08);
+}
+
+/* Tabular Numerals for Precision Engineering */
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* ------------------------------------------------------------- */
+/* HIGH-END INTERACTIVE LUXURY BUTTON & CARD SUITE */
+/* ------------------------------------------------------------- */
+
+/* 24K Liquid Gold Flow Button */
+.gold-shimmer-btn {
+  background: linear-gradient(135deg, #FFF3D1 0%, #E2C178 30%, #C9A35C 70%, #9E7B3B 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(201, 163, 92, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gold-shimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  animation: shimmerSweep 4.5s ease-in-out infinite;
+}
+
+@keyframes shimmerSweep {
+  0% {
+    left: -70%;
+  }
+  30%, 100% {
+    left: 140%;
+  }
+}
+
+.gold-shimmer-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 15px 35px -5px rgba(212, 175, 55, 0.6), 0 0 25px rgba(255, 243, 209, 0.4);
+}
+
+/* 3D Specular Interactive Card Elevation */
+.specular-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  will-change: transform, box-shadow;
+}
+
+.specular-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.8), 0 0 35px rgba(212, 175, 55, 0.22);
+  border-color: rgba(226, 193, 120, 0.65);
+}
+
+/* Floating Golden Beacon Pulse */
+@keyframes beaconPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+    box-shadow: 0 0 0 8px rgba(212, 175, 55, 0);
+  }
+}
+
+.beacon-pulse {
+  animation: beaconPulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Smooth Ambient Aurora Float */
+@keyframes auroraFloat {
+  0% {
+    transform: translate(0px, 0px) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate(-30px, 20px) scale(1.08) rotate(1deg);
+  }
+  66% {
+    transform: translate(25px, -25px) scale(0.96) rotate(-1deg);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1) rotate(0deg);
+  }
+}
+
+.animate-aurora-slow {
+  animation: auroraFloat 22s ease-in-out infinite;
+}
+

@@ -1,0 +1,62 @@
+export const PODCASTS_DATA = [
+  {
+    id: "ep-14-truth-about-jaipur-ring-road",
+    episodeNumber: "Episode 14",
+    title: "The Truth About Jaipur Ring Road & 2030 Land Valuations with Senior Urban Planner",
+    guest: "Er. Mahendra Rathore (Former Urban Development Consultant)",
+    duration: "48:15",
+    date: "September 2026",
+    category: "Infrastructure & Planning",
+    audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    youtubeId: "dQw4w9WgXcQ",
+    featured: true,
+    coverImage: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=80",
+    description: "In this masterclass episode, Avnish sits down with veteran infrastructure planners to map out the next 10 years of development along Jaipur's Ring Road, expressway intersections, and industrial corridor expansions.",
+    topics: ["Ring Road Phase 2 Alignment", "Commercial Land Use Conversions", "Where Capital Compounds Fastest", "Avoiding Speculative Bubbles"]
+  },
+  {
+    id: "ep-13-forensic-title-verification",
+    episodeNumber: "Episode 13",
+    title: "Forensic Title Verification: How to Detect Land Scams Before You Pay Advance",
+    guest: "Adv. Rajesh Shekhawat (Rajasthan High Court Revenue Specialist)",
+    duration: "54:30",
+    date: "August 2026",
+    category: "Legal Mastery",
+    audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    youtubeId: "ysz5S6PUM-U",
+    featured: true,
+    coverImage: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
+    description: "A candid conversation dissecting the real legal traps in Rajasthan land registry, Section 90-A conversion loop-holes, khatedari rights, and how institutional investors conduct forensic legal due diligence.",
+    topics: ["30-Year Chain Search", "Khatedari Rights vs Transfer", "Section 90-A Compliance", "Civil Injunctions & Revenue Courts"]
+  },
+  {
+    id: "ep-12-hnw-asset-allocation-real-estate",
+    episodeNumber: "Episode 12",
+    title: "How Ultra-HNIs Allocate Capital Between Land, Commercial Equity & Liquid Assets",
+    guest: "Vikram Singhania (Principal Family Office Advisor)",
+    duration: "42:10",
+    date: "July 2026",
+    category: "Wealth Strategy",
+    audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+    youtubeId: "L_LUpnjgPso",
+    featured: false,
+    coverImage: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80",
+    description: "Avnish explores the exact capital allocation models used by high-net-worth families to build multi-generational wealth while remaining impervious to financial recessions and liquidity shocks.",
+    topics: ["Asset Allocation Rules", "The 40-30-30 Matrix", "Inflation Hedging via Hard Assets", "Exiting Land at Peak Cycles"]
+  },
+  {
+    id: "ep-11-ajmer-road-economic-powerhouse",
+    episodeNumber: "Episode 11",
+    title: "Ajmer Road Growth Corridor: Inside North India's Leading Export & Tech Belt",
+    guest: "Sanjay Bhandari (Industrial Logistics Strategist)",
+    duration: "51:45",
+    date: "June 2026",
+    category: "Corridor Analysis",
+    audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+    youtubeId: "kJQP7kiw5Fk",
+    featured: false,
+    coverImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+    description: "An insider look into employment generation, corporate investments, university clusters, and the explosive residential plotted demand radiating from Western Jaipur's master-planned economic hubs.",
+    topics: ["Employment Density vs Land Value", "Logistics Corridors", "Plotted vs Built-Up ROI", "The 10-Year Infrastructure Roadmap"]
+  }
+];
