@@ -4,7 +4,7 @@ import {
   Menu, X, ChevronDown, ChevronRight, 
   Building2, BookOpen, Film, Compass, User, Mail, Home, PhoneCall,
   Calculator, FileCheck2, HelpCircle, Sparkles, Phone, ShieldCheck,
-  Search, Scale
+  Search, Scale, Users
 } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageToggle } from './LanguageToggle';
@@ -12,6 +12,7 @@ import { CommandSearchModal } from './CommandSearchModal';
 import { PlotCompareModal } from './PlotCompareModal';
 import { useLanguage } from '../context/LanguageContext';
 import { useCompare } from '../context/CompareContext';
+import { useCRM } from '../context/CRMContext';
 import logoImg from '../assets/logo/avm-logo.png';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -72,6 +73,7 @@ export const Navbar = () => {
   const dropdownRef = useRef(null);
   const location = useLocation();
   const { comparedPlots, setIsCompareModalOpen } = useCompare();
+  const { metrics } = useCRM();
 
   // Global Ctrl + K / Cmd + K listener
   useEffect(() => {
@@ -146,10 +148,10 @@ export const Navbar = () => {
 
   const primaryLinks = [
     { name: t('nav.home', 'Home'), path: '/', icon: Home },
-    { name: t('nav.plots', 'Plots & Estates'), path: '/plots', icon: Building2, highlight: true },
+    { name: t('nav.plots', 'Plots'), path: '/plots', icon: Building2, highlight: true },
     { name: t('nav.registry', '90-A Registry'), path: '/registry-process', icon: FileCheck2 },
-    { name: t('nav.calculator', 'Wealth Calculator'), path: '/calculator', icon: Calculator },
-    { name: t('nav.corridors', 'Jaipur Corridors'), path: '/insights', icon: Compass },
+    { name: t('nav.calculator', 'Calculator'), path: '/calculator', icon: Calculator },
+    { name: t('nav.corridors', 'Corridors'), path: '/insights', icon: Compass },
   ];
 
   const advisoryLinks = [
@@ -189,6 +191,12 @@ export const Navbar = () => {
       icon: Mail, 
       desc: t('nav.coordinatorsDesc', 'Authorized territory network across Jaipur') 
     },
+    { 
+      name: isHindi ? 'इन्वेस्टर CRM पोर्टल' : 'Investor CRM Portal', 
+      path: '/crm', 
+      icon: Users, 
+      desc: isHindi ? 'क्लाइंट लीड्स, साइट विजिट्स व डील पाइपलाइन' : 'Lead pipeline, site visits & deal velocity' 
+    },
   ];
 
   const isAdvisoryActive = advisoryLinks.some((item) => item.path === location.pathname);
@@ -205,28 +213,28 @@ export const Navbar = () => {
         {/* Precision Architectural Glow Line */}
         <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-cyan-400/70 via-amber-400/50 to-transparent" />
 
-        <div className="max-w-[1440px] mx-auto px-3 min-[360px]:px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-2 sm:gap-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 xl:gap-6">
           {/* Brand Logo & Emblem with Outlined Medallion Ring */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-3 group flex-shrink-0 min-w-0">
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
             <div className="relative p-0.5 rounded-full border dark:border-cyan-400/40 border-amber-500/40 group-hover:border-amber-500 dark:group-hover:border-cyan-400 transition-colors shadow-sm">
               <img
                 src={logoImg}
                 alt="AVM TALKS BY AVNISH Logo"
-                className="w-7 h-7 min-[360px]:w-8 min-[360px]:h-8 min-[400px]:w-9 min-[400px]:h-9 sm:w-10 sm:h-10 rounded-full object-cover flex-shrink-0"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover flex-shrink-0"
               />
             </div>
-            <div className="flex flex-col min-w-0">
-              <span className="font-serif tracking-tight min-[380px]:tracking-wide sm:tracking-wider text-xs min-[360px]:text-sm sm:text-base lg:text-lg font-bold dark:text-white text-slate-900 group-hover:text-amber-500 transition-colors leading-none truncate">
+            <div className="flex flex-col">
+              <span className="font-serif tracking-tight sm:tracking-wider text-sm sm:text-base lg:text-lg font-bold dark:text-white text-slate-900 group-hover:text-amber-500 transition-colors leading-none">
                 AVM TALKS
               </span>
-              <span className="text-[6.5px] min-[360px]:text-[7.5px] sm:text-[9.5px] uppercase tracking-[0.14em] min-[360px]:tracking-[0.18em] sm:tracking-[0.25em] dark:text-cyan-400 text-amber-600 font-extrabold mt-0.5 sm:mt-1 truncate">
+              <span className="text-[7.5px] sm:text-[9.5px] uppercase tracking-[0.18em] sm:tracking-[0.25em] dark:text-cyan-400 text-amber-600 font-extrabold mt-0.5 sm:mt-1">
                 BY AVNISH
               </span>
             </div>
           </Link>
 
           {/* Desktop Luxury Navigation Architecture with Structural Pill & Crisp Outlines */}
-          <nav className="hidden lg:flex items-center gap-1 dark:bg-[#070d18]/90 bg-slate-50/90 backdrop-blur-2xl p-1.5 rounded-full border dark:border-white/15 border-slate-300/80 shadow-[0_4px_25px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_25px_rgba(0,0,0,0.4)]">
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 dark:bg-[#070d18]/85 bg-slate-100/80 backdrop-blur-xl p-1 rounded-full border dark:border-white/10 border-slate-200/80 shadow-sm">
             {/* Primary Destination Links */}
             {primaryLinks.map((link) => {
               const isActive = location.pathname === link.path;
@@ -234,7 +242,7 @@ export const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`relative px-3.5 py-1.5 text-xs font-semibold tracking-wider uppercase transition-all duration-200 rounded-full flex items-center gap-1.5 border ${
+                  className={`relative px-2.5 xl:px-3.5 py-1.5 text-[11px] xl:text-xs font-semibold tracking-wide uppercase transition-all duration-200 rounded-full flex items-center gap-1.5 border ${
                     isActive
                       ? 'dark:bg-gradient-to-r dark:from-cyan-950/90 dark:to-indigo-950/90 bg-slate-900 text-white dark:text-cyan-200 border-slate-800 dark:border-cyan-400/40 shadow-[0_0_15px_rgba(6,182,212,0.25)] font-bold'
                       : link.highlight
@@ -255,14 +263,14 @@ export const Navbar = () => {
               <button
                 type="button"
                 onClick={() => setAdvisoryDropdownOpen(!advisoryDropdownOpen)}
-                className={`px-3.5 py-1.5 text-xs font-semibold tracking-wider uppercase transition-all duration-200 rounded-full flex items-center gap-1.5 border ${
+                className={`px-2.5 xl:px-3.5 py-1.5 text-[11px] xl:text-xs font-semibold tracking-wide uppercase transition-all duration-200 rounded-full flex items-center gap-1 border ${
                   isAdvisoryActive || advisoryDropdownOpen
                     ? 'dark:bg-cyan-950/60 bg-amber-50 dark:text-slate-200 text-amber-800 border-amber-400/50 dark:border-cyan-400/50 shadow-sm font-bold'
                     : 'border-transparent dark:text-slate-300 text-slate-700 hover:text-slate-950 dark:hover:text-white hover:border-slate-300 dark:hover:border-white/10 hover:bg-slate-200/60 dark:hover:bg-white/5'
                 }`}
                 aria-expanded={advisoryDropdownOpen}
               >
-                <span>{t('nav.advisory', 'Advisory & Media')}</span>
+                <span>{t('nav.advisory', 'Advisory')}</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 text-amber-500 transition-transform duration-200 ${
                     advisoryDropdownOpen ? 'rotate-180' : ''
@@ -322,17 +330,19 @@ export const Navbar = () => {
             </div>
           </nav>
 
-          {/* Action Suite: Search, Compare, Language Toggle & Theme Toggle with Outlines */}
-          <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
-            {/* Instant Search Command Palette Trigger with Crisp Border */}
+          {/* Action Suite: Search, Compare, CRM, Language & Theme */}
+          <div className="hidden lg:flex items-center gap-1.5 xl:gap-2.5 flex-shrink-0">
+            {/* Instant Search Command Palette Trigger */}
             <button
               onClick={() => setSearchModalOpen(true)}
-              className="relative flex items-center gap-2 px-3.5 py-1.5 rounded-full border dark:border-white/15 border-slate-300/90 dark:bg-[#0b1120]/80 bg-white/80 dark:text-slate-200 text-slate-800 hover:border-cyan-400 dark:hover:border-cyan-400 shadow-sm hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] transition-all group"
+              className="relative flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 rounded-full border dark:border-white/10 border-slate-200/90 dark:bg-[#0b1120]/80 bg-white/80 dark:text-slate-200 text-slate-800 hover:border-luxury-gold shadow-sm transition-all group"
               title={isHindi ? 'त्वरित खोज (Ctrl+K)' : 'Instant Search (Ctrl+K)'}
             >
-              <Search className="w-3.5 h-3.5 text-cyan-500 group-hover:scale-110 transition-transform" />
-              <span className="text-[11px] font-medium">{isHindi ? 'खोजें...' : 'Search...'}</span>
-              <kbd className="px-1.5 py-0.5 rounded text-[9px] font-mono border dark:border-white/10 border-slate-200 dark:bg-white/10 bg-slate-100 text-cyan-600 dark:text-cyan-400 font-bold">
+              <Search className="w-3.5 h-3.5 text-luxury-gold group-hover:scale-110 transition-transform" />
+              <span className="hidden xl:inline text-[11px] font-medium text-theme-muted">
+                {isHindi ? 'खोजें...' : 'Search...'}
+              </span>
+              <kbd className="px-1.5 py-0.5 rounded text-[9px] font-mono border dark:border-white/10 border-slate-200 dark:bg-white/10 bg-slate-100 text-luxury-gold font-bold">
                 ⌘K
               </kbd>
             </button>
@@ -341,15 +351,34 @@ export const Navbar = () => {
             {comparedPlots.length > 0 && (
               <button
                 onClick={() => setIsCompareModalOpen(true)}
-                className="relative p-2 rounded-full border border-luxury-gold bg-gold-gradient text-luxury-darker shadow-luxury-gold hover:scale-105 transition-all"
+                className="relative p-1.5 rounded-full border border-luxury-gold bg-gold-gradient text-luxury-darker shadow-luxury-gold hover:scale-105 transition-all"
                 title={isHindi ? `तुलना करें (${comparedPlots.length})` : `Compare (${comparedPlots.length})`}
               >
-                <Scale className="w-4 h-4" />
+                <Scale className="w-3.5 h-3.5" />
                 <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-rose-600 text-white font-mono text-[9px] font-bold flex items-center justify-center shadow">
                   {comparedPlots.length}
                 </span>
               </button>
             )}
+
+            {/* Direct CRM Portal Access with Live Leads Badge */}
+            <Link
+              to="/crm"
+              className={`relative flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 rounded-full border text-[11px] font-bold uppercase tracking-wider transition-all duration-200 ${
+                location.pathname === '/crm'
+                  ? 'border-luxury-gold bg-gold-gradient text-luxury-darker shadow-luxury-gold'
+                  : 'dark:border-white/10 border-slate-200 dark:bg-[#0b1120]/80 bg-white/80 dark:text-slate-200 text-slate-800 hover:border-luxury-gold'
+              }`}
+              title={isHindi ? 'रियल एस्टेट CRM पोर्टल' : 'Investor Advisory CRM Portal'}
+            >
+              <Users className="w-3.5 h-3.5 text-luxury-gold" />
+              <span>CRM</span>
+              {metrics && metrics.totalLeads > 0 && (
+                <span className="w-4 h-4 rounded-full bg-rose-600 text-white font-mono text-[9px] font-bold flex items-center justify-center shadow-sm">
+                  {metrics.totalLeads}
+                </span>
+              )}
+            </Link>
 
             <LanguageToggle />
             <ThemeToggle />

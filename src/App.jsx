@@ -6,6 +6,7 @@ import { FloatingBottomBar } from './components/FloatingBottomBar';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { LuxuryAmbientLayer } from './components/LuxuryAmbientLayer';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { CustomCursorFollower } from './components/CustomCursorFollower';
 
 // Direct import for instantaneous landing page
 import { Home } from './pages/Home';
@@ -24,17 +25,11 @@ const WealthCalculator = lazy(() => import('./pages/WealthCalculator').then(m =>
 const RegistryProcess = lazy(() => import('./pages/RegistryProcess').then(m => ({ default: m.RegistryProcess })));
 const FAQ = lazy(() => import('./pages/FAQ').then(m => ({ default: m.FAQ })));
 const BookVisit = lazy(() => import('./pages/BookVisit').then(m => ({ default: m.BookVisit })));
+const CRM = lazy(() => import('./pages/CRM').then(m => ({ default: m.CRM })));
 const NotFound = lazy(() => import('./pages/NotFound').then(m => ({ default: m.NotFound })));
 
-// Ultra-luxury minimal loader
-const LuxuryRouteLoader = () => (
-  <div className="min-h-[70vh] flex flex-col items-center justify-center gap-4">
-    <div className="w-10 h-10 rounded-full border-2 border-luxury-gold/20 border-t-luxury-gold animate-spin" />
-    <span className="text-[11px] uppercase tracking-widest text-luxury-gold font-bold">
-      Loading Intelligence Dossier...
-    </span>
-  </div>
-);
+import { LuxuryRouteLoader } from './components/LuxuryRouteLoader';
+import { Preloader } from './components/Preloader';
 
 // Scroll to top helper on route change
 function ScrollToTop() {
@@ -48,6 +43,8 @@ function ScrollToTop() {
 export const App = () => {
   return (
     <div className="min-h-screen flex flex-col bg-theme-base text-theme-primary transition-colors duration-300 relative">
+      <Preloader />
+      <CustomCursorFollower />
       <LuxuryAmbientLayer />
       <ScrollToTop />
       <Navbar />
@@ -68,6 +65,7 @@ export const App = () => {
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogDetails />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/crm" element={<CRM />} />
               <Route path="/legal" element={<Legal />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Calculator, ArrowRight, ShieldCheck, DollarSign, Building, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -8,21 +9,25 @@ export const PlotCalculator = () => {
   const [loanTenure, setLoanTenure] = useState(15); // years
   const interestRate = 8.65; // % per annum standard for plot / home loan
 
-  // Conversions
-  const sqFt = gaj * 9;
-  const sqMt = (gaj * 0.836127).toFixed(1);
-  const baseCost = gaj * ratePerGaj;
+  // Conversions & Safe Bounds
+  const validGaj = Number(gaj) || 0;
+  const validRate = Number(ratePerGaj) || 0;
+  const sqFt = validGaj * 9;
+  const sqMt = (validGaj * 0.836127).toFixed(1);
+  const baseCost = validGaj * validRate;
   const stampDutyAndRegistry = baseCost * 0.075; // 7.5% standard in Rajasthan
   const totalInvestment = baseCost + stampDutyAndRegistry;
 
   // Loan Calculation (75% loan)
   const loanAmount = baseCost * 0.75;
   const monthlyRate = interestRate / (12 * 100);
-  const totalMonths = loanTenure * 12;
-  const emi = Math.round(
-    (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) /
-      (Math.pow(1 + monthlyRate, totalMonths) - 1)
-  );
+  const totalMonths = (Number(loanTenure) || 1) * 12;
+  const emi = loanAmount > 0
+    ? Math.round(
+        (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) /
+          (Math.pow(1 + monthlyRate, totalMonths) - 1)
+      )
+    : 0;
 
   const formatINR = (val) => {
     return new Intl.NumberFormat('en-IN', {
@@ -189,13 +194,13 @@ export const PlotCalculator = () => {
             </span>
           </div>
 
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="w-full py-3.5 rounded-xl bg-gold-gradient text-luxury-darker font-bold text-xs uppercase tracking-wider shadow-luxury-gold flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform"
           >
             <span>Enquire Available Plots in This Bracket</span>
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

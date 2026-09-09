@@ -5,6 +5,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { CompareProvider } from './context/CompareContext';
 import { CurrencyProvider } from './context/CurrencyContext';
+import { CRMProvider } from './context/CRMContext';
 import { App } from './App';
 import './index.css';
 
@@ -15,7 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <LanguageProvider>
           <CurrencyProvider>
             <CompareProvider>
-              <App />
+              <CRMProvider>
+                <App />
+              </CRMProvider>
             </CompareProvider>
           </CurrencyProvider>
         </LanguageProvider>

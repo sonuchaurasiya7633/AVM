@@ -1,4 +1,4 @@
-import dronePlotsHeroImg from '../assets/images/drone-plots-hero.jpg';
+const CLOUDINARY_DRONE_IMAGE = "https://res.cloudinary.com/dqpbo1uho/image/upload/v1788952291/yzmkuehvawne25oas0lr.png";
 import heroEstateImg from '../assets/images/hero-plotted-estate.jpg';
 
 export const PLOTS_DATA = [
@@ -19,8 +19,8 @@ export const PLOTS_DATA = [
     plotSizesGaj: [150, 200, 250, 350, 500],
     plotSizesSqFt: [1350, 1800, 2250, 3150, 4500],
     roadWidths: ["40 Ft", "60 Ft", "80 Ft Main Avenue"],
-    image: dronePlotsHeroImg,
-    coverImage: dronePlotsHeroImg,
+    image: CLOUDINARY_DRONE_IMAGE,
+    coverImage: CLOUDINARY_DRONE_IMAGE,
     description: "Jaipur's most distinguished gated plotted sanctuary, spanning 45 meticulously planned acres along the bustling Ajmer Road expansion corridor. Designed with underground cabling, Olympic-style swimming pool, curated botanical gardens, and 24/7 biometric security surveillance.",
     amenities: [
       "Grand Architectural Entrance Gate with Water Cascades",

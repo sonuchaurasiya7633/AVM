@@ -6,9 +6,11 @@ import {
 } from 'lucide-react';
 import { AGENTS_DATA } from '../data/agents';
 import { useLanguage } from '../context/LanguageContext';
+import { useCRM } from '../context/CRMContext';
 
 export const BookVisit = () => {
   const { t, isHindi } = useLanguage();
+  const { addLead, scheduleVisit } = useCRM();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -24,6 +26,36 @@ export const BookVisit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    try {
+      const createdLead = addLead({
+        name: formData.name,
+        phone: formData.phone,
+        corridor: formData.corridor,
+        plotName: `VIP Inspection: ${formData.corridor}`,
+        budgetLakhs: 85,
+        plotSizeGaj: 300,
+        stage: 'site_visit',
+        priority: 'hot',
+        source: 'VIP Site Visit Chauffeur Form',
+        notes: `Pickup: ${formData.pickupLocation} | Vehicle: ${formData.vehicleType} | Time: ${formData.preferredTime} | Notes: ${formData.notes}`,
+      });
+
+      if (createdLead) {
+        scheduleVisit({
+          leadId: createdLead.id,
+          leadName: formData.name,
+          phone: formData.phone,
+          date: formData.preferredDate || new Date().toISOString().split('T')[0],
+          timeSlot: formData.preferredTime,
+          pickupLocation: formData.pickupLocation,
+          corridor: formData.corridor,
+          vehicle: formData.vehicleType,
+          notes: formData.notes,
+        });
+      }
+    } catch (err) {
+      console.error('CRM auto capture error in BookVisit:', err);
+    }
     setSubmitted(true);
   };
 

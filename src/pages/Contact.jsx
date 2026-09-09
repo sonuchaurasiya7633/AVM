@@ -6,9 +6,11 @@ import { LeatherUnitCalculator } from '../components/LeatherUnitCalculator';
 import { Mail, Phone, MapPin, Send, CheckCircle2, Shield, Calendar, Clock, UserCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
+import { useCRM } from '../context/CRMContext';
 
 export const Contact = () => {
   const { t, isHindi } = useLanguage();
+  const { addLead } = useCRM();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,6 +34,22 @@ export const Contact = () => {
         const enquiries = JSON.parse(localStorage.getItem('avm_enquiries') || '[]');
         enquiries.push({ ...formData, timestamp: new Date().toISOString() });
         localStorage.setItem('avm_enquiries', JSON.stringify(enquiries));
+
+        if (addLead) {
+          addLead({
+            name: formData.name,
+            phone: formData.phone,
+            email: formData.email,
+            corridor: 'Ajmer Road & Tech Corridor (NH-48)',
+            plotName: formData.subject,
+            budgetLakhs: 75,
+            plotSizeGaj: 300,
+            stage: 'new',
+            priority: 'hot',
+            source: 'Advisory Consultation Form',
+            notes: `Subject: ${formData.subject} | Tier: ${formData.investmentTier} | Message: ${formData.message}`,
+          });
+        }
       } catch (err) {
         // ignore
       }

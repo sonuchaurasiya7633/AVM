@@ -3,11 +3,11 @@ export const TRANSLATIONS = {
     // Navigation
     nav: {
       home: 'Home',
-      plots: 'Plots & Estates',
+      plots: 'Plots',
       registry: '90-A Registry',
-      calculator: 'Wealth Calculator',
-      corridors: 'Jaipur Corridors',
-      advisory: 'Advisory & Media',
+      calculator: 'Calculator',
+      corridors: 'Corridors',
+      advisory: 'Advisory',
       buyerGuide: 'Buyer Guide & Protocol',
       buyerGuideDesc: '5-Phase statutory audit before paying token',
       faqs: 'Statutory Land FAQs',
@@ -35,7 +35,8 @@ export const TRANSLATIONS = {
       bookVisit: 'Book VIP Site Visit',
       browsePlots: 'Browse Verified Plots',
       watchVault: 'Watch 21 Masterclasses',
-      switcherDrone: 'Drone Plots View',
+      switcherOverview: 'Overview',
+      switcherDrone: '4K Drone View',
       switcherReel: '4K Drone Reel',
       switcherBlueprint: 'Masterplan Blueprint',
       inspect8k: 'Inspect 8K',
@@ -51,6 +52,27 @@ export const TRANSLATIONS = {
       metricBrokerage: '₹0 Commission',
       metricBrokerageLabel: 'Direct Developer Rate',
       metricBrokerageSub: '100% fiduciary independence'
+    },
+    // 4K Drone Reel Section
+    droneReel: {
+      badge: '✦ Official 4K Drone Reel • Live Site Inspection ✦',
+      title: 'Real Ground Reality: Watch The 4K Drone Reel',
+      subtitle: 'See the actual physical township development from the sky — wide 60ft/80ft bitumen roads, curbstones, underground electricity conduits, and physical plot boundary demarcation.',
+      tagline: 'Recorded On-Site in Jaipur',
+      unmuteHint: 'Tap to Unmute Audio',
+      muteHint: 'Mute Audio',
+      playingNow: '4K Live Drone Inspection',
+      specRoads: 'Masterplan Boulevards',
+      specRoadsVal: '60 Ft & 80 Ft Asphalt',
+      specInfra: 'Underground Utilities',
+      specInfraVal: 'Wiring & LED Lights',
+      specTitle: 'Legal Sanction',
+      specTitleVal: '100% Section 90-A',
+      specPossession: 'Plot Demarcation',
+      specPossessionVal: 'Ready Physical Cuts',
+      bookVisitBtn: 'Book Free VIP Fortuner Visit',
+      whatsappBtn: 'Enquire on WhatsApp',
+      callBtn: 'Direct Call'
     },
     // Masterplan Blueprint Section
     blueprint: {
@@ -212,12 +234,12 @@ export const TRANSLATIONS = {
   hi: {
     // Navigation
     nav: {
-      home: 'मुख्य पृष्ठ',
-      plots: 'प्लॉट्स व टाउनशिप',
-      registry: '90-A रजिस्ट्री प्रक्रिया',
-      calculator: 'वेल्थ कैलकुलेटर',
-      corridors: 'जयपुर कॉरिडोर्स',
-      advisory: 'एडवाइजरी व मीडिया',
+      home: 'होम',
+      plots: 'प्लॉट्स',
+      registry: '90-A रजिस्ट्री',
+      calculator: 'कैलकुलेटर',
+      corridors: 'कॉरिडोर',
+      advisory: 'एडवाइजरी',
       buyerGuide: 'क्रेता सुरक्षा गाइड व प्रोटोकॉल',
       buyerGuideDesc: 'टोकन देने से पहले 5-चरणीय वैधानिक जांच',
       faqs: 'जमीन व कानून FAQ',
@@ -245,7 +267,8 @@ export const TRANSLATIONS = {
       bookVisit: 'वीआईपी साइट विजिट बुक करें',
       browsePlots: 'सत्यापित प्लॉट्स देखें',
       watchVault: '21 मास्टरक्लास देखें',
-      switcherDrone: 'ड्रोन प्लॉट्स व्यू',
+      switcherOverview: 'मुख्य ओवरव्यू',
+      switcherDrone: '4K ड्रोन व्यू',
       switcherReel: '4K ड्रोन रील',
       switcherBlueprint: 'मास्टरप्लान ब्लूप्रिंट',
       inspect8k: '8K में देखें',
@@ -260,7 +283,27 @@ export const TRANSLATIONS = {
       metricCoordinatorsSub: 'जयपुर में ऑन-ग्राउंड मदद',
       metricBrokerage: '₹0 कमीशन',
       metricBrokerageLabel: 'सीधा डेवलपर रेट',
-      metricBrokerageSub: '100% निष्पक्ष परामर्श'
+    },
+    // 4K Drone Reel Section
+    droneReel: {
+      badge: '✦ आधिकारिक 4K ड्रोन रील • लाइव ऑन-ग्राउंड इंस्पेक्शन ✦',
+      title: 'मौके की हकीकत: देखें लाइव 4K ड्रोन रील',
+      subtitle: 'टाउनशिप का वास्तविक विकास आसमान से देखें — 60ft/80ft चौड़ी डामर सड़कें, कर्बस्टोन्स, अंडरग्राउंड बिजली की लाइनें और पत्थरों से सीमांकित प्लॉट्स।',
+      tagline: 'जयपुर ऑन-साइट रिकॉर्डेड',
+      unmuteHint: 'आवाज सुनने के लिए टैप करें',
+      muteHint: 'आवाज म्यूट करें',
+      playingNow: '4K लाइव ड्रोन इंस्पेक्शन',
+      specRoads: 'मास्टरप्लान मुख्य मार्ग',
+      specRoadsVal: '60 फीट व 80 फीट चौड़े',
+      specInfra: 'अंडरग्राउंड बिजली व ड्रेनेज',
+      specInfraVal: 'स्ट्रीटलाइट्स व केबलिंग',
+      specTitle: 'कानूनी स्वीकृति',
+      specTitleVal: '100% धारा 90-A',
+      specPossession: 'प्लॉट डिमार्केशन',
+      specPossessionVal: 'मौके पर कटी बाउंड्री',
+      bookVisitBtn: 'फ्री वीआईपी फॉर्च्यूनर विजिट बुक करें',
+      whatsappBtn: 'व्हाट्सएप पर जानकारी लें',
+      callBtn: 'सीधा कॉल करें'
     },
     // Masterplan Blueprint Section
     blueprint: {

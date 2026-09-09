@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, ShieldCheck, MapPin, Calendar, Phone, User, MessageSquare, Car, Sparkles } from 'lucide-react';
+import { useCRM } from '../context/CRMContext';
 
 export const PlotInquiryModal = ({ isOpen, onClose, plot }) => {
+  const { addLead, scheduleVisit } = useCRM();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -15,6 +17,36 @@ export const PlotInquiryModal = ({ isOpen, onClose, plot }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    try {
+      const budgetNum = plot.priceStartingLakhs ? parseFloat(plot.priceStartingLakhs.replace(/[^0-9.]/g, '')) || 50 : 50;
+      const createdLead = addLead({
+        name: formData.name,
+        phone: formData.phone,
+        corridor: plot.corridor,
+        plotId: plot.id,
+        plotName: plot.name,
+        budgetLakhs: budgetNum,
+        plotSizeGaj: plot.plotSizesGaj ? plot.plotSizesGaj[0] : 200,
+        stage: formData.date ? 'site_visit' : 'new',
+        priority: 'hot',
+        source: 'Plot Inquiry Modal',
+        notes: formData.notes,
+      });
+
+      if (formData.date && scheduleVisit && createdLead) {
+        scheduleVisit({
+          leadId: createdLead.id,
+          leadName: formData.name,
+          phone: formData.phone,
+          date: formData.date,
+          corridor: plot.corridor,
+          pickupLocation: 'Jaipur International Airport / Direct to Site',
+          notes: `Inspection booked for ${plot.name}`,
+        });
+      }
+    } catch (err) {
+      console.error('CRM Lead Auto-capture error:', err);
+    }
     setSubmitted(true);
   };
 

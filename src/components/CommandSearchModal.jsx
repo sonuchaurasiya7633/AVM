@@ -68,6 +68,24 @@ export const CommandSearchModal = ({ isOpen, onClose }) => {
       category: 'tools',
       badge: 'VIP Visit'
     },
+    {
+      type: 'tool',
+      title: isHindi ? 'इन्वेस्टर CRM पोर्टल एवं लीड पाइपलाइन' : 'Investor CRM Portal & Lead Pipeline',
+      subtitle: isHindi ? 'क्लाइंट पाइपलाइन, साइट विजिट्स, टास्क एवं एनालिटिक्स' : 'Manage investor inquiries, visits, tasks & deal velocity',
+      path: '/crm',
+      icon: ShieldCheck,
+      category: 'tools',
+      badge: 'CRM Hub'
+    },
+    {
+      type: 'tool',
+      title: isHindi ? 'कुछ भी पूछें • AVM AI सलाहकार बॉट' : 'Ask Anything • AVM AI Land Advisor',
+      subtitle: isHindi ? 'धारा 90-A, स्टाम्प ड्यूटी, अजमेर रोड प्लॉट्स पर त्वरित उत्तर' : 'Instant bilingual answers on Section 90-A, stamp duty & plots',
+      action: () => window.dispatchEvent(new CustomEvent('open-ai-bot')),
+      icon: Sparkles,
+      category: 'tools',
+      badge: 'AI Advisor'
+    },
   ], [isHindi]);
 
   // Unified search results
@@ -206,7 +224,11 @@ export const CommandSearchModal = ({ isOpen, onClose }) => {
 
   const handleSelect = (item) => {
     onClose();
-    navigate(item.path);
+    if (item.action) {
+      item.action();
+    } else if (item.path) {
+      navigate(item.path);
+    }
   };
 
   const categories = [

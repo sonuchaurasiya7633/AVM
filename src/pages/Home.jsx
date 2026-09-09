@@ -9,6 +9,9 @@ import logoImg from '../assets/logo/avm-logo.png';
 import heroEstateImg from '../assets/images/hero-plotted-estate.jpg';
 import dronePlotsHeroImg from '../assets/images/drone-plots-hero.jpg';
 import masterBlueprintImg from '../assets/images/master-blueprint.jpg';
+
+const CLOUDINARY_DRONE_IMAGE = "https://res.cloudinary.com/dqpbo1uho/image/upload/v1788952291/yzmkuehvawne25oas0lr.png";
+const CLOUDINARY_REEL_VIDEO = "https://res.cloudinary.com/dqpbo1uho/video/upload/v1788951913/wmmrzbq5i4ojin2lcbbs.mp4";
 import { SectionHeading } from '../components/SectionHeading';
 import { PlotCard } from '../components/PlotCard';
 import { VideoCard } from '../components/VideoCard';
@@ -28,6 +31,7 @@ import { VastuSunPathSimulator } from '../components/VastuSunPathSimulator';
 import { AIAirAppreciationForecaster } from '../components/AIAirAppreciationForecaster';
 import { ForensicTitleChainTimeline } from '../components/ForensicTitleChainTimeline';
 import { ExecutiveAudioBriefing } from '../components/ExecutiveAudioBriefing';
+import { DroneReelShowcase } from '../components/DroneReelShowcase';
 
 import { PLOTS_DATA } from '../data/plots';
 import { YOUTUBE_VIDEOS } from '../data/videos';
@@ -38,9 +42,13 @@ export const Home = () => {
   const { t, isHindi } = useLanguage();
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [activeVideoCategory, setActiveVideoCategory] = useState('All');
-  const [heroMode, setHeroMode] = useState('drone-plots'); // 'drone-plots' | 'video' | 'blueprint'
+  const [heroMode, setHeroMode] = useState('overview'); // 'drone-plots' | 'video' | 'blueprint'
   const [isMuted, setIsMuted] = useState(true);
+  const [heroPlaying, setHeroPlaying] = useState(true);
+  const [heroProgress, setHeroProgress] = useState(0);
+  const [heroShowCenterIcon, setHeroShowCenterIcon] = useState(false);
   const [isBlueprintModalOpen, setIsBlueprintModalOpen] = useState(false);
+  const [isDroneImgModalOpen, setIsDroneImgModalOpen] = useState(false);
   const [isDossierOpen, setIsDossierOpen] = useState(false);
   const videoRef = React.useRef(null);
 
@@ -49,6 +57,25 @@ export const Home = () => {
       videoRef.current.muted = !isMuted;
       setIsMuted(!isMuted);
     }
+  };
+
+  const toggleHeroPlay = () => {
+    if (!videoRef.current) return;
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setHeroPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setHeroPlaying(false);
+    }
+    setHeroShowCenterIcon(true);
+    setTimeout(() => setHeroShowCenterIcon(false), 900);
+  };
+
+  const handleHeroTimeUpdate = () => {
+    if (!videoRef.current || !videoRef.current.duration) return;
+    const pct = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+    setHeroProgress(pct);
   };
 
   const videoCategories = useMemo(() => {
@@ -67,91 +94,44 @@ export const Home = () => {
 
       {/* ----------------- 1. CINEMATIC REAL ESTATE HERO ----------------- */}
       <section className="relative min-h-[95vh] flex flex-col items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Dynamic Media Backdrop: Drone Plots Aerial View, 4K Video Loop, or Masterplan Blueprint */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          {heroMode === 'drone-plots' ? (
-            <div className="relative w-full h-full overflow-hidden">
-              <img
-                src={dronePlotsHeroImg}
-                alt="AVM Plotted Township Aerial Drone Perspective"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                className="w-full h-full object-cover scale-105 filter brightness-[0.62] contrast-[1.12] transition-all duration-700 ease-out"
-              />
-            </div>
-          ) : heroMode === 'video' ? (
-            <div className="relative w-full h-full">
-              <video
-                ref={videoRef}
-                autoPlay
-                loop
-                muted={isMuted}
-                playsInline
-                className="w-full h-full object-cover scale-105 filter brightness-[0.55] contrast-[1.15] transition-all duration-700 ease-out"
-                poster={dronePlotsHeroImg}
-              >
-                <source
-                  src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-luxury-residential-complex-41618-large.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
-          ) : (
-            <div className="relative w-full h-full overflow-hidden flex items-center justify-center bg-[#031d28]">
-              <img
-                src={masterBlueprintImg}
-                alt="Sanctioned Masterplan Architectural Blueprint"
-                className="w-full h-full object-cover scale-100 filter brightness-[0.7] contrast-[1.25] transition-all duration-700 ease-out"
-              />
-            </div>
-          )}
-
-          {/* Multi-layered Cosmic Obsidian Scrim & Vignette */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/75 to-[#030712]/55" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(3, 7, 18,0.65)_0%,_rgba(3, 7, 18,0.92)_70%)]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/80 via-transparent to-[#030712]" />
-
+        {/* Pure Luxury Obsidian Backdrop (Clean, Zero Image/Video Clutter in Background) */}
+        <div className="absolute inset-0 z-0 overflow-hidden bg-gradient-to-b from-[#030712] via-[#08101e] to-[#030712]">
           {/* Ambient Cyan & Gold Radial Glow Highlights */}
-          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-cyan-900/20 rounded-full blur-[140px] pointer-events-none" />
-          <div className="absolute bottom-12 -left-20 w-[400px] h-[400px] bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none" />
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[750px] h-[380px] bg-cyan-900/25 rounded-full blur-[140px] pointer-events-none" />
+          <div className="absolute bottom-12 -left-20 w-[450px] h-[450px] bg-amber-500/10 rounded-full blur-[130px] pointer-events-none" />
+          <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[150px] pointer-events-none" />
 
           {/* Cosmic Geometric Square Grid Pattern */}
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_75%_60%_at_50%_25%,#000_65%,transparent_100%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_75%_60%_at_50%_25%,#000_65%,transparent_100%)]" />
         </div>
 
-        {/* Media Switcher Capsule: Switch between Drone Plots View, 4K Drone Reel, and Masterplan Blueprint */}
+        {/* Media Switcher Capsule: Switch between Overview, 4K Drone View, 4K Drone Reel, and Masterplan Blueprint */}
         <div className="relative z-20 mb-6 flex items-center justify-center">
-          <div className="inline-flex items-center p-1 rounded-full bg-black/75 border border-luxury-gold/40 backdrop-blur-md shadow-2xl text-xs">
+          <div className="inline-flex items-center p-1 rounded-full bg-black/80 border border-luxury-gold/40 backdrop-blur-md shadow-2xl text-xs">
+            <button
+              onClick={() => setHeroMode('overview')}
+              className={"flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full font-semibold transition-all duration-200 " + (heroMode === 'overview' ? 'bg-gold-gradient text-luxury-darker shadow-md' : 'text-white/80 hover:text-white hover:bg-white/10')}
+            >
+              <Award className="w-3.5 h-3.5" />
+              <span>{t('hero.switcherOverview', 'Overview')}</span>
+            </button>
             <button
               onClick={() => setHeroMode('drone-plots')}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-semibold transition-all duration-200 ${
-                heroMode === 'drone-plots'
-                  ? 'bg-gold-gradient text-luxury-darker shadow-md'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
-              }`}
+              className={"flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full font-semibold transition-all duration-200 " + (heroMode === 'drone-plots' ? 'bg-gold-gradient text-luxury-darker shadow-md' : 'text-white/80 hover:text-white hover:bg-white/10')}
             >
               <Compass className="w-3.5 h-3.5" />
-              <span>{t('hero.switcherDrone', 'Drone Plots View')}</span>
+              <span>{t('hero.switcherDrone', '4K Drone View')}</span>
             </button>
             <button
               onClick={() => setHeroMode('video')}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-semibold transition-all duration-200 ${
-                heroMode === 'video'
-                  ? 'bg-gold-gradient text-luxury-darker shadow-md'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
-              }`}
+              className={"flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full font-semibold transition-all duration-200 " + (heroMode === 'video' ? 'bg-gold-gradient text-luxury-darker shadow-md' : 'text-white/80 hover:text-white hover:bg-white/10')}
             >
               <Video className="w-3.5 h-3.5" />
               <span>{t('hero.switcherReel', '4K Drone Reel')}</span>
             </button>
             <button
               onClick={() => setHeroMode('blueprint')}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-semibold transition-all duration-200 ${
-                heroMode === 'blueprint'
-                  ? 'bg-gold-gradient text-luxury-darker shadow-md'
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
-              }`}
+              className={"flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full font-semibold transition-all duration-200 " + (heroMode === 'blueprint' ? 'bg-gold-gradient text-luxury-darker shadow-md' : 'text-white/80 hover:text-white hover:bg-white/10')}
             >
               <ImageIcon className="w-3.5 h-3.5" />
               <span>{t('hero.switcherBlueprint', 'Masterplan Blueprint')}</span>
@@ -166,13 +146,14 @@ export const Home = () => {
                 <span className="hidden sm:inline">{t('hero.inspect8k', 'Inspect 8K')}</span>
               </button>
             )}
-            {heroMode === 'video' && (
+            {heroMode === 'drone-plots' && (
               <button
-                onClick={toggleMute}
-                title={isMuted ? "Unmute Audio" : "Mute Audio"}
-                className="p-1.5 ml-1 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                onClick={() => setIsDroneImgModalOpen(true)}
+                title="Inspect 4K Fullscreen"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 ml-1 rounded-full text-xs font-bold uppercase tracking-wider bg-gold-gradient text-luxury-darker shadow-luxury-gold hover:scale-105 transition-all"
               >
-                {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-luxury-gold" />}
+                <ZoomIn className="w-3 h-3 text-luxury-darker" />
+                <span className="hidden sm:inline">4K Fullscreen</span>
               </button>
             )}
           </div>
@@ -180,114 +161,555 @@ export const Home = () => {
 
         {/* Main Content: Luxury Glass & Stitched Leather Chassis for 100% Crisp Typography */}
         <div className="relative z-10 max-w-5xl mx-auto w-full text-center flex flex-col items-center">
-          <div className="w-full bg-[#030712]/85 backdrop-blur-xl rounded-3xl p-6 sm:p-10 lg:p-12 border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_30px_rgba(212,175,55,0.15)] relative overflow-hidden gold-specular-border">
-            {/* 4 Antiqued Solid Corner Brackets */}
-            <div className="leather-corner-bracket-tl"></div>
-            <div className="leather-corner-bracket-tr"></div>
-            <div className="leather-corner-bracket-bl"></div>
-            <div className="leather-corner-bracket-br"></div>
+          {heroMode === 'drone-plots' ? (
+            /* 4K AERIAL DRONE PERSPECTIVE CARD DISPLAYED DIRECTLY IN FRONT */
+            <div className="w-full bg-[#030712]/92 backdrop-blur-2xl rounded-3xl p-5 sm:p-8 lg:p-10 border-2 border-amber-400/70 shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_40px_rgba(245,158,11,0.3)] relative overflow-hidden gold-specular-border animate-fade-in">
+              <div className="leather-corner-bracket-tl"></div>
+              <div className="leather-corner-bracket-tr"></div>
+              <div className="leather-corner-bracket-bl"></div>
+              <div className="leather-corner-bracket-br"></div>
+              <div className="brass-screw absolute top-4 left-4" title="Rivet"></div>
+              <div className="brass-screw absolute top-4 right-4" title="Rivet"></div>
+              <div className="brass-screw absolute bottom-4 left-4" title="Rivet"></div>
+              <div className="brass-screw absolute bottom-4 right-4" title="Rivet"></div>
 
-            {/* 4 Rivets for High-Tech Engineering Look */}
-            <div className="brass-screw absolute top-4 left-4" title="Rivet"></div>
-            <div className="brass-screw absolute top-4 right-4" title="Rivet"></div>
-            <div className="brass-screw absolute bottom-4 left-4" title="Rivet"></div>
-            <div className="brass-screw absolute bottom-4 right-4" title="Rivet"></div>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center text-left">
+                {/* 4K Drone Image Display in Front with Interactive Pins */}
+                <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border-2 border-amber-400/80 shadow-2xl bg-black group">
+                  <img
+                    src={CLOUDINARY_DRONE_IMAGE}
+                    alt="4K Aerial Drone Perspective of Plotted Township"
+                    className="w-full h-auto max-h-[420px] object-cover cursor-zoom-in group-hover:scale-105 transition-transform duration-700"
+                    onClick={() => setIsDroneImgModalOpen(true)}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
-            {/* Brand Emblem — 100% Static & Crisp, Zero Border */}
-            <div className="mb-5 flex justify-center">
-              <img
-                src={logoImg}
-                alt="AVM TALKS BY AVNISH"
-                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover shadow-2xl"
-              />
-            </div>
+                  {/* Top Badge */}
+                  <div className="absolute top-3 left-3 flex flex-wrap gap-2">
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase bg-black/80 text-amber-300 border border-amber-400/60 backdrop-blur">
+                      ✦ 4K Aerial Drone View
+                    </span>
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 backdrop-blur">
+                      Section 90-A Approved
+                    </span>
+                  </div>
 
-            {/* Subtitle Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-[0.22em] border border-amber-400/30 bg-amber-400/10 text-amber-300 mb-5 shadow-xl">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 beacon-pulse"></span>
-              <span>{t('hero.badge', 'JDA Approved Plotted Townships • Real Estate Media')}</span>
-            </div>
+                  {/* Interactive Pins */}
+                  <div className="absolute top-1/4 left-1/4 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/80 border border-amber-400 text-[9px] font-mono font-bold text-amber-200 shadow pointer-events-none">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
+                    <span>80' Boulevard</span>
+                  </div>
+                  <div className="absolute bottom-1/3 right-1/4 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/80 border border-cyan-400 text-[9px] font-mono font-bold text-cyan-200 shadow pointer-events-none">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+                    <span>Demarcated Plots</span>
+                  </div>
 
-            {/* Majestic Hero Headline: Pure Crisp White + Shimmering Imperial Gold/Cyan Gradient with High-Contrast Shadow */}
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] font-serif font-black tracking-tight text-white leading-[1.08] drop-shadow-[0_10px_25px_rgba(0,0,0,0.95)] max-w-5xl">
-              Curated Estates & Intelligence in the{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-cyan-300 italic font-normal">
-                {t('hero.titleHighlight', 'High-Stakes Land Due Diligence.')}
-              </span>
-            </h1>
+                  {/* Bottom Zoom Trigger */}
+                  <div className="absolute bottom-3 inset-x-3 flex items-center justify-between gap-2 p-2.5 rounded-xl bg-black/80 border border-amber-400/40 backdrop-blur">
+                    <div>
+                      <p className="text-xs font-serif font-bold text-amber-200">
+                        {isHindi ? '4K एरियल ड्रोन इंस्पेक्शन' : '4K Aerial Drone Reconnaissance'}
+                      </p>
+                      <p className="text-[10px] text-slate-300">
+                        {isHindi ? 'बड़ी स्क्रीन में देखने के लिए फोटो पर क्लिक करें' : 'Click image to inspect in 4K Fullscreen'}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setIsDroneImgModalOpen(true)}
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-[11px] font-bold uppercase bg-gold-gradient text-luxury-darker shadow hover:scale-105 transition-all whitespace-nowrap"
+                    >
+                      <ZoomIn className="w-3 h-3" />
+                      <span>{isHindi ? '4K देखें' : 'Inspect 4K'}</span>
+                    </button>
+                  </div>
+                </div>
 
-            {/* Subtext: Slate-300 with High Contrast */}
-            <p className="max-w-3xl mx-auto text-sm sm:text-base lg:text-lg text-slate-300 font-normal leading-relaxed mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-              {t('hero.subtitle', "From wide 60ft/80ft master-planned avenues to forensic 30-year revenue title checks. Discover verified residential and commercial plots across Greater Jaipur's highest-velocity growth corridors with AVM TALKS BY AVNISH.")}
-            </p>
+                {/* Right Column: Physical Ground Reality Specs & Actions */}
+                <div className="lg:col-span-6 space-y-4">
+                  <div>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 mb-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>{isHindi ? '100% ऑन-ग्राउंड फिजिकल वेरिफिकेशन' : '100% On-Ground Physical Verification'}</span>
+                    </div>
+                    <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white leading-tight">
+                      {isHindi
+                        ? 'कागजी नक्शे नहीं — मौके पर 60ft/80ft सड़कें और डिमार्केटेड प्लॉट्स'
+                        : 'No Paper Promises: Wide Boulevards & Demarcated Land on Ground'}
+                    </h2>
+                    <p className="text-xs sm:text-sm text-slate-300 font-light mt-1.5 leading-relaxed">
+                      {isHindi
+                        ? 'बैकग्राउंड के बजाय सीधे स्क्रीन पर देखें — टाउनशिप में डामर की सड़कें डल चुकी हैं, कर्बस्टोन्स लग चुके हैं, अंडरग्राउंड बिजली की व्यवस्था है और हर प्लॉट की बाउंड्री पत्थरों से तय है।'
+                        : 'Inspect real on-site infrastructure directly on screen: completed bitumen boulevards, concrete curbstones, underground electricity, and plot boundary demarcation.'}
+                    </p>
+                  </div>
 
-            {/* Action CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-8">
-              <Link
-                to="/plots"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider gold-shimmer-btn text-white shadow-[0_0_30px_rgba(130,69,236,0.5)] group font-sans"
-              >
-                <Building2 className="w-4 h-4" />
-                <span>{t('hero.browsePlots', 'Explore Available Plots')}</span>
-              </Link>
+                  {/* 4 Feature Chips */}
+                  <div className="grid grid-cols-2 gap-2.5 font-mono text-xs">
+                    <div className="p-2.5 rounded-xl bg-white/[0.04] border border-amber-400/30">
+                      <span className="text-slate-400 font-sans text-[10px] block">
+                        {isHindi ? 'मास्टरप्लान मुख्य सड़कें' : 'Masterplan Boulevards'}
+                      </span>
+                      <span className="font-bold text-amber-300 text-xs">
+                        {isHindi ? '60ft व 80ft डामर' : '60 Ft & 80 Ft Asphalt'}
+                      </span>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-white/[0.04] border border-amber-400/30">
+                      <span className="text-slate-400 font-sans text-[10px] block">
+                        {isHindi ? 'अंडरग्राउंड बिजली' : 'Underground Utilities'}
+                      </span>
+                      <span className="font-bold text-cyan-300 text-xs">
+                        {isHindi ? 'केबलिंग व LED लाइट्स' : 'Wiring & LED Lights'}
+                      </span>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-white/[0.04] border border-amber-400/30">
+                      <span className="text-slate-400 font-sans text-[10px] block">
+                        {isHindi ? 'कानूनी टाइटल' : 'Legal Sanction'}
+                      </span>
+                      <span className="font-bold text-emerald-300 text-xs">
+                        {isHindi ? '100% धारा 90-A' : '100% Section 90-A'}
+                      </span>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-white/[0.04] border border-amber-400/30">
+                      <span className="text-slate-400 font-sans text-[10px] block">
+                        {isHindi ? 'प्लॉट बाउंड्री' : 'Plot Demarcation'}
+                      </span>
+                      <span className="font-bold text-amber-300 text-xs">
+                        {isHindi ? 'मौके पर कटी सीमा' : 'Ready Physical Cuts'}
+                      </span>
+                    </div>
+                  </div>
 
-              <Link
-                to="/media"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider border border-white/15 bg-white/[0.04] text-white hover:border-cyan-400/50 hover:bg-white/[0.08] backdrop-blur-xl transition-all duration-300 font-sans hover:scale-105 shadow-md"
-              >
-                <Play className="w-4 h-4 fill-cyan-400 text-cyan-400" />
-                <span>{t('hero.watchVault', 'Watch 21+ Masterclasses')}</span>
-              </Link>
-            </div>
-
-            {/* Live Trust Metrics Bar with Animated Numbers */}
-            <div className="w-full pt-6 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
-              <div className="flex flex-col items-center p-2 rounded-xl bg-white/[0.03] border border-white/[0.05]">
-                <span className="text-2xl sm:text-3xl font-serif font-extrabold text-gold-gradient">
-                  <AnimatedCounter end={100} suffix="%" />
-                </span>
-                <span className="text-xs text-white font-medium mt-0.5">
-                  {t('hero.metricPlotsLabel', 'JDA & RERA Screened')}
-                </span>
-                <span className="text-[11px] text-white/70 font-light">
-                  {t('hero.metricPlotsSub', 'Zero illegal schemes')}
-                </span>
+                  {/* Action CTAs */}
+                  <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+                    <Link
+                      to="/book-visit"
+                      className="flex-1 py-3 px-4 rounded-full text-xs font-bold uppercase tracking-wider gold-shimmer-btn text-white text-center shadow-lg hover:scale-[1.02] transition-transform"
+                    >
+                      {isHindi ? 'फ्री वीआईपी साइट विजिट' : 'Book VIP Fortuner Visit'}
+                    </Link>
+                    <a
+                      href="https://wa.me/919928365001?text=Hello%20Avnish%20ji,%20I%20inspected%20the%204K%20Drone%20View%20on%20the%20website%20and%20want%20details."
+                      target="_blank"
+                      rel="noreferrer"
+                      className="py-3 px-4 rounded-full text-xs font-bold uppercase tracking-wider bg-[#25D366] hover:bg-[#128C7E] text-white text-center shadow-md hover:scale-[1.02] transition-all"
+                    >
+                      {isHindi ? 'व्हाट्सएप' : 'WhatsApp Enquiry'}
+                    </a>
+                    <button
+                      onClick={() => setHeroMode('overview')}
+                      className="py-3 px-3.5 rounded-full text-xs font-bold uppercase tracking-wider border border-white/20 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-all text-center"
+                    >
+                      {isHindi ? 'ओवरव्यू' : 'Overview'}
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="flex flex-col items-center p-2 rounded-xl bg-white/[0.03] border border-white/[0.05]">
-                <span className="text-2xl sm:text-3xl font-serif font-extrabold text-gold-gradient">
-                  <AnimatedCounter end={30} suffix={isHindi ? ' वर्ष' : '-Year'} />
-                </span>
-                <span className="text-xs text-white font-medium mt-0.5">
-                  {isHindi ? 'टाइटल सर्च ऑडिट' : 'Title Search Audits'}
-                </span>
-                <span className="text-[11px] text-white/70 font-light">
-                  {isHindi ? 'अखंड रेवेन्यू रिकॉर्ड' : 'Unbroken revenue chain'}
-                </span>
-              </div>
-              <div className="flex flex-col items-center p-2 rounded-xl bg-white/[0.03] border border-white/[0.05]">
-                <span className="text-2xl sm:text-3xl font-serif font-extrabold text-gold-gradient">
-                  <AnimatedCounter end={21} suffix={isHindi ? ' एपिसोड' : ' Episodes'} />
-                </span>
-                <span className="text-xs text-white font-medium mt-0.5">
-                  {t('hero.metricVideosLabel', 'YouTube Masterclasses')}
-                </span>
-                <span className="text-[11px] text-white/70 font-light">
-                  {t('hero.metricVideosSub', 'On-site ground reports')}
-                </span>
-              </div>
-              <div className="flex flex-col items-center p-2 rounded-xl bg-white/[0.03] border border-white/[0.05]">
-                <span className="text-2xl sm:text-3xl font-serif font-extrabold text-gold-gradient">
-                  <AnimatedCounter end={52} suffix={isHindi ? '+ फील्ड एजेंट' : '+ Agents'} />
-                </span>
-                <span className="text-xs text-white font-medium mt-0.5">
-                  {t('hero.metricCoordinatorsLabel', 'Territory Coordinators')}
-                </span>
-                <span className="text-[11px] text-white/70 font-light">
-                  {t('hero.metricCoordinatorsSub', 'Jaipur on-ground support')}
-                </span>
+            </div>
+          ) : heroMode === 'blueprint' ? (
+            /* MASTERPLAN BLUEPRINT DISPLAYED DIRECTLY IN FRONT */
+            <div className="w-full bg-[#030712]/92 backdrop-blur-2xl rounded-3xl p-5 sm:p-8 lg:p-10 border-2 border-amber-400/70 shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_40px_rgba(245,158,11,0.3)] relative overflow-hidden gold-specular-border animate-fade-in">
+              <div className="leather-corner-bracket-tl"></div>
+              <div className="leather-corner-bracket-tr"></div>
+              <div className="leather-corner-bracket-bl"></div>
+              <div className="leather-corner-bracket-br"></div>
+              <div className="brass-screw absolute top-4 left-4" title="Rivet"></div>
+              <div className="brass-screw absolute top-4 right-4" title="Rivet"></div>
+              <div className="brass-screw absolute bottom-4 left-4" title="Rivet"></div>
+              <div className="brass-screw absolute bottom-4 right-4" title="Rivet"></div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center text-left">
+                <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border-2 border-luxury-gold/70 shadow-2xl bg-[#0b1120] group">
+                  <img
+                    src={masterBlueprintImg}
+                    alt="Sanctioned Masterplan Architectural Blueprint"
+                    className="w-full h-auto max-h-[420px] object-cover cursor-zoom-in group-hover:scale-105 transition-transform duration-700"
+                    onClick={() => setIsBlueprintModalOpen(true)}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute top-3 left-3 flex gap-2">
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase bg-black/80 text-amber-300 border border-amber-400/60 backdrop-blur">
+                      ✦ Masterplan Blueprint
+                    </span>
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 backdrop-blur">
+                      Scale 1:1500 CAD
+                    </span>
+                  </div>
+                  <div className="absolute bottom-3 inset-x-3 flex items-center justify-between gap-2 p-2.5 rounded-xl bg-black/80 border border-amber-400/40 backdrop-blur">
+                    <div>
+                      <p className="text-xs font-serif font-bold text-amber-200">
+                        {isHindi ? '8K मास्टरप्लान लेआउट' : '8K Masterplan CAD Layout'}
+                      </p>
+                      <p className="text-[10px] text-slate-300">
+                        {isHindi ? 'फुलस्क्रीन में देखने के लिए ब्लूप्रिंट पर क्लिक करें' : 'Click to inspect in 8K Fullscreen'}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setIsBlueprintModalOpen(true)}
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-[11px] font-bold uppercase bg-gold-gradient text-luxury-darker shadow hover:scale-105 transition-all whitespace-nowrap"
+                    >
+                      <Maximize2 className="w-3 h-3" />
+                      <span>{isHindi ? '8K देखें' : 'Inspect 8K'}</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="lg:col-span-6 space-y-4">
+                  <div>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 mb-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>{isHindi ? 'जेडीए स्वीकृत टाउनशिप लेआउट' : 'JDA Sanctioned Layout'}</span>
+                    </div>
+                    <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white leading-tight">
+                      {isHindi ? 'मास्टरप्लान ब्लूप्रिंट व सेक्टर डिमार्केशन' : 'Masterplan Blueprint & Sector Demarcation'}
+                    </h2>
+                    <p className="text-xs sm:text-sm text-slate-300 font-light mt-1.5 leading-relaxed">
+                      {isHindi
+                        ? 'आधिकारिक तकनीकी CAD ड्राफ्टिंग — 80ft व 60ft चौड़ी सड़कें, नंबर्ड प्लॉट्स, सेंट्रल पार्क और क्लबहाउस।'
+                        : 'Official technical drafting showing 80ft & 60ft sector boulevards, numbered plots, central park, and clubhouse.'}
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2.5 font-mono text-xs">
+                    <div className="p-2.5 rounded-xl bg-white/[0.04] border border-amber-400/30">
+                      <span className="text-slate-400 font-sans text-[10px] block">
+                        {isHindi ? 'मुख्य सेक्टर रोड' : 'Main Boulevards'}
+                      </span>
+                      <span className="font-bold text-amber-300 text-xs">80 Ft & 60 Ft</span>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-white/[0.04] border border-amber-400/30">
+                      <span className="text-slate-400 font-sans text-[10px] block">
+                        {isHindi ? 'आंतरिक सड़कें' : 'Internal Roads'}
+                      </span>
+                      <span className="font-bold text-cyan-300 text-xs">30 Ft & 40 Ft</span>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-white/[0.04] border border-amber-400/30">
+                      <span className="text-slate-400 font-sans text-[10px] block">
+                        {isHindi ? 'पार्क व ग्रीनरी' : 'Green Parks'}
+                      </span>
+                      <span className="font-bold text-emerald-300 text-xs">10%+ Dedicated</span>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-white/[0.04] border border-amber-400/30">
+                      <span className="text-slate-400 font-sans text-[10px] block">
+                        {isHindi ? 'क्लबहाउस' : 'Clubhouse'}
+                      </span>
+                      <span className="font-bold text-amber-300 text-xs">15,000 Sq.Ft</span>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+                    <button
+                      onClick={() => setIsBlueprintModalOpen(true)}
+                      className="flex-1 py-3 px-4 rounded-full text-xs font-bold uppercase tracking-wider bg-gold-gradient text-luxury-darker font-bold shadow-lg hover:scale-[1.02] transition-transform text-center"
+                    >
+                      {isHindi ? '8K फुलस्क्रीन खोलें' : 'Open 8K Fullscreen'}
+                    </button>
+                    <button
+                      onClick={() => setHeroMode('overview')}
+                      className="py-3 px-4 rounded-full text-xs font-bold uppercase tracking-wider border border-white/20 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-all text-center"
+                    >
+                      {isHindi ? 'ओवरव्यू' : 'Overview'}
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          ) : heroMode === 'video' ? (
+            <div className="w-full bg-[#030712]/92 backdrop-blur-2xl rounded-3xl p-5 sm:p-8 lg:p-10 border-2 border-amber-400/70 shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_40px_rgba(245,158,11,0.3)] relative overflow-hidden gold-specular-border animate-fade-in">
+              {/* 4 Antiqued Solid Corner Brackets */}
+              <div className="leather-corner-bracket-tl"></div>
+              <div className="leather-corner-bracket-tr"></div>
+              <div className="leather-corner-bracket-bl"></div>
+              <div className="leather-corner-bracket-br"></div>
+
+              {/* 4 Rivets */}
+              <div className="brass-screw absolute top-4 left-4" title="Rivet"></div>
+              <div className="brass-screw absolute top-4 right-4" title="Rivet"></div>
+              <div className="brass-screw absolute bottom-4 left-4" title="Rivet"></div>
+              <div className="brass-screw absolute bottom-4 right-4" title="Rivet"></div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center text-left">
+                {/* 9:16 Vertical Reel Player Right in the Front */}
+                <div className="lg:col-span-5 flex justify-center">
+                  <div
+                    onClick={toggleHeroPlay}
+                    className="relative w-full max-w-[300px] sm:max-w-[330px] aspect-[9/16] rounded-3xl overflow-hidden border-2 sm:border-4 border-amber-400/80 shadow-[0_20px_50px_rgba(0,0,0,0.95),0_0_25px_rgba(245,158,11,0.4)] bg-black cursor-pointer select-none group"
+                  >
+                    <video
+                      ref={videoRef}
+                      src={CLOUDINARY_REEL_VIDEO}
+                      autoPlay
+                      loop
+                      muted={isMuted}
+                      playsInline
+                      preload="auto"
+                      onTimeUpdate={handleHeroTimeUpdate}
+                      className="w-full h-full object-cover"
+                    />
+
+                    {/* Top & Bottom Vignettes */}
+                    <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/60 via-transparent to-black/80" />
+
+                    {/* Floating Top Controls: 4K Pill & Mute Button */}
+                    <div className="absolute top-3 inset-x-3 flex items-center justify-between z-10">
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur border border-white/20 text-white shadow">
+                        <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+                        <span className="text-[10px] font-mono font-bold text-amber-300">4K REEL</span>
+                      </div>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleMute();
+                        }}
+                        className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/75 hover:bg-black/95 backdrop-blur border border-amber-400/60 text-white shadow-lg text-[10px] font-bold transition-all"
+                      >
+                        {isMuted ? (
+                          <>
+                            <VolumeX className="w-3.5 h-3.5 text-amber-300" />
+                            <span className="text-amber-200">{isHindi ? 'आवाज खोलें' : 'Unmute'}</span>
+                          </>
+                        ) : (
+                          <>
+                            <Volume2 className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+                            <span className="text-cyan-300">{isHindi ? 'म्यूट' : 'Mute'}</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+
+                    {/* Flash Center Play/Pause indicator */}
+                    {heroShowCenterIcon && (
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+                        <div className="w-14 h-14 rounded-full bg-black/75 backdrop-blur-md border-2 border-amber-400 flex items-center justify-center text-amber-300 shadow-2xl animate-scale-up">
+                          {heroPlaying ? <Play className="w-7 h-7 fill-amber-300 ml-0.5" /> : <Pause className="w-7 h-7 fill-amber-300" />}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Bottom Overlay Info & Progress */}
+                    <div className="absolute bottom-0 inset-x-0 p-3.5 z-10">
+                      <div className="mb-1.5 flex items-center gap-1.5">
+                        <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase bg-amber-400 text-luxury-darker">
+                          AVM Verified
+                        </span>
+                        <span className="text-[11px] font-serif font-bold text-white drop-shadow">
+                          AVM Talks by Avnish
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-white/90 font-medium leading-snug drop-shadow line-clamp-2">
+                        {isHindi
+                          ? "60ft व 80ft चौड़ी सड़कें, बिजली के खंभे और सीमांकित प्लॉट्स का वास्तविक वीडियो।"
+                          : "Real on-site aerial footage: 60ft/80ft sector avenues & physical demarcation."}
+                      </p>
+                      {/* Progress line */}
+                      <div className="w-full h-1 bg-white/20 rounded-full mt-2 overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-r from-amber-400 to-cyan-400 transition-all duration-100"
+                          style={{ width: `${heroProgress}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Column: Physical Ground Reality Specs & Actions */}
+                <div className="lg:col-span-7 space-y-4">
+                  <div>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 mb-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>{isHindi ? '100% ऑन-ग्राउंड लाइव इंस्पेक्शन' : '100% On-Ground Live Inspection'}</span>
+                    </div>
+                    <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white leading-tight">
+                      {isHindi
+                        ? 'कागजी वादे नहीं — मौके पर 60ft/80ft सड़कें और कटे हुए प्लॉट्स'
+                        : 'Real On-Site Aerial Footage: Wide Boulevards & Demarcated Plots'}
+                    </h2>
+                    <p className="text-xs sm:text-sm text-slate-300 font-light mt-2 leading-relaxed">
+                      {isHindi
+                        ? 'आसमान से देखें टाउनशिप का वास्तविक विकास — डामर की चौड़ी सड़कें, कर्बस्टोन्स, अंडरग्राउंड बिजली की व्यवस्था और हर प्लॉट की बाउंड्री।'
+                        : 'Direct aerial reconnaissance showing actual physical development: completed asphalt boulevards, concrete curbstones, underground electricity, and plot boundary demarcation.'}
+                    </p>
+                  </div>
+
+                  {/* 4 Feature Chips */}
+                  <div className="grid grid-cols-2 gap-2.5 font-mono text-xs">
+                    <div className="p-3 rounded-xl bg-white/[0.04] border border-amber-400/30">
+                      <span className="text-slate-400 font-sans text-[10px] block">
+                        {isHindi ? 'मास्टरप्लान मुख्य सड़कें' : 'Masterplan Boulevards'}
+                      </span>
+                      <span className="font-bold text-amber-300 text-xs sm:text-sm">
+                        {isHindi ? '60ft व 80ft डामर' : '60 Ft & 80 Ft Asphalt'}
+                      </span>
+                    </div>
+                    <div className="p-3 rounded-xl bg-white/[0.04] border border-amber-400/30">
+                      <span className="text-slate-400 font-sans text-[10px] block">
+                        {isHindi ? 'अंडरग्राउंड बिजली' : 'Underground Utilities'}
+                      </span>
+                      <span className="font-bold text-cyan-300 text-xs sm:text-sm">
+                        {isHindi ? 'केबलिंग व LED लाइट्स' : 'Wiring & LED Lights'}
+                      </span>
+                    </div>
+                    <div className="p-3 rounded-xl bg-white/[0.04] border border-amber-400/30">
+                      <span className="text-slate-400 font-sans text-[10px] block">
+                        {isHindi ? 'कानूनी टाइटल' : 'Legal Sanction'}
+                      </span>
+                      <span className="font-bold text-emerald-300 text-xs sm:text-sm">
+                        {isHindi ? '100% धारा 90-A' : '100% Section 90-A'}
+                      </span>
+                    </div>
+                    <div className="p-3 rounded-xl bg-white/[0.04] border border-amber-400/30">
+                      <span className="text-slate-400 font-sans text-[10px] block">
+                        {isHindi ? 'प्लॉट बाउंड्री' : 'Plot Demarcation'}
+                      </span>
+                      <span className="font-bold text-amber-300 text-xs sm:text-sm">
+                        {isHindi ? 'मौके पर कटी सीमा' : 'Ready Physical Cuts'}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Action CTAs */}
+                  <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <Link
+                      to="/book-visit"
+                      className="flex-1 py-3 px-5 rounded-full text-xs font-bold uppercase tracking-wider gold-shimmer-btn text-white text-center shadow-lg hover:scale-[1.02] transition-transform"
+                    >
+                      {isHindi ? 'फ्री वीआईपी साइट विजिट बुक करें' : 'Book Free VIP Fortuner Visit'}
+                    </Link>
+                    <a
+                      href="https://wa.me/919928365001?text=Hello%20Avnish%20ji,%20I%20watched%20the%204K%20Drone%20Reel%20and%20want%20details."
+                      target="_blank"
+                      rel="noreferrer"
+                      className="py-3 px-5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#25D366] hover:bg-[#128C7E] text-white text-center shadow-md hover:scale-[1.02] transition-all"
+                    >
+                      {isHindi ? 'व्हाट्सएप चैट' : 'WhatsApp Enquiry'}
+                    </a>
+                    <button
+                      onClick={() => setHeroMode('drone-plots')}
+                      className="py-3 px-4 rounded-full text-xs font-bold uppercase tracking-wider border border-white/20 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-all text-center"
+                    >
+                      {isHindi ? 'वापस ओवरव्यू' : 'Back to Overview'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="w-full bg-[#030712]/85 backdrop-blur-xl rounded-3xl p-6 sm:p-10 lg:p-12 border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_30px_rgba(212,175,55,0.15)] relative overflow-hidden gold-specular-border">
+              {/* 4 Antiqued Solid Corner Brackets */}
+              <div className="leather-corner-bracket-tl"></div>
+              <div className="leather-corner-bracket-tr"></div>
+              <div className="leather-corner-bracket-bl"></div>
+              <div className="leather-corner-bracket-br"></div>
+
+              {/* 4 Rivets for High-Tech Engineering Look */}
+              <div className="brass-screw absolute top-4 left-4" title="Rivet"></div>
+              <div className="brass-screw absolute top-4 right-4" title="Rivet"></div>
+              <div className="brass-screw absolute bottom-4 left-4" title="Rivet"></div>
+              <div className="brass-screw absolute bottom-4 right-4" title="Rivet"></div>
+
+              {/* Brand Emblem — 100% Static & Crisp, Zero Border */}
+              <div className="mb-5 flex justify-center">
+                <img
+                  src={logoImg}
+                  alt="AVM TALKS BY AVNISH"
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover shadow-2xl"
+                />
+              </div>
+
+              {/* Subtitle Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-[0.22em] border border-amber-400/30 bg-amber-400/10 text-amber-300 mb-5 shadow-xl">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 beacon-pulse"></span>
+                <span>{t('hero.badge', 'JDA Approved Plotted Townships • Real Estate Media')}</span>
+              </div>
+
+              {/* Majestic Hero Headline: Pure Crisp White + Shimmering Imperial Gold/Cyan Gradient with High-Contrast Shadow */}
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] font-serif font-black tracking-tight text-white leading-[1.08] drop-shadow-[0_10px_25px_rgba(0,0,0,0.95)] max-w-5xl">
+                Curated Estates & Intelligence in the{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-cyan-300 italic font-normal">
+                  {t('hero.titleHighlight', 'High-Stakes Land Due Diligence.')}
+                </span>
+              </h1>
+
+              {/* Subtext: Slate-300 with High Contrast */}
+              <p className="max-w-3xl mx-auto text-sm sm:text-base lg:text-lg text-slate-300 font-normal leading-relaxed mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                {t('hero.subtitle', "From wide 60ft/80ft master-planned avenues to forensic 30-year revenue title checks. Discover verified residential and commercial plots across Greater Jaipur's highest-velocity growth corridors with AVM TALKS BY AVNISH.")}
+              </p>
+
+              {/* Action CTAs */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto mb-8">
+                <Link
+                  to="/plots"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider gold-shimmer-btn text-white shadow-[0_0_30px_rgba(130,69,236,0.5)] group font-sans"
+                >
+                  <Building2 className="w-4 h-4" />
+                  <span>{t('hero.browsePlots', 'Explore Available Plots')}</span>
+                </Link>
+
+                <button
+                  onClick={() => setHeroMode('video')}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider border border-amber-400/50 bg-amber-400/15 text-amber-300 hover:bg-amber-400/25 hover:border-amber-400 backdrop-blur-xl transition-all duration-300 font-sans shadow-md"
+                >
+                  <Video className="w-4 h-4 text-amber-400" />
+                  <span>{t('hero.switcherReel', '4K Drone Reel')}</span>
+                </button>
+
+                <Link
+                  to="/media"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider border border-white/15 bg-white/[0.04] text-white hover:border-cyan-400/50 hover:bg-white/[0.08] backdrop-blur-xl transition-all duration-300 font-sans hover:scale-105 shadow-md"
+                >
+                  <Play className="w-4 h-4 fill-cyan-400 text-cyan-400" />
+                  <span>{t('hero.watchVault', 'Watch 21+ Masterclasses')}</span>
+                </Link>
+              </div>
+
+              {/* Live Trust Metrics Bar with Animated Numbers */}
+              <div className="w-full pt-6 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
+                <div className="flex flex-col items-center p-2 rounded-xl bg-white/[0.03] border border-white/[0.05]">
+                  <span className="text-2xl sm:text-3xl font-serif font-extrabold text-gold-gradient">
+                    <AnimatedCounter end={100} suffix="%" />
+                  </span>
+                  <span className="text-xs text-white font-medium mt-0.5">
+                    {t('hero.metricPlotsLabel', 'JDA & RERA Screened')}
+                  </span>
+                  <span className="text-[11px] text-white/70 font-light">
+                    {t('hero.metricPlotsSub', 'Zero illegal schemes')}
+                  </span>
+                </div>
+                <div className="flex flex-col items-center p-2 rounded-xl bg-white/[0.03] border border-white/[0.05]">
+                  <span className="text-2xl sm:text-3xl font-serif font-extrabold text-gold-gradient">
+                    <AnimatedCounter end={30} suffix={isHindi ? ' वर्ष' : '-Year'} />
+                  </span>
+                  <span className="text-xs text-white font-medium mt-0.5">
+                    {isHindi ? 'टाइटल सर्च ऑडिट' : 'Title Search Audits'}
+                  </span>
+                  <span className="text-[11px] text-white/70 font-light">
+                    {isHindi ? 'अखंड रेवेन्यू रिकॉर्ड' : 'Unbroken revenue chain'}
+                  </span>
+                </div>
+                <div className="flex flex-col items-center p-2 rounded-xl bg-white/[0.03] border border-white/[0.05]">
+                  <span className="text-2xl sm:text-3xl font-serif font-extrabold text-gold-gradient">
+                    <AnimatedCounter end={21} suffix={isHindi ? ' एपिसोड' : ' Episodes'} />
+                  </span>
+                  <span className="text-xs text-white font-medium mt-0.5">
+                    {t('hero.metricVideosLabel', 'YouTube Masterclasses')}
+                  </span>
+                  <span className="text-[11px] text-white/70 font-light">
+                    {t('hero.metricVideosSub', 'On-site ground reports')}
+                  </span>
+                </div>
+                <div className="flex flex-col items-center p-2 rounded-xl bg-white/[0.03] border border-white/[0.05]">
+                  <span className="text-2xl sm:text-3xl font-serif font-extrabold text-gold-gradient">
+                    <AnimatedCounter end={52} suffix={isHindi ? '+ फील्ड एजेंट' : '+ Agents'} />
+                  </span>
+                  <span className="text-xs text-white font-medium mt-0.5">
+                    {t('hero.metricCoordinatorsLabel', 'Territory Coordinators')}
+                  </span>
+                  <span className="text-[11px] text-white/70 font-light">
+                    {t('hero.metricCoordinatorsSub', 'Jaipur on-ground support')}
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Live Animated Plotted Ticker Across Hero Bottom (Handcrafted Stitched Leather Belt) */}
@@ -327,6 +749,9 @@ export const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* ----------------- 4K ON-GROUND DRONE REEL SHOWCASE (9:16 REEL PLAYER) ----------------- */}
+      <DroneReelShowcase />
 
       {/* ----------------- 2. FEATURED PLOTTED TOWNSHIPS SHOWCASE ----------------- */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -774,6 +1199,56 @@ export const Home = () => {
       )}
 
       {/* Certified Forensic Due Diligence Dossier Modal */}
+      
+      {/* 4K Drone Aerial Perspective Fullscreen Lightbox Modal */}
+      {isDroneImgModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 overflow-y-auto bg-black/95 backdrop-blur-md">
+          <div className="relative w-full max-w-6xl rounded-3xl leather-badge-container border-2 border-amber-400 shadow-[0_25px_80px_rgba(0,0,0,0.95)] overflow-hidden my-auto">
+            <div className="flex items-center justify-between p-4 bg-[#0b1120] border-b border-amber-400/40">
+              <div className="flex items-center gap-2">
+                <Compass className="w-5 h-5 text-amber-400" />
+                <span className="text-sm font-serif font-bold text-amber-200">
+                  {isHindi ? '4K एरियल ड्रोन इंस्पेक्शन व्यू • अल्ट्रा हाई-डेफिनिशन' : '4K Aerial Drone Reconnaissance • Ultra High-Definition'}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <a
+                  href={CLOUDINARY_DRONE_IMAGE}
+                  target="_blank"
+                  rel="noreferrer"
+                  download="AVM_Township_4K_Drone_View.png"
+                  className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs flex items-center gap-1 px-3"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download</span>
+                </a>
+                <button
+                  onClick={() => setIsDroneImgModalOpen(false)}
+                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-amber-300 transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+            <div className="relative max-h-[80vh] overflow-auto flex items-center justify-center bg-black p-2 sm:p-4">
+              <img
+                src={CLOUDINARY_DRONE_IMAGE}
+                alt="4K Aerial Drone Perspective Full View"
+                className="w-full h-auto max-h-[75vh] object-contain rounded-xl"
+              />
+            </div>
+            <div className="p-3 bg-[#0b1120] border-t border-white/10 flex justify-end">
+              <button
+                onClick={() => setIsDroneImgModalOpen(false)}
+                className="px-5 py-1.5 rounded-full text-xs font-bold uppercase bg-gold-gradient text-luxury-darker shadow"
+              >
+                {isHindi ? 'बंद करें' : 'Close'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <DueDiligenceDossierModal
         isOpen={isDossierOpen}
         onClose={() => setIsDossierOpen(false)}

@@ -196,6 +196,11 @@ export const Footer = () => {
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm text-luxury-muted font-light">
               <li>
+                <Link to="/crm" className="text-luxury-gold font-bold hover:text-luxury-goldLight transition-colors">
+                  ✦ {isHindi ? 'इन्वेस्टर CRM पोर्टल' : 'Investor CRM Portal'}
+                </Link>
+              </li>
+              <li>
                 <Link to="/book-visit" className="text-luxury-gold font-medium hover:text-luxury-goldLight transition-colors">
                   ✦ {t('nav.vipVisit', 'Schedule VIP Site Visit')}
                 </Link>

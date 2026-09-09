@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
+# Local scratch and environment
+.env
+scratch/
 
 # Editor directories and files
 .vscode/*

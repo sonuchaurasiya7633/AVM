@@ -29,12 +29,12 @@ export const WealthCalculator = () => {
 
   // Compounding calculation: A = P * (1 + r/100)^t
   const appreciationResults = useMemo(() => {
-    const P = initialInvestmentLakhs * 100000;
-    const r = expectedCAGR / 100;
-    const t = holdingYears;
+    const P = Math.max(0, (Number(initialInvestmentLakhs) || 0) * 100000);
+    const r = (Number(expectedCAGR) || 0) / 100;
+    const t = Math.max(1, Number(holdingYears) || 1);
     const futureValue = P * Math.pow(1 + r, t);
     const wealthGain = futureValue - P;
-    const multiple = (futureValue / P).toFixed(2);
+    const multiple = P > 0 ? (futureValue / P).toFixed(2) : '1.00';
 
     return {
       futureValue: Math.round(futureValue),
@@ -45,7 +45,9 @@ export const WealthCalculator = () => {
 
   // Stamp Duty Calculation (Rajasthan 2026 norms)
   const stampDutyResults = useMemo(() => {
-    const plotValue = plotAreaGaj * ratePerGaj;
+    const validArea = Math.max(0, Number(plotAreaGaj) || 0);
+    const validRate = Math.max(0, Number(ratePerGaj) || 0);
+    const plotValue = validArea * validRate;
     // Male: 6%, Female: 5%, Joint: 5.5%
     const stampDutyRate = buyerGender === 'male' ? 0.06 : buyerGender === 'female' ? 0.05 : 0.055;
     const basicStampDuty = plotValue * stampDutyRate;
@@ -64,26 +66,34 @@ export const WealthCalculator = () => {
       regFee: Math.round(regFee),
       totalGovernmentOutlay: Math.round(totalGovernmentOutlay),
       totalAcquisitionCost: Math.round(totalAcquisitionCost),
-      effectiveTaxPercent: ((totalGovernmentOutlay / plotValue) * 100).toFixed(2),
+      effectiveTaxPercent: plotValue > 0 ? ((totalGovernmentOutlay / plotValue) * 100).toFixed(2) : '0.00',
     };
   }, [plotAreaGaj, ratePerGaj, buyerGender]);
 
   // Loan EMI Calculation
   const emiResults = useMemo(() => {
-    const principal = loanAmountLakhs * 100000;
-    const monthlyRate = interestRate / (12 * 100);
-    const months = loanTenureYears * 12;
+    const principal = Math.max(0, (Number(loanAmountLakhs) || 0) * 100000);
+    const monthlyRate = (Number(interestRate) || 8.5) / (12 * 100);
+    const months = Math.max(1, (Number(loanTenureYears) || 1) * 12);
+
+    if (principal <= 0 || monthlyRate <= 0) {
+      return {
+        monthlyEMI: 0,
+        totalRepayment: 0,
+        totalInterest: 0,
+      };
+    }
 
     const emi =
       (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) /
       (Math.pow(1 + monthlyRate, months) - 1);
     const totalRepayment = emi * months;
-    const totalInterest = totalRepayment - principal;
+    const totalInterest = Math.max(0, totalRepayment - principal);
 
     return {
-      monthlyEMI: Math.round(emi),
-      totalRepayment: Math.round(totalRepayment),
-      totalInterest: Math.round(totalInterest),
+      monthlyEMI: isNaN(emi) ? 0 : Math.round(emi),
+      totalRepayment: isNaN(totalRepayment) ? 0 : Math.round(totalRepayment),
+      totalInterest: isNaN(totalInterest) ? 0 : Math.round(totalInterest),
     };
   }, [loanAmountLakhs, interestRate, loanTenureYears]);
 

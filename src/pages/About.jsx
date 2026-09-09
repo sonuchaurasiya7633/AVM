@@ -1,7 +1,7 @@
-﻿import React from 'react';
+import React from 'react';
 import { SectionHeading } from '../components/SectionHeading';
 import logoImg from '../assets/logo/avm-logo.png';
-import dronePlotsHeroImg from '../assets/images/drone-plots-hero.jpg';
+const CLOUDINARY_DRONE_IMAGE = "https://res.cloudinary.com/dqpbo1uho/image/upload/v1788952291/yzmkuehvawne25oas0lr.png";
 import { Shield, BookOpen, Compass, Award, CheckCircle2, ArrowRight, Quote, Landmark, Scale, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
@@ -124,7 +124,7 @@ export const About = () => {
       <div className="rounded-3xl overflow-hidden border border-theme-gold shadow-2xl mb-20 relative group">
         <div className="relative h-72 sm:h-96 w-full overflow-hidden">
           <img
-            src={dronePlotsHeroImg}
+            src={CLOUDINARY_DRONE_IMAGE}
             alt="AVM Talks 4K Drone Audits of Plotted Townships"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           />

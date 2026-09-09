@@ -27,7 +27,27 @@
     </script>
   </head>
   <body class="bg-luxury-dark text-luxury-ivory font-sans antialiased selection:bg-luxury-gold selection:text-luxury-dark transition-colors duration-300">
-    <div id="root"></div>
+    <div id="root">
+      <div style="position:fixed;inset:0;background:#030712;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;font-family:'Plus Jakarta Sans',sans-serif;color:#fff;user-select:none;">
+        <div style="width:68px;height:68px;border-radius:50%;border:2px dashed rgba(212,175,55,0.45);display:flex;align-items:center;justify-content:center;position:relative;animation:avmOrbit 12s linear infinite;">
+          <div style="width:52px;height:52px;border-radius:50%;background:#0b1120;border:1.5px solid #D4AF37;box-shadow:0 0 25px rgba(212,175,55,0.35);display:flex;align-items:center;justify-content:center;">
+            <div style="width:10px;height:10px;border-radius:50%;background:#06B6D4;box-shadow:0 0 12px #06B6D4;"></div>
+          </div>
+        </div>
+        <div style="margin-top:22px;font-family:'Playfair Display',Georgia,serif;font-size:16px;letter-spacing:0.22em;color:#D4AF37;font-weight:700;text-transform:uppercase;">
+          AVM TALKS
+        </div>
+        <div style="margin-top:4px;font-size:9.5px;letter-spacing:0.28em;color:#94A3B8;text-transform:uppercase;font-family:monospace;">
+          BY AVNISH
+        </div>
+      </div>
+      <style>
+        @keyframes avmOrbit {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      </style>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
