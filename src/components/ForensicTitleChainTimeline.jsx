@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { ShieldCheck, FileCheck2, Award, Stamp, CheckCircle2, ChevronRight, Eye, X, Download } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -94,7 +94,7 @@ export const ForensicTitleChainTimeline = () => {
   const [selectedMilestone, setSelectedMilestone] = useState(null);
 
   return (
-    <div className="royal-obsidian-card rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-luxury-gold shadow-2xl relative overflow-hidden leather-stitch-outline">
+    <div className="leather-badge-container rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-luxury-gold shadow-2xl relative overflow-hidden leather-stitch-outline">
       {/* 4 Corner Brass Screws */}
       <div className="brass-screw absolute top-3.5 left-3.5" />
       <div className="brass-screw absolute top-3.5 right-3.5" />
@@ -103,11 +103,11 @@ export const ForensicTitleChainTimeline = () => {
 
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-luxury-emerald/30 text-luxury-goldLight border border-luxury-gold/40 mb-3">
-          <FileCheck2 className="w-3.5 h-3.5 text-luxury-gold" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider dark:bg-cyan-950/40 bg-cyan-100/80 dark:text-cyan-300 text-cyan-800 dark:border-white/15 border-cyan-300/50 mb-3">
+          <FileCheck2 className="w-3.5 h-3.5 text-cyan-500" />
           <span>Fiduciary Legal Mastery</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl font-serif font-extrabold text-white leading-tight">
+        <h2 className="text-2xl sm:text-4xl font-serif font-extrabold text-theme-primary leading-tight">
           30-Year Forensic Title Chain & Revenue Deed Inspector
         </h2>
         <p className="text-xs sm:text-sm text-theme-secondary font-light mt-2">
@@ -117,27 +117,27 @@ export const ForensicTitleChainTimeline = () => {
 
       {/* Chronological Milestone Timeline Grid */}
       <div className="relative">
-        {/* Horizontal Gold Line for Desktop */}
-        <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-[2px] bg-gradient-to-r from-luxury-gold/20 via-luxury-gold to-luxury-gold/20 -translate-y-8 z-0 pointer-events-none" />
+        {/* Horizontal Line for Desktop */}
+        <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-500/20 via-cyan-400 to-cyan-500/20 -translate-y-8 z-0 pointer-events-none" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 relative z-10">
           {TITLE_MILESTONES.map((m, idx) => (
             <div
               key={m.year}
               onClick={() => setSelectedMilestone(m)}
-              className="p-4 rounded-2xl bg-black/60 border border-luxury-gold/30 hover:border-luxury-gold hover:scale-[1.03] transition-all cursor-pointer group flex flex-col justify-between"
+              className="p-4 rounded-2xl dark:bg-black/60 bg-theme-surface border border-theme-gold/30 hover:border-cyan-400/50 hover:scale-[1.03] transition-all cursor-pointer group flex flex-col justify-between"
             >
               <div>
                 {/* Year Medallion */}
-                <div className="w-10 h-10 rounded-full bg-luxury-emerald/50 border-2 border-luxury-gold flex items-center justify-center text-xs font-mono font-bold text-luxury-goldLight shadow-luxury-gold mb-3 group-hover:bg-gold-gradient group-hover:text-luxury-darker transition-colors">
+                <div className="w-10 h-10 rounded-full dark:bg-[#0b1120] bg-cyan-50 border-2 border-cyan-500/30 flex items-center justify-center text-xs font-mono font-bold dark:text-slate-200 text-cyan-900 shadow-lg mb-3 group-hover:bg-gradient-to-r group-hover:from-amber-400 group-hover:to-cyan-400 group-hover:text-white transition-colors">
                   {m.year}
                 </div>
 
-                <span className="text-[10px] font-mono text-emerald-400 block mb-1 font-bold">
+                <span className="text-[10px] font-mono dark:text-cyan-300 text-cyan-700 block mb-1 font-bold">
                   ✓ {m.status}
                 </span>
 
-                <h4 className="text-xs font-serif font-bold text-white group-hover:text-luxury-gold transition-colors leading-tight mb-2">
+                <h4 className="text-xs font-serif font-bold text-theme-primary group-hover:text-cyan-500 transition-colors leading-tight mb-2">
                   {m.title}
                 </h4>
 
@@ -146,9 +146,9 @@ export const ForensicTitleChainTimeline = () => {
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-luxury-gold/15 mt-3 flex items-center justify-between">
-                <span className="text-[10px] font-mono text-luxury-goldLight">Inspect Deed</span>
-                <ChevronRight className="w-3.5 h-3.5 text-luxury-gold group-hover:translate-x-1 transition-transform" />
+              <div className="pt-3 border-t border-theme-gold/20 mt-3 flex items-center justify-between">
+                <span className="text-[10px] font-mono dark:text-cyan-300 text-cyan-700 font-semibold">Inspect Deed</span>
+                <ChevronRight className="w-3.5 h-3.5 text-cyan-500 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
           ))}
@@ -158,7 +158,7 @@ export const ForensicTitleChainTimeline = () => {
       {/* Modal / Deed Specimen Inspector Drawer */}
       {selectedMilestone && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
-          <div className="relative w-full max-w-2xl rounded-3xl royal-obsidian-card p-6 sm:p-8 border-2 border-luxury-gold shadow-2xl leather-stitch-outline">
+          <div className="relative w-full max-w-2xl rounded-3xl leather-badge-container p-6 sm:p-8 border-2 border-luxury-gold shadow-2xl leather-stitch-outline">
             <div className="brass-screw absolute top-3 left-3" />
             <div className="brass-screw absolute top-3 right-3" />
             <div className="brass-screw absolute bottom-3 left-3" />
@@ -166,7 +166,7 @@ export const ForensicTitleChainTimeline = () => {
 
             <div className="flex items-center justify-between pb-4 border-b border-luxury-gold/30 mb-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-luxury-emerald/40 border border-luxury-gold flex items-center justify-center text-luxury-gold font-mono font-bold">
+                <div className="w-10 h-10 rounded-full bg-[#0b1120] border border-cyan-500/30 flex items-center justify-center text-cyan-300 font-mono font-bold">
                   {selectedMilestone.year}
                 </div>
                 <div>
@@ -195,7 +195,7 @@ export const ForensicTitleChainTimeline = () => {
                 <span className="text-luxury-ivory font-bold block">
                   {selectedMilestone.instrument}
                 </span>
-                <span className="text-emerald-400 text-[11px] block mt-0.5">
+                <span className="text-luxury-goldLight text-[11px] block mt-0.5">
                   Statutory Rule: {selectedMilestone.legalProof}
                 </span>
               </div>
@@ -216,7 +216,7 @@ export const ForensicTitleChainTimeline = () => {
                 <ul className="space-y-1.5 font-sans text-xs text-theme-secondary font-light">
                   {selectedMilestone.clauses.map((clause, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-luxury-gold mt-0.5 flex-shrink-0" />
                       <span>{clause}</span>
                     </li>
                   ))}

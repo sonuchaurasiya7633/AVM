@@ -66,13 +66,13 @@ export const InteractiveCadastralMap = () => {
   const statusColor = (status) => {
     switch (status) {
       case 'available':
-        return '#10B981'; // emerald
+        return '#D4AF37'; // 24K Gold
       case 'hold':
         return '#F59E0B'; // amber
       case 'demarcated':
         return '#64748B'; // slate
       default:
-        return '#10B981';
+        return '#D4AF37';
     }
   };
 
@@ -87,14 +87,14 @@ export const InteractiveCadastralMap = () => {
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-6 border-b border-luxury-gold/30 gap-4">
         <div>
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.2em] border border-luxury-gold/50 bg-luxury-emerald/30 text-luxury-gold font-mono mb-2">
-            <Compass className="w-3.5 h-3.5 text-luxury-gold" />
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.2em] border dark:border-white/15 border-cyan-300/50 dark:bg-cyan-950/40 bg-cyan-100/80 dark:text-cyan-300 text-cyan-800 font-mono mb-2">
+            <Compass className="w-3.5 h-3.5 text-cyan-500" />
             {isHindi ? 'तकनीकी कैडस्ट्रल लेआउट' : 'Technical Cadastral Layout'}
           </span>
-          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-theme-primary">
             {isHindi ? 'इंटरैक्टिव सेक्टर सीमांकन व प्लॉट एक्सप्लोरर' : 'Interactive Sector Demarcation & Plot Selector'}
           </h2>
-          <p className="text-xs sm:text-sm text-theme-muted mt-1 max-w-2xl">
+          <p className="text-xs sm:text-sm text-theme-secondary mt-1 max-w-2xl">
             {isHindi 
               ? 'किसी भी प्लॉट पर क्लिक करके उसका सटीक आकार (गज व वर्ग फीट), वास्तु फेसिंग, 80ft/60ft सेक्टर रोड कनेक्टिविटी और कुल बजट देखें।'
               : 'Click any demarcated plot to inspect total frontage, Vastu compliance, road width, and complete acquisition budgeting.'}
@@ -104,22 +104,22 @@ export const InteractiveCadastralMap = () => {
         {/* Status Color Legend */}
         <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded bg-emerald-500 border border-emerald-300" />
-            <span className="text-white/80">{isHindi ? 'उपलब्ध (Available)' : 'Available'}</span>
+            <span className="w-3 h-3 rounded bg-gradient-to-tr from-[#D4AF37] to-[#FFF0C8] border border-amber-300" />
+            <span className="text-theme-secondary">{isHindi ? 'उपलब्ध (Available)' : 'Available'}</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="w-3 h-3 rounded bg-amber-500 border border-amber-300" />
-            <span className="text-white/80">{isHindi ? 'ड्यू डिलिजेंस होल्ड' : 'VIP Hold'}</span>
+            <span className="text-theme-secondary">{isHindi ? 'ड्यू डिलिजेंस होल्ड' : 'VIP Hold'}</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="w-3 h-3 rounded bg-slate-500 border border-slate-400" />
-            <span className="text-white/80">{isHindi ? 'सीमांकित / बुक' : 'Demarcated'}</span>
+            <span className="text-theme-secondary">{isHindi ? 'सीमांकित / बुक' : 'Demarcated'}</span>
           </div>
         </div>
       </div>
 
       {/* Filter Toolbar */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 p-4 rounded-2xl bg-black/40 border border-luxury-gold/20">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 p-4 rounded-2xl dark:bg-black/40 bg-theme-surface border border-theme-gold/25">
         {/* Sector Filter */}
         <div>
           <label className="text-[10px] uppercase font-mono tracking-wider text-luxury-gold font-bold block mb-1">
@@ -128,7 +128,7 @@ export const InteractiveCadastralMap = () => {
           <select
             value={sectorFilter}
             onChange={(e) => setSectorFilter(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl bg-[#03281E] border border-luxury-gold/40 text-xs text-white focus:outline-none focus:border-luxury-gold font-medium"
+            className="w-full px-3 py-2 rounded-xl dark:bg-[#0b1120] bg-theme-card border dark:border-white/15 border-theme-gold/30 text-xs text-theme-primary focus:outline-none focus:border-cyan-400 font-medium"
           >
             <option value="all">{isHindi ? 'सभी सेक्टर (All Sectors)' : 'All Sectors'}</option>
             <option value="Sector A">Sector A (80ft Boulevard)</option>
@@ -146,7 +146,7 @@ export const InteractiveCadastralMap = () => {
           <select
             value={facingFilter}
             onChange={(e) => setFacingFilter(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl bg-[#03281E] border border-luxury-gold/40 text-xs text-white focus:outline-none focus:border-luxury-gold font-medium"
+            className="w-full px-3 py-2 rounded-xl dark:bg-[#0b1120] bg-theme-card border dark:border-white/15 border-theme-gold/30 text-xs text-theme-primary focus:outline-none focus:border-cyan-400 font-medium"
           >
             <option value="all">{isHindi ? 'सभी दिशाएं (All Facings)' : 'All Facings'}</option>
             <option value="East">East Facing (पूर्व मुखी)</option>
@@ -162,7 +162,7 @@ export const InteractiveCadastralMap = () => {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl bg-[#03281E] border border-luxury-gold/40 text-xs text-white focus:outline-none focus:border-luxury-gold font-medium"
+            className="w-full px-3 py-2 rounded-xl dark:bg-[#0b1120] bg-theme-card border dark:border-white/15 border-theme-gold/30 text-xs text-theme-primary focus:outline-none focus:border-cyan-400 font-medium"
           >
             <option value="all">{isHindi ? 'सभी प्लॉट्स' : 'All Statuses'}</option>
             <option value="available">{isHindi ? 'केवल उपलब्ध' : 'Available Only'}</option>
@@ -175,7 +175,7 @@ export const InteractiveCadastralMap = () => {
       {/* Main Grid: CAD SVG Canvas on Left, Live Plot Spec Sheet on Right */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Interactive SVG CAD Map */}
-        <div className="lg:col-span-8 rounded-2xl bg-[#021720] border-2 border-luxury-gold/40 p-4 sm:p-6 shadow-2xl relative overflow-x-auto">
+        <div className="lg:col-span-8 rounded-2xl bg-[#0b1120] border-2 border-white/15 p-4 sm:p-6 shadow-2xl relative overflow-x-auto">
           {/* Top Compass Rose */}
           <div className="absolute top-4 right-4 z-10 flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/70 border border-luxury-gold/30 text-[10px] font-mono text-luxury-gold">
             <Compass className="w-3.5 h-3.5 text-luxury-gold" />
@@ -194,27 +194,27 @@ export const InteractiveCadastralMap = () => {
             {/* Blueprint Grid Lines */}
             <defs>
               <pattern id="cadGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(212,175,55,0.08)" strokeWidth="0.5" />
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(212,175,55,0.12)" strokeWidth="0.5" />
               </pattern>
             </defs>
-            <rect width="650" height="460" fill="#01121A" />
+            <rect width="650" height="460" fill="#060b17" />
             <rect width="650" height="460" fill="url(#cadGrid)" />
 
             {/* Road Label 1: 80ft Boulevard Top */}
-            <rect x="30" y="115" width="590" height="35" fill="#0B232E" stroke="#D4AF37" strokeWidth="0.75" strokeDasharray="4 2" />
-            <text x="325" y="137" fill="#E2C178" fontSize="11" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+            <rect x="30" y="115" width="590" height="35" fill="#0f172a" stroke="#06b6d4" strokeWidth="0.75" strokeDasharray="4 2" />
+            <text x="325" y="137" fill="#38bdf8" fontSize="11" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
               ✦ 80 FT MAIN SECTOR BOULEVARD ✦
             </text>
 
             {/* Road Label 2: 60ft Secondary Avenue Middle */}
-            <rect x="30" y="220" width="590" height="30" fill="#0B232E" stroke="#D4AF37" strokeWidth="0.75" strokeDasharray="4 2" />
-            <text x="325" y="239" fill="#E2C178" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+            <rect x="30" y="220" width="590" height="30" fill="#0f172a" stroke="#06b6d4" strokeWidth="0.75" strokeDasharray="4 2" />
+            <text x="325" y="239" fill="#38bdf8" fontSize="10" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
               ✦ 60 FT ARTERIAL CONNECTOR ROAD ✦
             </text>
 
             {/* Road Label 3: Commercial Strip Road Bottom */}
-            <rect x="30" y="315" width="590" height="35" fill="#0B232E" stroke="#D4AF37" strokeWidth="0.75" strokeDasharray="4 2" />
-            <text x="325" y="337" fill="#E2C178" fontSize="11" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
+            <rect x="30" y="315" width="590" height="35" fill="#0f172a" stroke="#06b6d4" strokeWidth="0.75" strokeDasharray="4 2" />
+            <text x="325" y="337" fill="#38bdf8" fontSize="11" fontFamily="monospace" textAnchor="middle" fontWeight="bold">
               ✦ 80 FT EXPRESSWAY SERVICE CORRIDOR ✦
             </text>
 
@@ -238,7 +238,7 @@ export const InteractiveCadastralMap = () => {
                     width={plot.w}
                     height={plot.h}
                     rx="4"
-                    fill={isSelected ? '#D4AF37' : isHovered ? '#064E3B' : '#02261A'}
+                    fill={isSelected ? '#06b6d4' : isHovered ? '#0e7490' : '#0b1120'}
                     stroke={isSelected ? '#FFF' : baseColor}
                     strokeWidth={isSelected ? '2.5' : '1.5'}
                     strokeDasharray={plot.status === 'hold' ? '3 1' : 'none'}
@@ -248,7 +248,7 @@ export const InteractiveCadastralMap = () => {
                   <text
                     x={plot.x + plot.w / 2}
                     y={plot.y + plot.h / 2 - 4}
-                    fill={isSelected ? '#021710' : '#FFF'}
+                    fill={isSelected ? '#030712' : '#FFF'}
                     fontSize="11"
                     fontFamily="monospace"
                     fontWeight="bold"
@@ -260,7 +260,7 @@ export const InteractiveCadastralMap = () => {
                   <text
                     x={plot.x + plot.w / 2}
                     y={plot.y + plot.h / 2 + 10}
-                    fill={isSelected ? '#021710' : '#E2C178'}
+                    fill={isSelected ? '#030712' : '#38bdf8'}
                     fontSize="9"
                     fontFamily="sans-serif"
                     textAnchor="middle"
@@ -274,21 +274,21 @@ export const InteractiveCadastralMap = () => {
         </div>
 
         {/* Right Live Plot Spec Sheet */}
-        <div className="lg:col-span-4 rounded-2xl bg-black/70 border-2 border-luxury-gold p-6 shadow-2xl space-y-5">
+        <div className="lg:col-span-4 rounded-2xl bg-gradient-to-b from-[#0f172a] via-[#0b1120] to-[#030712] border-2 border-luxury-gold p-6 shadow-2xl space-y-5">
           {selectedPlot ? (
             <>
               {/* Header */}
               <div className="border-b border-luxury-gold/30 pb-4">
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="px-2.5 py-0.5 rounded text-[10px] font-mono uppercase font-bold bg-luxury-emerald/60 text-luxury-goldLight border border-luxury-gold/40">
+                  <span className="px-2.5 py-0.5 rounded text-[10px] font-mono uppercase font-bold bg-[#0b1120] text-cyan-300 border border-white/15">
                     {selectedPlot.sector}
                   </span>
                   <span 
                     className="px-2.5 py-0.5 rounded text-[10px] font-mono uppercase font-bold"
                     style={{
-                      backgroundColor: selectedPlot.status === 'available' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(245, 158, 11, 0.2)',
-                      color: selectedPlot.status === 'available' ? '#34D399' : '#FBBF24',
-                      border: `1px solid ${selectedPlot.status === 'available' ? '#059669' : '#D97706'}`
+                      backgroundColor: selectedPlot.status === 'available' ? 'rgba(212, 175, 55, 0.2)' : 'rgba(245, 158, 11, 0.2)',
+                      color: selectedPlot.status === 'available' ? '#F3DE9A' : '#FBBF24',
+                      border: `1px solid ${selectedPlot.status === 'available' ? '#D4AF37' : '#D97706'}`
                     }}
                   >
                     {selectedPlot.status.toUpperCase()}
@@ -304,29 +304,29 @@ export const InteractiveCadastralMap = () => {
 
               {/* Technical Dimensions Matrix */}
               <div className="space-y-2.5 text-xs font-mono">
-                <div className="p-2.5 rounded-xl bg-[#03281E] border border-luxury-gold/20 flex items-center justify-between">
+                <div className="p-2.5 rounded-xl bg-[#0b1120] border border-white/10 flex items-center justify-between">
                   <span className="text-white/70 font-sans">{isHindi ? 'प्लॉट क्षेत्रफल (Area):' : 'Total Area:'}</span>
                   <strong className="text-white">{selectedPlot.sizeGaj} Gaj ({selectedPlot.sizeGaj * 9} Sq.Ft)</strong>
                 </div>
 
-                <div className="p-2.5 rounded-xl bg-[#03281E] border border-luxury-gold/20 flex items-center justify-between">
+                <div className="p-2.5 rounded-xl bg-[#0b1120] border border-white/10 flex items-center justify-between">
                   <span className="text-white/70 font-sans">{isHindi ? 'आयाम (Dimensions):' : 'Dimensions:'}</span>
                   <strong className="text-white">{selectedPlot.widthFt}' Front × {selectedPlot.depthFt}' Depth</strong>
                 </div>
 
-                <div className="p-2.5 rounded-xl bg-[#03281E] border border-luxury-gold/20 flex items-center justify-between">
+                <div className="p-2.5 rounded-xl bg-[#0b1120] border border-white/10 flex items-center justify-between">
                   <span className="text-white/70 font-sans">{isHindi ? 'सड़क चौड़ाई (Frontage):' : 'Road Frontage:'}</span>
-                  <strong className="text-luxury-goldLight">{selectedPlot.road}</strong>
+                  <strong className="text-cyan-300">{selectedPlot.road}</strong>
                 </div>
 
-                <div className="p-2.5 rounded-xl bg-[#03281E] border border-luxury-gold/20 flex items-center justify-between">
+                <div className="p-2.5 rounded-xl bg-[#0b1120] border border-white/10 flex items-center justify-between">
                   <span className="text-white/70 font-sans">{isHindi ? 'दर (Rate / Gaj):' : 'Rate Per Gaj:'}</span>
                   <strong className="text-gold-gradient text-sm">₹{selectedPlot.ratePerGaj.toLocaleString('en-IN')}</strong>
                 </div>
               </div>
 
               {/* Acquisition Outlay Calculation */}
-              <div className="p-3.5 rounded-xl bg-gradient-to-br from-[#1C0F08] to-[#03281E] border border-luxury-gold/40 text-xs space-y-1.5">
+              <div className="p-3.5 rounded-xl bg-gradient-to-br from-[#060b17] to-[#0b1120] border border-white/15 text-xs space-y-1.5">
                 <div className="flex justify-between text-white/80">
                   <span>{isHindi ? 'मूल भूमि मूल्य:' : 'Base Land Value:'}</span>
                   <span className="font-mono font-bold">₹{plotValue.toLocaleString('en-IN')}</span>

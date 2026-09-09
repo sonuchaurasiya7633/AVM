@@ -12,43 +12,43 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-luxury-darker text-luxury-ivory border-t-2 border-dashed border-luxury-gold/50 pt-16 pb-12 overflow-hidden">
-      {/* Background ambient spotlight */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-luxury-emerald/20 blur-[140px] pointer-events-none"></div>
+    <footer className="relative dark:bg-gradient-to-b dark:from-[#030712]/90 dark:via-[#060b17]/95 dark:to-[#030712] bg-gradient-to-b from-slate-100 via-slate-50 to-slate-100 dark:text-slate-100 text-slate-900 border-t dark:border-white/10 border-slate-200 pt-16 pb-12 overflow-hidden">
+      {/* Background Cosmic Geometric Square Grid Overlay */}
+      <div className="pointer-events-none absolute inset-0 dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[linear-gradient(to_right,rgba(15,23,42,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_at_center,white,transparent_90%)] opacity-75" />
+
+      {/* Background ambient spotlight (Subtle Cyan & Gold) */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] dark:bg-cyan-950/25 bg-amber-200/20 blur-[140px] pointer-events-none"></div>
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Top VIP Coordinator Bar: Bespoke Handcrafted Stitched Leather Desk Plaque */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#03281E] via-[#1A0F0A] to-[#03281E] border-2 border-luxury-gold/40 shadow-2xl mb-14 flex flex-col lg:flex-row items-center justify-between gap-6 relative overflow-hidden leather-stitch-outline">
-          {/* 4 Corner Solid Brass Screws */}
-          <div className="brass-screw absolute top-3 left-3 !w-3.5 !h-3.5 !z-20" title="Brass Screw"></div>
-          <div className="brass-screw absolute top-3 right-3 !w-3.5 !h-3.5 !z-20" title="Brass Screw"></div>
-          <div className="brass-screw absolute bottom-3 left-3 !w-3.5 !h-3.5 !z-20" title="Brass Screw"></div>
-          <div className="brass-screw absolute bottom-3 right-3 !w-3.5 !h-3.5 !z-20" title="Brass Screw"></div>
+        {/* Top VIP Coordinator Bar */}
+        <div className="p-6 sm:p-8 rounded-3xl dark:bg-gradient-to-r dark:from-[#0f172a] dark:via-[#0b1120] dark:to-[#0f172a] bg-white border dark:border-white/15 border-slate-200 dark:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(212,175,55,0.15)] shadow-[0_10px_30px_rgba(0,0,0,0.06)] mb-14 flex flex-col lg:flex-row items-center justify-between gap-6 relative overflow-hidden">
+          {/* 4 Corner Screws */}
+          <div className="brass-screw absolute top-3 left-3 !w-3.5 !h-3.5 !z-20" title="Rivet"></div>
+          <div className="brass-screw absolute top-3 right-3 !w-3.5 !h-3.5 !z-20" title="Rivet"></div>
+          <div className="brass-screw absolute bottom-3 left-3 !w-3.5 !h-3.5 !z-20" title="Rivet"></div>
+          <div className="brass-screw absolute bottom-3 right-3 !w-3.5 !h-3.5 !z-20" title="Rivet"></div>
 
           <div className="flex items-center gap-4 pl-3">
-            <div className="w-12 h-12 rounded-2xl bg-luxury-emerald/60 border border-luxury-gold/60 flex items-center justify-center text-luxury-gold flex-shrink-0 shadow-md">
-              <PhoneCall className="w-6 h-6 animate-pulse" />
+            <div className="w-12 h-12 rounded-2xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-300 flex-shrink-0 shadow-md">
+              <PhoneCall className="w-6 h-6 animate-pulse text-cyan-400" />
             </div>
             <div>
-              <span className="text-[10px] uppercase tracking-[0.25em] text-luxury-gold font-bold block leather-deboss-gold">
-                {isHindi ? 'सीधा जमीनी सहायता नेटवर्क' : 'Direct Ground Assistance Network'}
+              <span className="text-[10px] font-mono uppercase tracking-widest dark:text-cyan-400 text-amber-600 font-bold block">
+                {t('footer.vipDesk', 'Rajasthan Plotted Acquisition Helpdesk')}
               </span>
-              <h4 className="text-base sm:text-lg font-serif font-bold text-luxury-ivory">
-                {t('footer.hotlineTitle', '52+ Authorized Territory Coordinators Available for On-Site Verification')}
-              </h4>
             </div>
           </div>
 
           <div className="flex items-center gap-3 pr-3">
             <Link
               to="/contact"
-              className="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-gold-gradient text-luxury-darker shadow-luxury-gold hover:scale-105 transition-all"
+              className="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider gold-shimmer-btn text-luxury-dark font-black shadow-luxury-gold hover:scale-105 transition-all"
             >
               {isHindi ? 'कोऑर्डिनेटर डायरेक्टरी देखें' : 'Browse Agent Directory'}
             </Link>
             <Link
               to="/plots"
-              className="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider border border-luxury-gold/40 hover:border-luxury-gold text-luxury-goldLight bg-black/40 transition-all"
+              className="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider border border-white/15 hover:border-amber-400 text-slate-200 bg-white/[0.04] backdrop-blur-md transition-all"
             >
               {isHindi ? 'प्लॉट साइज़ विवरण' : 'Standard Plot Sizes'}
             </Link>
@@ -63,7 +63,7 @@ export const Footer = () => {
               <img
                 src={logoImg}
                 alt="AVM TALKS BY AVNISH Crest"
-                className="w-14 h-14 rounded-full object-cover border-2 border-luxury-gold shadow-sm"
+                className="w-14 h-14 rounded-full object-cover shadow-sm"
               />
               <div className="flex flex-col">
                 <span className="font-serif tracking-widest text-xl font-bold text-luxury-ivory">
@@ -239,7 +239,7 @@ export const Footer = () => {
         </div>
 
         {/* Regulatory Disclosure Box */}
-        <div className="p-5 rounded-2xl bg-luxury-surface/80 border border-luxury-gold/30 mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-3.5 text-[11px] text-luxury-muted font-light leading-relaxed">
+        <div className="p-5 rounded-2xl bg-[#0b1120]/90 border border-luxury-gold/30 shadow-inner mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-3.5 text-[11px] text-luxury-ivory/90 font-light leading-relaxed">
           <Shield className="w-5 h-5 text-luxury-gold flex-shrink-0 mt-0.5 sm:mt-0" />
           <p>
             <strong className="text-luxury-goldLight font-bold">{t('footer.disclaimerHeading', 'Statutory Real Estate Notice')}:</strong>{' '}
@@ -248,7 +248,7 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-luxury-muted font-light">
+        <div className="pt-6 border-t border-luxury-gold/25 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-luxury-ivory/70 font-light">
           <p>© 2026 AVM TALKS BY AVNISH. {t('footer.copyright', 'All Rights Reserved. Handcrafted bespoke luxury edition.')}</p>
           <div className="flex items-center gap-3">
             <span>{isHindi ? '52+ फील्ड कोऑर्डिनेटर' : '52 Territory Coordinators'}</span>

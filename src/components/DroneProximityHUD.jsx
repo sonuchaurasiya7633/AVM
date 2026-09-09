@@ -89,14 +89,14 @@ export const DroneProximityHUD = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-6 border-b border-luxury-gold/30 gap-4">
         <div>
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.2em] border border-luxury-gold/50 bg-luxury-emerald/30 text-luxury-gold font-mono mb-2">
-            <Radio className="w-3.5 h-3.5 text-luxury-gold animate-pulse" />
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.2em] border dark:border-white/15 border-cyan-300/50 dark:bg-cyan-950/40 bg-cyan-100/80 dark:text-cyan-300 text-cyan-800 font-mono mb-2">
+            <Radio className="w-3.5 h-3.5 text-cyan-500 animate-pulse" />
             {isHindi ? 'एरियल ड्रोन नेविगेशन रडार' : 'Aerial Drone Telemetry HUD'}
           </span>
-          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-theme-primary">
             {isHindi ? 'कॉरिडोर दूरी व ट्रांजिट टाइम रडार' : 'Arterial Corridor Transit & Proximity HUD'}
           </h2>
-          <p className="text-xs sm:text-sm text-theme-muted mt-1 max-w-2xl">
+          <p className="text-xs sm:text-sm text-theme-secondary mt-1 max-w-2xl">
             {isHindi 
               ? 'जयपुर के प्रमुख हाईवे, रिंग रोड और एयरपोर्ट तक वास्तविक सड़क दूरी व सटीक ड्राइविंग समय का एरियल विश्लेषण।'
               : 'Interactive aerial telemetry mapping point-to-point transit times to Greater Jaipur’s critical capital growth nodes.'}
@@ -131,15 +131,15 @@ export const DroneProximityHUD = () => {
       {/* Main Grid: Rotating Radar HUD on Left, Interactive Node Telemetry on Right */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         {/* Left: Tactical Radar HUD Screen */}
-        <div className="lg:col-span-6 rounded-3xl bg-[#021720] border-2 border-luxury-gold/40 p-6 shadow-2xl relative flex flex-col items-center justify-center overflow-hidden">
+        <div className="lg:col-span-6 rounded-3xl bg-[#0b1120] border-2 border-white/15 p-6 shadow-2xl relative flex flex-col items-center justify-center overflow-hidden">
           {/* Telemetry Header */}
-          <div className="w-full flex items-center justify-between text-[11px] font-mono text-luxury-goldLight border-b border-luxury-gold/20 pb-2 mb-4">
+          <div className="w-full flex items-center justify-between text-[11px] font-mono text-slate-200 border-b border-white/10 pb-2 mb-4">
             <span>RADAR: 280M AGL SENSOR</span>
-            <span className="animate-pulse text-emerald-400">● LIVE TELEMETRY</span>
+            <span className="animate-pulse text-cyan-400">● LIVE TELEMETRY</span>
           </div>
 
           {/* Radar Circles & Rotating Sweep */}
-          <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full border border-luxury-gold/30 flex items-center justify-center bg-[radial-gradient(circle_at_center,_rgba(4,45,32,0.4)_0%,_rgba(2,23,32,0.95)_75%)] shadow-inner my-3">
+          <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full border border-white/10 flex items-center justify-center bg-[radial-gradient(circle_at_center,_rgba(6,182,212,0.3)_0%,_rgba(3, 7, 18,0.95)_75%)] shadow-inner my-3">
             {/* Concentric rings */}
             <div className="absolute inset-8 rounded-full border border-luxury-gold/20" />
             <div className="absolute inset-16 rounded-full border border-luxury-gold/15" />
@@ -185,8 +185,8 @@ export const DroneProximityHUD = () => {
                   title={node.name}
                 >
                   <span className={`relative flex h-3.5 w-3.5 ${isSelected ? 'animate-ping' : ''}`}>
-                    <span className={`absolute inline-flex h-full w-full rounded-full ${isSelected ? 'bg-amber-400' : 'bg-emerald-400'} opacity-75`} />
-                    <span className={`relative inline-flex rounded-full h-3.5 w-3.5 ${isSelected ? 'bg-amber-500 border-2 border-white' : 'bg-emerald-500 border border-emerald-200'}`} />
+                    <span className={`absolute inline-flex h-full w-full rounded-full ${isSelected ? 'bg-amber-400' : 'bg-[#D4AF37]'} opacity-75`} />
+                    <span className={`relative inline-flex rounded-full h-3.5 w-3.5 ${isSelected ? 'bg-amber-500 border-2 border-white' : 'bg-[#9E7B3B] border border-amber-200'}`} />
                   </span>
                 </div>
               );
@@ -214,18 +214,18 @@ export const DroneProximityHUD = () => {
                 onClick={() => setSelectedNode(node)}
                 className={`p-4 rounded-2xl border transition-all cursor-pointer ${
                   isSelected
-                    ? 'bg-gradient-to-r from-[#042d20] to-[#021710] border-luxury-gold shadow-lg ring-1 ring-luxury-gold/40'
-                    : 'bg-black/40 border-luxury-gold/20 hover:border-luxury-gold/50 hover:bg-black/60'
+                    ? 'dark:bg-gradient-to-r dark:from-cyan-950/80 dark:to-[#0b1120] bg-cyan-50 border-cyan-500/40 shadow-lg ring-1 ring-cyan-400/40'
+                    : 'dark:bg-black/40 bg-theme-surface border-theme-gold/25 hover:border-luxury-gold/50'
                 }`}
               >
                 <div className="flex items-center justify-between gap-3 mb-1.5">
                   <div className="flex items-center gap-2">
                     <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-mono font-bold ${
-                      isSelected ? 'bg-gold-gradient text-luxury-darker' : 'bg-white/10 text-luxury-gold'
+                      isSelected ? 'bg-gold-gradient text-luxury-darker' : 'bg-theme-card text-luxury-gold border border-theme-gold/20'
                     }`}>
                       <Navigation className="w-3.5 h-3.5" />
                     </div>
-                    <h4 className="font-serif font-bold text-sm sm:text-base text-white">
+                    <h4 className="font-serif font-bold text-sm sm:text-base text-theme-primary">
                       {isHindi ? node.nameHi : node.name}
                     </h4>
                   </div>
@@ -240,7 +240,7 @@ export const DroneProximityHUD = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between text-xs text-white/70 font-light pl-9">
+                <div className="flex items-center justify-between text-xs text-theme-secondary font-light pl-9">
                   <span className="truncate">{isHindi ? node.roadHi : node.road}</span>
                   <span className="text-[10px] font-mono text-luxury-gold font-bold">
                     {node.bearing}
@@ -248,7 +248,7 @@ export const DroneProximityHUD = () => {
                 </div>
 
                 {isSelected && (
-                  <div className="mt-2.5 pt-2 border-t border-luxury-gold/20 text-[11px] text-emerald-300 font-mono flex items-center gap-1.5 pl-9">
+                  <div className="mt-2.5 pt-2 border-t border-luxury-gold/20 text-[11px] text-luxury-goldLight font-mono flex items-center gap-1.5 pl-9">
                     <Sparkles className="w-3 h-3 text-luxury-gold flex-shrink-0" />
                     <span>{isHindi ? node.highlightHi : node.highlight}</span>
                   </div>

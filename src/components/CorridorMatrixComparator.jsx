@@ -95,7 +95,7 @@ export const CorridorMatrixComparator = () => {
       {/* Active Corridor Telemetry Dashboard */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
         {/* Left 5 cols: Scorecard & Verdict */}
-        <div className="lg:col-span-5 p-6 rounded-2xl bg-gradient-to-br from-[#063826] via-[#032418] to-[#01140D] border-2 border-luxury-gold shadow-2xl relative flex flex-col justify-between">
+        <div className="lg:col-span-5 p-6 rounded-2xl bg-gradient-to-br from-[#060b17] via-[#0b1120] to-[#030712] border-2 border-cyan-500/30 shadow-[0_20px_45px_rgba(0,0,0,0.8),0_0_25px_rgba(6,182,212,0.2)] relative flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-3">
               <span className="text-[10px] font-mono uppercase tracking-widest text-luxury-goldLight font-bold">
@@ -124,7 +124,7 @@ export const CorridorMatrixComparator = () => {
 
           <div className="pt-3 border-t border-luxury-gold/30 flex items-center justify-between text-xs font-mono">
             <span className="text-theme-muted">Target Horizon:</span>
-            <span className="text-emerald-400 font-bold">{activeData.investmentHorizon}</span>
+            <span className="text-luxury-gold font-bold">{activeData.investmentHorizon}</span>
           </div>
         </div>
 
@@ -141,11 +141,11 @@ export const CorridorMatrixComparator = () => {
           </div>
 
           <div className="p-4 rounded-xl bg-theme-card border border-luxury-gold/25 flex flex-col justify-between">
-            <div className="flex items-center gap-2 text-emerald-400 mb-1">
+            <div className="flex items-center gap-2 text-luxury-gold mb-1">
               <TrendingUp className="w-4 h-4" />
               <span className="text-[10px] uppercase text-theme-muted">Historical Capital CAGR</span>
             </div>
-            <span className="text-sm font-bold text-emerald-400 block font-tabular">
+            <span className="text-sm font-bold text-gold-gradient block font-tabular">
               {activeData.historicalCagr}
             </span>
           </div>
@@ -206,7 +206,7 @@ export const CorridorMatrixComparator = () => {
                   {c.name.split(' (')[0]}
                 </td>
                 <td className="py-2.5 px-3">{c.transitSpeed.split(' (')[0]}</td>
-                <td className="py-2.5 px-3 text-emerald-400">{c.historicalCagr.split(' (')[0]}</td>
+                <td className="py-2.5 px-3 text-luxury-goldLight font-semibold">{c.historicalCagr.split(' (')[0]}</td>
                 <td className="py-2.5 px-3">{c.reraRatio}</td>
                 <td className="py-2.5 px-3 text-right text-luxury-gold font-bold">{c.connectivityScore}/100</td>
               </tr>

@@ -116,7 +116,7 @@ export const AssetBenchmarkEngine = () => {
             <Scale className="w-3.5 h-3.5 text-luxury-gold" />
             <span>Macro Asset Class Benchmarking</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-serif font-extrabold text-white leading-tight">
+          <h2 className="text-2xl sm:text-3xl font-serif font-extrabold text-theme-primary leading-tight">
             Multi-Asset Wealth Benchmark Engine (2026–2041)
           </h2>
           <p className="text-xs sm:text-sm text-theme-secondary font-light mt-1">
@@ -125,7 +125,7 @@ export const AssetBenchmarkEngine = () => {
         </div>
 
         {/* Horizon Selector */}
-        <div className="flex items-center gap-2 bg-black/40 p-1.5 rounded-2xl border border-luxury-gold/30">
+        <div className="flex items-center gap-2 dark:bg-black/40 bg-theme-surface p-1.5 rounded-2xl border border-luxury-gold/30">
           {[
             { label: '5 Years', val: 5 },
             { label: '10 Years', val: 10 },
@@ -137,7 +137,7 @@ export const AssetBenchmarkEngine = () => {
               className={`px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold transition-all ${
                 holdingHorizon === h.val
                   ? 'bg-gold-gradient text-luxury-darker shadow-md'
-                  : 'text-luxury-ivory hover:text-luxury-gold'
+                  : 'text-theme-secondary hover:text-luxury-gold'
               }`}
             >
               {h.label}
@@ -147,7 +147,7 @@ export const AssetBenchmarkEngine = () => {
       </div>
 
       {/* Capital Slider */}
-      <div className="p-5 rounded-2xl bg-black/40 border border-luxury-gold/25 mb-8">
+      <div className="p-5 rounded-2xl dark:bg-black/40 bg-theme-surface border border-luxury-gold/25 mb-8">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-mono uppercase text-theme-muted">
             Initial Capital Deployed:
@@ -181,8 +181,8 @@ export const AssetBenchmarkEngine = () => {
               key={asset.id}
               className={`p-5 rounded-2xl border transition-all ${
                 asset.isPrimary
-                  ? 'bg-gradient-to-r from-[#063E2C] via-[#03261B] to-[#01140D] border-2 border-luxury-gold shadow-2xl relative'
-                  : 'bg-black/40 border-white/10'
+                  ? 'dark:bg-gradient-to-r dark:from-[#0b1120] dark:via-indigo-950/80 dark:to-[#030712] bg-gradient-to-r from-amber-50/90 to-amber-100/50 border-2 border-cyan-500/30 shadow-2xl relative'
+                  : 'dark:bg-black/40 bg-theme-surface border-theme-gold/20'
               }`}
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
@@ -191,7 +191,7 @@ export const AssetBenchmarkEngine = () => {
                     className="w-3 h-3 rounded-full flex-shrink-0"
                     style={{ backgroundColor: asset.color }}
                   />
-                  <h4 className="text-sm font-serif font-bold text-white">
+                  <h4 className="text-sm font-serif font-bold text-theme-primary">
                     {asset.name}
                   </h4>
                   {asset.isPrimary && (
@@ -202,16 +202,16 @@ export const AssetBenchmarkEngine = () => {
                 </div>
 
                 <div className="flex items-center gap-4 text-xs font-mono">
-                  <span className="text-theme-muted">CAGR: <strong className="text-white">{asset.cagr}%</strong></span>
+                  <span className="text-theme-muted">CAGR: <strong className="text-theme-primary">{asset.cagr}%</strong></span>
                   <span className="text-luxury-goldLight font-bold">Multiple: {asset.multiple}x</span>
                 </div>
               </div>
 
               {/* Progression Bar */}
-              <div className="w-full h-4 bg-black/60 rounded-full overflow-hidden border border-white/10 mb-3">
+              <div className="w-full h-4 dark:bg-black/60 bg-slate-200/80 rounded-full overflow-hidden border dark:border-white/10 border-slate-300 mb-3">
                 <div
                   className={`h-full rounded-full transition-all duration-700 ${
-                    asset.isPrimary ? 'bg-gold-gradient shadow-luxury-gold' : 'bg-white/40'
+                    asset.isPrimary ? 'bg-gold-gradient shadow-luxury-gold' : 'bg-slate-400'
                   }`}
                   style={{
                     width: `${barWidthPct}%`,
@@ -221,22 +221,22 @@ export const AssetBenchmarkEngine = () => {
               </div>
 
               {/* Financial Metrics Footer */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] font-mono pt-2 border-t border-white/5">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] font-mono pt-2 border-t dark:border-white/5 border-slate-200">
                 <div>
                   <span className="text-theme-muted block text-[9px] uppercase">Final Capital Value</span>
-                  <span className="text-white font-bold font-tabular text-xs">
+                  <span className="text-theme-primary font-bold font-tabular text-xs">
                     {formatPrice(asset.futureVal)}
                   </span>
                 </div>
                 <div>
                   <span className="text-theme-muted block text-[9px] uppercase">Total Wealth Gain</span>
-                  <span className="text-emerald-400 font-bold font-tabular text-xs">
+                  <span className="text-gold-gradient font-bold font-tabular text-xs">
                     +{formatPrice(asset.netGain)}
                   </span>
                 </div>
                 <div>
                   <span className="text-theme-muted block text-[9px] uppercase">Real Purchasing Power</span>
-                  <span className="text-luxury-ivory font-tabular text-xs">
+                  <span className="text-theme-primary font-tabular text-xs">
                     {formatPrice(asset.realPurchasingPower)}
                   </span>
                 </div>
@@ -253,21 +253,21 @@ export const AssetBenchmarkEngine = () => {
       </div>
 
       {/* JDA Lease Money vs One-Time Freehold Conversion Panel */}
-      <div className="p-6 rounded-2xl bg-black/50 border border-luxury-gold/30 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="p-6 rounded-2xl dark:bg-black/50 bg-theme-surface border border-luxury-gold/30 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
           <span className="text-[10px] font-mono uppercase tracking-widest text-luxury-goldLight font-bold block mb-1">
             Statutory JDA Rules Advisory
           </span>
-          <h4 className="text-base font-serif font-bold text-white">
+          <h4 className="text-base font-serif font-bold text-theme-primary">
             JDA One-Time Freehold Conversion Exemption
           </h4>
           <p className="text-xs text-theme-secondary font-light max-w-xl mt-1 leading-relaxed">
-            By depositing an 8-year one-time advance lease payment of <strong className="text-luxury-gold">{formatPrice(freeholdCalc.oneTime8YearRate)}</strong>, JDA converts the leasehold into a 100% Freehold (शहरी उपभोग कर मुक्त) deed, saving <strong className="text-emerald-400 font-bold">{formatPrice(freeholdCalc.lifetimeSavings)}</strong> over 30 years.
+            By depositing an 8-year one-time advance lease payment of <strong className="text-luxury-gold">{formatPrice(freeholdCalc.oneTime8YearRate)}</strong>, JDA converts the leasehold into a 100% Freehold (शहरी उपभोग कर मुक्त) deed, saving <strong className="text-luxury-goldLight font-bold">{formatPrice(freeholdCalc.lifetimeSavings)}</strong> over 30 years.
           </p>
         </div>
         <div className="flex-shrink-0 text-right">
           <span className="text-[10px] font-mono uppercase text-theme-muted block">Estimated Lifetime Savings</span>
-          <span className="text-2xl font-serif font-black text-emerald-400 font-tabular">
+          <span className="text-2xl font-serif font-black text-gold-gradient font-tabular">
             +{formatPrice(freeholdCalc.lifetimeSavings)}
           </span>
         </div>

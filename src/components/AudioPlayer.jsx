@@ -73,7 +73,7 @@ export const AudioPlayer = ({ currentPodcast }) => {
       <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Track info & Logo */}
         <div className="flex items-center gap-4 w-full md:w-auto">
-          <div className="relative w-16 h-16 rounded-xl overflow-hidden border border-luxury-gold/50 flex-shrink-0">
+          <div className="relative w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
             <img
               src={currentPodcast.coverImage || logoImg}
               alt={currentPodcast.title}

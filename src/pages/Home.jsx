@@ -107,23 +107,17 @@ export const Home = () => {
             </div>
           )}
 
-          {/* Multi-layered Velvet Emerald Scrim & Vignette for Total Eye-Friendly Text Contrast */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#021710] via-[#021710]/75 to-[#021710]/55" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(2,23,16,0.65)_0%,_rgba(2,23,16,0.92)_70%)]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#021710]/80 via-transparent to-[#021710]" />
+          {/* Multi-layered Cosmic Obsidian Scrim & Vignette */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/75 to-[#030712]/55" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(3, 7, 18,0.65)_0%,_rgba(3, 7, 18,0.92)_70%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/80 via-transparent to-[#030712]" />
 
-          {/* Ambient Emerald & Gold Radial Glow Highlights */}
-          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-emerald-500/15 rounded-full blur-[140px] pointer-events-none" />
-          <div className="absolute bottom-12 -left-20 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
+          {/* Ambient Cyan & Gold Radial Glow Highlights */}
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-cyan-900/20 rounded-full blur-[140px] pointer-events-none" />
+          <div className="absolute bottom-12 -left-20 w-[400px] h-[400px] bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none" />
 
-          {/* Subtle Architectural Luxury Grid Lines */}
-          <div 
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage: 'linear-gradient(to right, #D4AF37 1px, transparent 1px), linear-gradient(to bottom, #D4AF37 1px, transparent 1px)',
-              backgroundSize: '60px 60px'
-            }}
-          />
+          {/* Cosmic Geometric Square Grid Pattern */}
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_75%_60%_at_50%_25%,#000_65%,transparent_100%)]" />
         </div>
 
         {/* Media Switcher Capsule: Switch between Drone Plots View, 4K Drone Reel, and Masterplan Blueprint */}
@@ -186,46 +180,44 @@ export const Home = () => {
 
         {/* Main Content: Luxury Glass & Stitched Leather Chassis for 100% Crisp Typography */}
         <div className="relative z-10 max-w-5xl mx-auto w-full text-center flex flex-col items-center">
-          <div className="w-full bg-black/70 dark:bg-[#021710]/90 backdrop-blur-md rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-luxury-gold/50 shadow-[0_25px_60px_rgba(0,0,0,0.85)] relative overflow-hidden leather-stitch-outline gold-specular-border">
-            {/* 4 Antiqued Solid Brass Corner Brackets */}
+          <div className="w-full bg-[#030712]/85 backdrop-blur-xl rounded-3xl p-6 sm:p-10 lg:p-12 border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_30px_rgba(212,175,55,0.15)] relative overflow-hidden gold-specular-border">
+            {/* 4 Antiqued Solid Corner Brackets */}
             <div className="leather-corner-bracket-tl"></div>
             <div className="leather-corner-bracket-tr"></div>
             <div className="leather-corner-bracket-bl"></div>
             <div className="leather-corner-bracket-br"></div>
 
-            {/* 4 Antiqued Solid Brass Rivets for Bespoke Leather Look */}
-            <div className="brass-screw absolute top-4 left-4" title="Artisan Solid Brass Rivet"></div>
-            <div className="brass-screw absolute top-4 right-4" title="Artisan Solid Brass Rivet"></div>
-            <div className="brass-screw absolute bottom-4 left-4" title="Artisan Solid Brass Rivet"></div>
-            <div className="brass-screw absolute bottom-4 right-4" title="Artisan Solid Brass Rivet"></div>
+            {/* 4 Rivets for High-Tech Engineering Look */}
+            <div className="brass-screw absolute top-4 left-4" title="Rivet"></div>
+            <div className="brass-screw absolute top-4 right-4" title="Rivet"></div>
+            <div className="brass-screw absolute bottom-4 left-4" title="Rivet"></div>
+            <div className="brass-screw absolute bottom-4 right-4" title="Rivet"></div>
 
-            {/* Brand Emblem — 100% Static & Crisp (No Animations/Pulsing) with Leather Bezel */}
+            {/* Brand Emblem — 100% Static & Crisp, Zero Border */}
             <div className="mb-5 flex justify-center">
-              <div className="p-1 rounded-full bg-gradient-to-tr from-luxury-gold via-amber-200 to-luxury-goldDark shadow-2xl border border-luxury-gold/50">
-                <img
-                  src={logoImg}
-                  alt="AVM TALKS BY AVNISH"
-                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-2 border-[#021710]"
-                />
-              </div>
+              <img
+                src={logoImg}
+                alt="AVM TALKS BY AVNISH"
+                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover shadow-2xl"
+              />
             </div>
 
-            {/* Subtitle Stitched Leather Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-[0.22em] border border-dashed border-luxury-gold bg-gradient-to-r from-[#3D2214] via-[#03281E] to-[#3D2214] text-luxury-goldLight mb-5 shadow-xl leather-deboss-gold">
-              <span className="w-2 h-2 rounded-full bg-luxury-gold beacon-pulse"></span>
+            {/* Subtitle Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-[0.22em] border border-amber-400/30 bg-amber-400/10 text-amber-300 mb-5 shadow-xl">
+              <span className="w-2 h-2 rounded-full bg-cyan-400 beacon-pulse"></span>
               <span>{t('hero.badge', 'JDA Approved Plotted Townships • Real Estate Media')}</span>
             </div>
 
-            {/* Majestic Hero Headline: Pure Crisp White + Shimmering Gold Gradient with High-Contrast Shadow */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-extrabold tracking-tight text-white leading-[1.15] mb-5 drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]">
-              {t('hero.titleMain', 'Prime Plotted Estates &')} <br className="hidden sm:inline" />
-              <span className="text-gold-gradient italic font-normal">
+            {/* Majestic Hero Headline: Pure Crisp White + Shimmering Imperial Gold/Cyan Gradient with High-Contrast Shadow */}
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] font-serif font-black tracking-tight text-white leading-[1.08] drop-shadow-[0_10px_25px_rgba(0,0,0,0.95)] max-w-5xl">
+              Curated Estates & Intelligence in the{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-cyan-300 italic font-normal">
                 {t('hero.titleHighlight', 'High-Stakes Land Due Diligence.')}
               </span>
             </h1>
 
-            {/* Subtext: Warm Eye-Friendly Ivory Linen with High Contrast */}
-            <p className="max-w-3xl mx-auto text-sm sm:text-base lg:text-lg text-[#F1EAD8] font-light leading-relaxed mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+            {/* Subtext: Slate-300 with High Contrast */}
+            <p className="max-w-3xl mx-auto text-sm sm:text-base lg:text-lg text-slate-300 font-normal leading-relaxed mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
               {t('hero.subtitle', "From wide 60ft/80ft master-planned avenues to forensic 30-year revenue title checks. Discover verified residential and commercial plots across Greater Jaipur's highest-velocity growth corridors with AVM TALKS BY AVNISH.")}
             </p>
 
@@ -233,7 +225,7 @@ export const Home = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-8">
               <Link
                 to="/plots"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider gold-shimmer-btn text-luxury-darker shadow-luxury-gold group font-sans"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider gold-shimmer-btn text-white shadow-[0_0_30px_rgba(130,69,236,0.5)] group font-sans"
               >
                 <Building2 className="w-4 h-4" />
                 <span>{t('hero.browsePlots', 'Explore Available Plots')}</span>
@@ -241,15 +233,15 @@ export const Home = () => {
 
               <Link
                 to="/media"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider border border-luxury-gold/60 bg-black/70 text-white hover:border-luxury-gold hover:bg-black/90 transition-all duration-300 font-sans hover:scale-105 shadow-md"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider border border-white/15 bg-white/[0.04] text-white hover:border-cyan-400/50 hover:bg-white/[0.08] backdrop-blur-xl transition-all duration-300 font-sans hover:scale-105 shadow-md"
               >
-                <Play className="w-4 h-4 fill-luxury-gold text-luxury-gold" />
+                <Play className="w-4 h-4 fill-cyan-400 text-cyan-400" />
                 <span>{t('hero.watchVault', 'Watch 21+ Masterclasses')}</span>
               </Link>
             </div>
 
             {/* Live Trust Metrics Bar with Animated Numbers */}
-            <div className="w-full pt-6 border-t border-luxury-gold/25 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
+            <div className="w-full pt-6 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
               <div className="flex flex-col items-center p-2 rounded-xl bg-white/[0.03] border border-white/[0.05]">
                 <span className="text-2xl sm:text-3xl font-serif font-extrabold text-gold-gradient">
                   <AnimatedCounter end={100} suffix="%" />
@@ -340,8 +332,8 @@ export const Home = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12">
           <div>
-            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.2em] border border-theme-gold bg-luxury-emerald/20 text-luxury-gold font-bold mb-3">
-              <Building2 className="w-3.5 h-3.5" />
+            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.2em] border dark:border-white/10 border-cyan-500/30 dark:bg-cyan-500/10 bg-cyan-100/70 dark:text-cyan-300 text-cyan-800 font-bold mb-3">
+              <Building2 className="w-3.5 h-3.5 dark:text-cyan-400 text-cyan-600" />
               {t('plots.badge', 'Verified Plotted Projects')}
             </span>
             <h2 className="text-2xl sm:text-4xl font-serif font-bold text-theme-primary">
@@ -394,7 +386,7 @@ export const Home = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Blueprint Display Card with Interactive Zoom Action */}
-            <div className="lg:col-span-8 group relative rounded-2xl overflow-hidden border-2 border-luxury-gold/60 shadow-2xl bg-[#021720]">
+            <div className="lg:col-span-8 group relative rounded-2xl overflow-hidden border-2 border-luxury-gold/60 shadow-2xl bg-[#0b1120]">
               <img
                 src={masterBlueprintImg}
                 alt="Township Masterplan Technical CAD Blueprint"
@@ -408,7 +400,7 @@ export const Home = () => {
                 <span className="px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider bg-luxury-emerald/90 text-luxury-goldLight border border-luxury-gold/50 backdrop-blur-md">
                   {t('blueprint.scale', 'Scale 1:1500 CAD Drafting')}
                 </span>
-                <span className="px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider bg-black/75 text-emerald-400 border border-emerald-500/40 backdrop-blur-md">
+                <span className="px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider bg-black/75 text-luxury-goldLight border border-luxury-gold/50 backdrop-blur-md">
                   {t('blueprint.approved', 'Section 90-A Approved')}
                 </span>
               </div>
@@ -458,7 +450,7 @@ export const Home = () => {
                 </div>
                 <div className="p-3.5 rounded-xl bg-theme-card border border-theme-gold/30 flex items-center justify-between">
                   <span className="text-theme-muted font-sans">{t('blueprint.specGreen', 'Open Greenery & Parks:')}</span>
-                  <span className="font-bold text-emerald-400">{t('blueprint.specGreenVal', '10%+ Dedicated Area')}</span>
+                  <span className="font-bold text-luxury-goldLight">{t('blueprint.specGreenVal', '10%+ Dedicated Area')}</span>
                 </div>
                 <div className="p-3.5 rounded-xl bg-theme-card border border-theme-gold/30 flex items-center justify-between">
                   <span className="text-theme-muted font-sans">{t('blueprint.specClub', 'Clubhouse & Sports Zone:')}</span>
@@ -531,8 +523,8 @@ export const Home = () => {
       {/* ----------------- 4. ALL 21 YOUTUBE MASTERCLASSES ----------------- */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center max-w-4xl mx-auto mb-12">
-          <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.2em] border border-theme-gold bg-luxury-emerald/20 text-luxury-gold font-bold mb-3">
-            <Play className="w-3 h-3 fill-luxury-gold text-luxury-gold" />
+          <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.2em] border dark:border-white/10 border-cyan-500/30 dark:bg-cyan-500/10 bg-cyan-100/70 dark:text-cyan-300 text-cyan-800 font-bold mb-3">
+            <Play className="w-3 h-3 fill-cyan-500 text-cyan-500" />
             {t('media.badge', 'AVM Talks Video Vault')}
           </span>
           <h2 className="text-2xl sm:text-4xl font-serif font-bold text-theme-primary">
@@ -598,7 +590,7 @@ export const Home = () => {
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-luxury-emerald text-luxury-goldLight border border-luxury-gold/30">
+                  <span className="px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider dark:bg-cyan-950/40 bg-cyan-100/80 dark:text-cyan-300 text-cyan-800 dark:border-white/10 border-cyan-300/60">
                     {corridor.status}
                   </span>
                   <span className="text-xs font-mono text-luxury-gold font-bold">
@@ -742,7 +734,7 @@ export const Home = () => {
             </div>
 
             {/* Blueprint View Area */}
-            <div className="relative w-full max-h-[75vh] overflow-auto bg-[#021720] flex items-center justify-center p-2 sm:p-4">
+            <div className="relative w-full max-h-[75vh] overflow-auto bg-[#0b1120] flex items-center justify-center p-2 sm:p-4">
               <img
                 src={masterBlueprintImg}
                 alt="Sanctioned Masterplan Blueprint Full View"

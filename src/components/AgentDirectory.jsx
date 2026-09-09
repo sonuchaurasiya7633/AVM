@@ -1,8 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import { AGENTS_DATA } from '../data/agents';
 import { Phone, MessageSquare, Search, ShieldCheck, UserCheck, X } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const AgentDirectory = () => {
+  const { isHindi } = useLanguage();
   const [selectedLetter, setSelectedLetter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -35,10 +37,10 @@ export const AgentDirectory = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
           <div>
             <span className="text-[11px] uppercase tracking-widest text-luxury-gold font-bold block">
-              Verified Advisory Network
+              {isHindi ? 'सत्यापित सलाहकार नेटवर्क' : 'Verified Advisory Network'}
             </span>
             <h3 className="text-xl sm:text-2xl font-serif font-bold text-theme-primary">
-              Connect with Authorized Territory Coordinators
+              {isHindi ? 'अधिकृत क्षेत्रीय समन्वयकों से संपर्क करें' : 'Connect with Authorized Territory Coordinators'}
             </h3>
           </div>
 
@@ -49,7 +51,7 @@ export const AgentDirectory = () => {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search agent by name or phone..."
+              placeholder={isHindi ? 'नाम या फोन नंबर से खोजें...' : 'Search agent by name or phone...'}
               className="w-full pl-10 pr-9 py-2.5 rounded-full bg-theme-card border border-theme-gold/40 text-xs text-theme-primary placeholder-theme-muted focus:outline-none focus:border-luxury-gold"
             />
             {searchQuery && (
@@ -65,7 +67,7 @@ export const AgentDirectory = () => {
 
         {/* Alphabetical Letter Selector */}
         <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-theme-gold/20">
-          <span className="text-xs font-semibold text-theme-muted mr-2">Filter by Alphabet:</span>
+          <span className="text-xs font-semibold text-theme-muted mr-2">{isHindi ? 'वर्णमाला अनुसार चुनें:' : 'Filter by Alphabet:'}</span>
           {letters.map((letter) => (
             <button
               key={letter}
@@ -76,7 +78,7 @@ export const AgentDirectory = () => {
                   : 'bg-theme-card border border-theme-gold/20 text-theme-secondary hover:border-luxury-gold'
               }`}
             >
-              {letter}
+              {letter === 'All' && isHindi ? 'सभी' : letter}
             </button>
           ))}
         </div>
@@ -85,11 +87,15 @@ export const AgentDirectory = () => {
       {/* Agents Count */}
       <div className="flex items-center justify-between text-xs text-theme-muted mb-6 px-2">
         <span>
-          Showing <strong className="text-luxury-gold font-bold">{filteredAgents.length}</strong> Authorized Coordinators
+          {isHindi ? (
+            <>दर्शाए जा रहे हैं: <strong className="text-luxury-gold font-bold">{filteredAgents.length}</strong> अधिकृत समन्वयक</>
+          ) : (
+            <>Showing <strong className="text-luxury-gold font-bold">{filteredAgents.length}</strong> Authorized Coordinators</>
+          )}
         </span>
-        <span className="flex items-center gap-1 text-emerald-500 font-medium">
+        <span className="flex items-center gap-1 text-luxury-gold font-medium">
           <ShieldCheck className="w-4 h-4" />
-          100% Background Verified & Local Ground Presence
+          {isHindi ? '100% पृष्ठभूमि सत्यापित एवं स्थानीय उपस्थिति' : '100% Background Verified & Local Ground Presence'}
         </span>
       </div>
 
@@ -107,8 +113,8 @@ export const AgentDirectory = () => {
                   <div className="w-10 h-10 rounded-full bg-luxury-emerald/20 border border-luxury-gold/50 flex items-center justify-center text-luxury-gold font-serif font-bold text-sm">
                     {agent.letter}
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-950/40 text-emerald-400 border border-emerald-500/30">
-                    Verified
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider dark:bg-cyan-950/40 bg-cyan-100/80 dark:text-cyan-300 text-cyan-800 dark:border-white/15 border-cyan-300/50">
+                    {isHindi ? 'सत्यापित' : 'Verified'}
                   </span>
                 </div>
 

@@ -1,10 +1,12 @@
-import React, { useState, useMemo } from 'react';
+﻿import React, { useState, useMemo } from 'react';
 import { SectionHeading } from '../components/SectionHeading';
-import { FAQS_DATA, FAQ_CATEGORIES } from '../data/faqs';
+import { FAQS_DATA, FAQ_CATEGORIES, FAQ_CATEGORIES_HI } from '../data/faqs';
 import { HelpCircle, ChevronDown, Search, ShieldCheck, PhoneCall, MessageSquare, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 export const FAQ = () => {
+  const { isHindi } = useLanguage();
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [openItems, setOpenItems] = useState({ 'jda-vs-society': true });
@@ -19,12 +21,16 @@ export const FAQ = () => {
   const filteredFaqs = useMemo(() => {
     return FAQS_DATA.filter((faq) => {
       const matchesCategory = activeCategory === 'All' || faq.category === activeCategory;
+      const q = isHindi ? (faq.questionHi || faq.question) : faq.question;
+      const a = isHindi ? (faq.answerHi || faq.answer) : faq.answer;
       const matchesSearch =
+        q.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        a.toLowerCase().includes(searchQuery.toLowerCase()) ||
         faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
         faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesCategory && matchesSearch;
     });
-  }, [activeCategory, searchQuery]);
+  }, [activeCategory, searchQuery, isHindi]);
 
   return (
     <div className="pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -32,14 +38,19 @@ export const FAQ = () => {
       <div className="text-center max-w-4xl mx-auto mb-12">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.25em] border border-theme-gold bg-luxury-emerald/20 text-luxury-goldLight mb-4">
           <HelpCircle className="w-3.5 h-3.5" />
-          <span>Statutory Due Diligence Knowledgebase</span>
+          <span>{isHindi ? 'वैधानिक ड्यू डिलिजेंस नॉलेजबेस' : 'Statutory Due Diligence Knowledgebase'}</span>
         </div>
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-extrabold text-theme-primary leading-tight mb-6">
-          Frequently Asked Questions & <br />
-          <span className="text-gold-gradient italic">Rajasthan Land Law Advisory.</span>
+          {isHindi ? 'अक्सर पूछे जाने वाले प्रश्न व ' : 'Frequently Asked Questions & '}
+          <br />
+          <span className="text-gold-gradient italic">
+            {isHindi ? 'राजस्थान भूमि कानून कानूनी परामर्श।' : 'Rajasthan Land Law Advisory.'}
+          </span>
         </h1>
         <p className="text-base sm:text-lg text-theme-secondary font-light leading-relaxed">
-          Critical legal answers regarding JDA pattas, Section 90-A conversion, RERA statutory protections, bank financing rules, and registry stamp duty across Jaipur.
+          {isHindi
+            ? 'जेडीए पट्टे, धारा 90-A रूपांतरण, रेरा सुरक्षा, बैंक लोन पात्रता और जयपुर में प्लॉट रजिस्ट्री व स्टाम्प ड्यूटी से जुड़े महत्वपूर्ण कानूनी जवाब।'
+            : 'Critical legal answers regarding JDA pattas, Section 90-A conversion, RERA statutory protections, bank financing rules, and registry stamp duty across Jaipur.'}
         </p>
       </div>
 
@@ -55,7 +66,11 @@ export const FAQ = () => {
           <Search className="w-5 h-5 text-luxury-gold absolute left-4 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="Search any legal term (e.g. 90-A, JDA Patta, Stamp Duty, RERA, NRI)..."
+            placeholder={
+              isHindi
+                ? 'कानूनी सवाल खोजें (उदा. 90-A, जेडीए पट्टा, स्टाम्प ड्यूटी, रेरा, एनआरआई)...'
+                : 'Search any legal term (e.g. 90-A, JDA Patta, Stamp Duty, RERA, NRI)...'
+            }
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-theme-card border border-theme-gold/30 text-theme-primary text-sm placeholder-theme-muted focus:outline-none focus:border-luxury-gold"
@@ -74,7 +89,7 @@ export const FAQ = () => {
                   : 'bg-theme-card border border-theme-gold/20 text-theme-secondary hover:text-luxury-gold'
               }`}
             >
-              {cat}
+              {isHindi ? (FAQ_CATEGORIES_HI[cat] || cat) : cat}
             </button>
           ))}
         </div>
@@ -85,14 +100,22 @@ export const FAQ = () => {
         {filteredFaqs.length === 0 ? (
           <div className="text-center py-12 rounded-3xl bg-theme-surface border border-theme-gold/30 p-8">
             <HelpCircle className="w-12 h-12 text-luxury-gold/50 mx-auto mb-3" />
-            <h3 className="text-lg font-serif font-bold text-theme-primary">No Matching Advisory Found</h3>
+            <h3 className="text-lg font-serif font-bold text-theme-primary">
+              {isHindi ? 'कोई प्रासंगिक प्रश्न नहीं मिला' : 'No Matching Advisory Found'}
+            </h3>
             <p className="text-xs text-theme-secondary mt-1">
-              Try a different keyword or connect directly with our 52+ ground coordinators for personal assistance.
+              {isHindi
+                ? 'कृपया कोई अन्य कीवर्ड खोजें या हमारे 52+ फील्ड सलाहकारों से सीधे संपर्क करें।'
+                : 'Try a different keyword or connect directly with our 52+ ground coordinators for personal assistance.'}
             </p>
           </div>
         ) : (
           filteredFaqs.map((faq) => {
             const isOpen = !!openItems[faq.id];
+            const q = isHindi ? (faq.questionHi || faq.question) : faq.question;
+            const a = isHindi ? (faq.answerHi || faq.answer) : faq.answer;
+            const cat = isHindi ? (faq.categoryHi || faq.category) : faq.category;
+
             return (
               <div
                 key={faq.id}
@@ -108,7 +131,7 @@ export const FAQ = () => {
                       Q
                     </span>
                     <h3 className="text-sm sm:text-base font-serif font-bold text-theme-primary group-hover:text-luxury-gold transition-colors">
-                      {faq.question}
+                      {q}
                     </h3>
                   </div>
                   <ChevronDown
@@ -120,10 +143,10 @@ export const FAQ = () => {
 
                 {isOpen && (
                   <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-theme-secondary font-light leading-relaxed border-t border-theme-gold/10">
-                    <p className="pl-9">{faq.answer}</p>
+                    <p className="pl-9">{a}</p>
                     <div className="mt-4 pl-9 flex items-center gap-2">
                       <span className="px-2.5 py-0.5 rounded text-[10px] font-mono uppercase bg-theme-card text-luxury-gold border border-theme-gold/20">
-                        {faq.category}
+                        {cat}
                       </span>
                     </div>
                   </div>
@@ -135,7 +158,7 @@ export const FAQ = () => {
       </div>
 
       {/* Still Have Doubts Leather Folio Callout */}
-      <div className="max-w-4xl mx-auto rounded-3xl p-8 sm:p-10 leather-badge-container border-2 border-luxury-gold shadow-2xl text-white flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden leather-stitch-outline">
+      <div className="max-w-4xl mx-auto rounded-3xl p-8 sm:p-10 leather-badge-container border-2 border-luxury-gold shadow-2xl text-theme-primary flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden leather-stitch-outline">
         {/* 4 Corner Brass Screws */}
         <div className="brass-screw absolute top-3.5 left-3.5" />
         <div className="brass-screw absolute top-3.5 right-3.5" />
@@ -143,15 +166,17 @@ export const FAQ = () => {
         <div className="brass-screw absolute bottom-3.5 right-3.5" />
 
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-black/40 text-luxury-goldLight border border-luxury-gold/30">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider dark:bg-black/40 bg-theme-surface text-luxury-gold border border-luxury-gold/30">
             <ShieldCheck className="w-3.5 h-3.5 text-luxury-gold" />
-            <span>1-on-1 Legal Review</span>
+            <span>{isHindi ? 'निजी विधिक समीक्षा' : '1-on-1 Legal Review'}</span>
           </div>
-          <h3 className="text-xl sm:text-2xl font-serif font-bold text-white">
-            Have a Specific Khasra or Registry Query?
+          <h3 className="text-xl sm:text-2xl font-serif font-bold text-theme-primary">
+            {isHindi ? 'क्या आपके पास कोई विशिष्ट खसरा या रजिस्ट्री प्रश्न है?' : 'Have a Specific Khasra or Registry Query?'}
           </h3>
-          <p className="text-xs sm:text-sm text-white/80 font-light">
-            Share your patta copy or agreement draft with our legal panel for an unbiased statutory title check.
+          <p className="text-xs sm:text-sm text-theme-secondary font-light">
+            {isHindi
+              ? 'अपने पट्टे या एग्रीमेंट की प्रति हमारे पैनल के साथ साझा करें और निष्पक्ष कानूनी टाइटल रिपोर्ट प्राप्त करें।'
+              : 'Share your patta copy or agreement draft with our legal panel for an unbiased statutory title check.'}
           </p>
         </div>
 
@@ -161,13 +186,13 @@ export const FAQ = () => {
             className="flex-1 md:flex-none px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider bg-gold-gradient text-luxury-darker shadow-luxury-gold hover:scale-105 transition-all text-center flex items-center justify-center gap-2"
           >
             <MessageSquare className="w-4 h-4" />
-            <span>Consult Legal Team</span>
+            <span>{isHindi ? 'कानूनी टीम से परामर्श करें' : 'Consult Legal Team'}</span>
           </Link>
           <Link
             to="/registry-process"
-            className="flex-1 md:flex-none px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider border border-luxury-gold/50 bg-black/40 text-luxury-goldLight hover:border-luxury-gold transition-all text-center"
+            className="flex-1 md:flex-none px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider border border-luxury-gold/50 bg-theme-surface text-theme-primary hover:border-luxury-gold transition-all text-center"
           >
-            <span>Registry Process</span>
+            <span>{isHindi ? 'रजिस्ट्री प्रक्रिया' : 'Registry Process'}</span>
           </Link>
         </div>
       </div>

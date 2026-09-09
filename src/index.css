@@ -3,34 +3,36 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    /* Palatial Italian Alabaster & Warm Architectural Parchment */
-    --bg-base: #F8F5EE;
-    --bg-surface: #FFFFFF;
-    --bg-card: #F2ECE0;
-    --bg-input: #E7DFCE;
-    --text-primary: #0A1C14;
-    --text-secondary: #1C3B2D;
-    --text-muted: #536F62;
-    --border-gold: rgba(184, 142, 60, 0.55);
-    --border-subtle: rgba(10, 28, 20, 0.14);
-    --shadow-theme: 0 16px 36px rgba(10, 28, 20, 0.08);
-    --card-surface: #FFFFFF;
+  :root, html.dark {
+    /* Cosmic Obsidian #030712 & Imperial Gold / Electric Cyan Palette */
+    --bg-base: #030712;
+    --bg-surface: #0b1120;
+    --bg-card: #0b1120;
+    --bg-input: #060b17;
+    --text-primary: #FFFFFF;
+    --text-secondary: #CBD5E1;
+    --text-muted: #94A3B8;
+    --border-gold: rgba(212, 175, 55, 0.4);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --shadow-theme: 0 20px 40px rgba(0, 0, 0, 0.7);
+    --card-surface: #0b1120;
+    --grid-line: rgba(255, 255, 255, 0.07);
   }
 
-  html.dark {
-    /* 100x Sovereign Obsidian & 24K Liquid Champagne Gold */
-    --bg-base: #010A07;
-    --bg-surface: #031D14;
-    --bg-card: #05261B;
-    --bg-input: #073324;
-    --text-primary: #FCF9F2;
-    --text-secondary: #E8DFC9;
-    --text-muted: #A3B8AD;
-    --border-gold: rgba(226, 193, 120, 0.45);
-    --border-subtle: rgba(226, 193, 120, 0.22);
-    --shadow-theme: 0 25px 55px rgba(0, 0, 0, 0.85);
-    --card-surface: #042016;
+  html.light, html:not(.dark) {
+    /* Ultra-Luxury Alabaster Ivory & Imperial Gold Palette */
+    --bg-base: #F8FAFC;
+    --bg-surface: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --bg-input: #F1F5F9;
+    --text-primary: #0F172A;
+    --text-secondary: #334155;
+    --text-muted: #64748B;
+    --border-gold: rgba(212, 175, 55, 0.5);
+    --border-subtle: rgba(15, 23, 42, 0.08);
+    --shadow-theme: 0 15px 35px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+    --card-surface: #FFFFFF;
+    --grid-line: rgba(15, 23, 42, 0.05);
   }
 
   html {
@@ -46,20 +48,23 @@
     overflow-x: hidden;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     background-attachment: fixed;
-    /* Bespoke Full-Grain Supple Leather Micro-Texture */
+    /* Universal Geometric Square Grid — Exact 4rem x 4rem Grid Pattern */
     background-image: 
-      radial-gradient(rgba(201, 163, 92, 0.05) 1px, transparent 0),
-      radial-gradient(rgba(0, 0, 0, 0.28) 1px, transparent 0);
-    background-size: 28px 28px, 14px 14px;
-    background-position: 0 0, 14px 14px;
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 4rem 4rem;
   }
 
-  html:not(.dark) body {
-    background-attachment: fixed;
+  html.dark body {
     background-image: 
-      radial-gradient(rgba(184, 142, 60, 0.08) 1px, transparent 0),
-      radial-gradient(rgba(2, 38, 26, 0.04) 1px, transparent 0);
-    background-size: 28px 28px, 14px 14px;
+      linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  }
+
+  html.light body, html:not(.dark) body {
+    background-image: 
+      linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
   }
 }
 
@@ -73,40 +78,48 @@
   backface-visibility: hidden;
 }
 
-/* Reusable Full-Leather Semantic Classes */
+/* Reusable Semantic Classes (Cosmic Obsidian & Cyber Glass Palette) */
 .bg-theme-base {
-  background-color: var(--bg-base);
+  background-color: transparent;
 }
 .bg-theme-surface {
-  background: radial-gradient(circle at 50% 20%, #063E2C 0%, #03261B 65%, #01140D 100%);
-  box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.12), inset 0 -4px 12px rgba(0, 0, 0, 0.75), 0 20px 45px rgba(0, 0, 0, 0.65);
-  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  background: var(--bg-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   position: relative;
 }
-html:not(.dark) .bg-theme-surface {
-  background: radial-gradient(circle at 50% 20%, #FAF6F0 0%, #F3ECE2 70%, #E8DECf 100%);
-  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.8), inset 0 -2px 6px rgba(0, 0, 0, 0.08), 0 15px 35px rgba(74, 46, 27, 0.08);
-  border: 1.5px solid rgba(184, 134, 42, 0.45);
-  position: relative;
+html.dark .bg-theme-surface {
+  background: rgba(11, 17, 32, 0.85);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+html.light .bg-theme-surface, html:not(.dark) .bg-theme-surface {
+  background: #FFFFFF;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .bg-theme-card {
-  background: radial-gradient(circle at 50% 20%, #084834 0%, #042E20 65%, #021710 100%);
-  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1), inset 0 -3px 8px rgba(0, 0, 0, 0.7), 0 15px 35px rgba(0, 0, 0, 0.55);
-  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   position: relative;
 }
-html:not(.dark) .bg-theme-card {
-  background: radial-gradient(circle at 50% 20%, #F5EDE4 0%, #EBDDCF 70%, #E0CFBF 100%);
-  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.6), inset 0 -2px 5px rgba(0, 0, 0, 0.07), 0 10px 25px rgba(74, 46, 27, 0.07);
-  border: 1.5px solid rgba(184, 134, 42, 0.35);
-  position: relative;
+html.dark .bg-theme-card {
+  background: rgba(11, 17, 32, 0.9);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+html.light .bg-theme-card, html:not(.dark) .bg-theme-card {
+  background: #FFFFFF;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .bg-theme-input {
   background-color: var(--bg-input);
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(212, 175, 55, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .text-theme-primary {
   color: var(--text-primary);
@@ -127,7 +140,7 @@ html:not(.dark) .bg-theme-card {
   box-shadow: var(--shadow-theme);
 }
 
-/* Custom Luxury Scrollbar */
+/* Custom Cyber/Luxury Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
 }
@@ -135,98 +148,156 @@ html:not(.dark) .bg-theme-card {
   background: var(--bg-base);
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #D4AF37, #9E7B3B);
+  background: linear-gradient(to bottom, #d4af37, #06b6d4);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #E2C178;
+  background: #f59e0b;
 }
 
-/* Eye-Friendly Gold foil & metallic text gradients */
+/* Eye-Friendly Metallic Gold & Cosmic Gradient text */
 .text-gold-gradient {
-  background: linear-gradient(135deg, #FFF0C8 0%, #E2C178 40%, #C9A35C 80%, #A88235 100%);
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFFBEB 30%, #F59E0B 70%, #D4AF37 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-html:not(.dark) .text-gold-gradient {
-  background: linear-gradient(135deg, #B88E3C 0%, #946E26 60%, #5E4310 100%);
+html.dark .text-gold-gradient {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFFBEB 30%, #F59E0B 70%, #D4AF37 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Bespoke Ultra-Luxury Handcrafted Leather Design System (100% Prominently Visible) */
-.leather-badge-container {
-  background: radial-gradient(circle at 50% 25%, #05402E 0%, #02261A 60%, #01120B 100%);
-  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.15), inset 0 -4px 14px rgba(0, 0, 0, 0.85), 0 25px 50px rgba(0, 0, 0, 0.7);
-  border: 3px solid #C9A35C;
+html.light .text-gold-gradient, html:not(.dark) .text-gold-gradient {
+  background: linear-gradient(135deg, #92400E 0%, #B45309 30%, #D97706 70%, #B45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Cosmic Cyber Glass Cards */
+.leather-badge-container,
+.royal-obsidian-card {
   position: relative;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+html.dark .leather-badge-container,
+html.dark .royal-obsidian-card {
+  background: rgba(11, 17, 32, 0.85);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.1), 0 0 25px rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+html.light .leather-badge-container,
+html:not(.dark) .leather-badge-container,
+html.light .royal-obsidian-card,
+html:not(.dark) .royal-obsidian-card {
+  background: #FFFFFF;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08), 0 0 20px rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.5);
 }
 
 .leather-cognac-container {
-  background: radial-gradient(circle at 50% 25%, #522A14 0%, #2F170A 60%, #170B04 100%);
-  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.2), inset 0 -4px 14px rgba(0, 0, 0, 0.85), 0 25px 50px rgba(0, 0, 0, 0.7);
-  border: 3px solid #C9A35C;
   position: relative;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+html.dark .leather-cognac-container {
+  background: rgba(11, 17, 32, 0.85);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+html.light .leather-cognac-container,
+html:not(.dark) .leather-cognac-container {
+  background: #FFFFFF;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.5);
 }
 
 /* Artisan Saddle Stitching with Distinct Silk Thread (Highly Visible) */
 .leather-stitch-border {
-  border: 2px dashed rgba(226, 193, 120, 0.9) !important;
+  border: 2px dashed rgba(226, 193, 120, 0.8) !important;
   box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.6);
   position: relative;
 }
 
 .leather-stitch-outline {
-  outline: 2px dashed rgba(226, 193, 120, 0.85) !important;
+  outline: 1.5px dashed rgba(212, 175, 55, 0.35) !important;
   outline-offset: -7px;
 }
 
-/* Visibly Handcrafted Stitched Leather Card Folio */
+/* Visibly Handcrafted Stitched Card Folio */
 .leather-folio-card {
-  background: radial-gradient(circle at 50% 15%, #042E20 0%, #021C13 65%, #01100A 100%);
-  border: 2px solid #C9A35C;
-  box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.12), inset 0 -4px 12px rgba(0, 0, 0, 0.8), 0 20px 45px rgba(0, 0, 0, 0.75);
   position: relative;
   border-radius: 1.5rem;
+}
+html.dark .leather-folio-card {
+  background: rgba(11, 17, 32, 0.9);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.08), inset 0 -4px 12px rgba(0, 0, 0, 0.8), 0 20px 45px rgba(0, 0, 0, 0.75);
+}
+html.light .leather-folio-card,
+html:not(.dark) .leather-folio-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08), 0 0 20px rgba(212, 175, 55, 0.1);
 }
 .leather-folio-card::before {
   content: '';
   position: absolute;
   inset: 6px;
-  border: 2px dashed rgba(226, 193, 120, 0.75);
+  border: 1.5px dashed rgba(212, 175, 55, 0.35);
   border-radius: calc(1.5rem - 6px);
   pointer-events: none;
   z-index: 10;
 }
 
-/* Visible Handcrafted Stitched Leather Belt for Ticker */
+/* Visible Handcrafted Stitched Belt for Ticker */
 .leather-belt-ticker {
-  background: linear-gradient(180deg, #1C0F08 0%, #3D2214 30%, #26150C 70%, #140A05 100%);
-  border-top: 2px dashed #D4AF37;
-  border-bottom: 2px dashed #D4AF37;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.9), inset 0 -2px 4px rgba(0, 0, 0, 0.9), 0 10px 25px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+html.dark .leather-belt-ticker {
+  background: linear-gradient(180deg, rgba(6, 11, 23, 0.95) 0%, rgba(11, 17, 32, 0.95) 50%, rgba(6, 11, 23, 0.95) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+html.light .leather-belt-ticker,
+html:not(.dark) .leather-belt-ticker {
+  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 50%, #F8FAFC 100%);
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
 }
 
-/* Handcrafted Leather Badge / Pill */
+/* Handcrafted Badge / Pill */
 .leather-pill {
-  background: linear-gradient(135deg, #4A2815 0%, #2E170C 50%, #170A05 100%);
-  border: 1.5px dashed rgba(226, 193, 120, 0.85);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+html.dark .leather-pill {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(11, 17, 32, 0.85) 100%);
+}
+html.light .leather-pill, html:not(.dark) .leather-pill {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, #FFFFFF 100%);
 }
 
 .leather-pill-emerald {
-  background: linear-gradient(135deg, #064E38 0%, #032A1C 50%, #01160E 100%);
-  border: 1.5px dashed rgba(226, 193, 120, 0.85);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+html.dark .leather-pill-emerald {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(11, 17, 32, 0.85) 100%);
+}
+html.light .leather-pill-emerald, html:not(.dark) .leather-pill-emerald {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, #FFFFFF 100%);
 }
 
-/* Metallic Polished Brass Screws / Rivets */
+/* Metallic Polished Screws / Rivets */
 .brass-screw {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #FFF0C8 0%, #D4AF37 50%, #7A5818 100%);
+  background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, #F59E0B 50%, #B45309 100%);
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 6px rgba(0, 0, 0, 0.85);
   position: relative;
   display: flex;
@@ -236,27 +307,26 @@ html:not(.dark) .text-gold-gradient {
 }
 .brass-screw::after {
   content: '';
-  width: 10px;
-  height: 2px;
-  background: #3A2A0C;
+  width: 8px;
+  height: 1.5px;
+  background: #030712;
   border-radius: 1px;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-/* Hot-Stamped Gold Foil Leather Deboss */
+/* Hot-Stamped Deboss */
 .leather-deboss-gold {
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.95), 0 -1px 0 rgba(255, 235, 175, 0.45);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95);
 }
 
-/* Antique Solid Brass Corner Reinforcement Brackets */
+/* Antique Solid Corner Reinforcement Brackets */
 .leather-corner-bracket-tl {
   position: absolute;
   top: 0;
   left: 0;
   width: 24px;
   height: 24px;
-  border-top: 3px solid #D4AF37;
-  border-left: 3px solid #D4AF37;
+  border-top: 2.5px solid rgba(212, 175, 55, 0.7);
+  border-left: 2.5px solid rgba(212, 175, 55, 0.7);
   border-top-left-radius: 1.25rem;
   pointer-events: none;
   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
@@ -268,8 +338,8 @@ html:not(.dark) .text-gold-gradient {
   right: 0;
   width: 24px;
   height: 24px;
-  border-top: 3px solid #D4AF37;
-  border-right: 3px solid #D4AF37;
+  border-top: 2.5px solid rgba(212, 175, 55, 0.7);
+  border-right: 2.5px solid rgba(212, 175, 55, 0.7);
   border-top-right-radius: 1.25rem;
   pointer-events: none;
   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
@@ -281,8 +351,8 @@ html:not(.dark) .text-gold-gradient {
   left: 0;
   width: 24px;
   height: 24px;
-  border-bottom: 3px solid #D4AF37;
-  border-left: 3px solid #D4AF37;
+  border-bottom: 2.5px solid rgba(212, 175, 55, 0.7);
+  border-left: 2.5px solid rgba(212, 175, 55, 0.7);
   border-bottom-left-radius: 1.25rem;
   pointer-events: none;
   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
@@ -294,8 +364,8 @@ html:not(.dark) .text-gold-gradient {
   right: 0;
   width: 24px;
   height: 24px;
-  border-bottom: 3px solid #D4AF37;
-  border-right: 3px solid #D4AF37;
+  border-bottom: 2.5px solid rgba(212, 175, 55, 0.7);
+  border-right: 2.5px solid rgba(212, 175, 55, 0.7);
   border-bottom-right-radius: 1.25rem;
   pointer-events: none;
   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
@@ -323,10 +393,17 @@ html:not(.dark) .text-gold-gradient {
 
 /* Ultra-Luxury Card & Glass Utilities */
 .luxury-glass {
-  background: rgba(4, 34, 23, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+html.dark .luxury-glass {
+  background: rgba(11, 17, 32, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+html.light .luxury-glass, html:not(.dark) .luxury-glass {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
 }
 
 .luxury-card-hover {
@@ -335,36 +412,31 @@ html:not(.dark) .text-gold-gradient {
 .luxury-card-hover:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(212, 175, 55, 0.2);
-  border-color: rgba(212, 175, 55, 0.6);
+  border-color: rgba(212, 175, 55, 0.45);
 }
 
-/* ------------------------------------------------------------- */
-/* 100x ULTRA-LUXURY PINNACLE DESIGN SYSTEM (HOROLOGY & OBSIDIAN) */
-/* ------------------------------------------------------------- */
-
-/* Engine-Turned Horological Guilloché Micro-Pattern */
+/* Guilloché Pattern in Cyber Obsidian */
 .guilloche-pattern {
-  background-color: #03140E;
+  background-color: var(--bg-base);
   background-image: 
-    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
     repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 4px, rgba(212, 175, 55, 0.04) 5px, transparent 6px),
-    repeating-conic-gradient(from 0deg at 50% 50%, rgba(212, 175, 55, 0.03) 0deg 15deg, transparent 15deg 30deg);
+    repeating-conic-gradient(from 0deg at 50% 50%, rgba(6, 182, 212, 0.03) 0deg 15deg, transparent 15deg 30deg);
 }
 
 /* Royal Obsidian Frosted Glass Card */
 .royal-obsidian-card {
-  background: radial-gradient(circle at 50% 0%, rgba(10, 38, 28, 0.95) 0%, rgba(4, 18, 13, 0.98) 70%, #020906 100%);
+  background: rgba(11, 17, 32, 0.85);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1.5px solid rgba(226, 193, 120, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 
-    inset 0 1px 2px rgba(255, 240, 200, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.08),
     inset 0 -3px 8px rgba(0, 0, 0, 0.8),
-    0 25px 60px rgba(0, 0, 0, 0.75),
-    0 0 30px rgba(212, 175, 55, 0.08);
+    0 25px 60px rgba(0, 0, 0, 0.75);
 }
 
-/* 24K Liquid Champagne Gold Specular Border */
+/* Liquid Neon Specular Border */
 @keyframes liquidSheen {
   0% {
     background-position: -200% 0;
@@ -385,9 +457,9 @@ html:not(.dark) .text-gold-gradient {
   padding: 1.5px;
   background: linear-gradient(
     90deg,
-    rgba(212, 175, 55, 0.2) 0%,
-    rgba(255, 245, 205, 0.8) 50%,
-    rgba(212, 175, 55, 0.2) 100%
+    rgba(212, 175, 55, 0.3) 0%,
+    rgba(245, 158, 11, 0.8) 50%,
+    rgba(212, 175, 55, 0.3) 100%
   );
   background-size: 200% 100%;
   animation: liquidSheen 6s linear infinite;
@@ -397,9 +469,9 @@ html:not(.dark) .text-gold-gradient {
   pointer-events: none;
 }
 
-/* Ambient Golden Aura Glow */
+/* Ambient Gold Aura Glow */
 .luxury-aura-glow {
-  box-shadow: 0 0 45px rgba(212, 175, 55, 0.18), inset 0 0 25px rgba(212, 175, 55, 0.08);
+  box-shadow: 0 0 35px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(212, 175, 55, 0.08);
 }
 
 /* Tabular Numerals for Precision Engineering */
@@ -408,16 +480,14 @@ html:not(.dark) .text-gold-gradient {
   letter-spacing: -0.02em;
 }
 
-/* ------------------------------------------------------------- */
-/* HIGH-END INTERACTIVE LUXURY BUTTON & CARD SUITE */
-/* ------------------------------------------------------------- */
-
-/* 24K Liquid Gold Flow Button */
+/* Imperial Gold Shimmer Flow Button */
 .gold-shimmer-btn {
-  background: linear-gradient(135deg, #FFF3D1 0%, #E2C178 30%, #C9A35C 70%, #9E7B3B 100%);
+  background: linear-gradient(135deg, #D4AF37 0%, #F59E0B 50%, #B45309 100%);
+  color: #010409 !important;
+  font-weight: 800;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 25px -5px rgba(201, 163, 92, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.4);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -449,7 +519,7 @@ html:not(.dark) .text-gold-gradient {
 
 .gold-shimmer-btn:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 15px 35px -5px rgba(212, 175, 55, 0.6), 0 0 25px rgba(255, 243, 209, 0.4);
+  box-shadow: 0 0 45px rgba(245, 158, 11, 0.7), 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
 /* 3D Specular Interactive Card Elevation */
@@ -460,21 +530,21 @@ html:not(.dark) .text-gold-gradient {
 
 .specular-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.8), 0 0 35px rgba(212, 175, 55, 0.22);
-  border-color: rgba(226, 193, 120, 0.65);
+  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.2);
+  border-color: rgba(212, 175, 55, 0.45);
 }
 
-/* Floating Golden Beacon Pulse */
+/* Floating Beacon Pulse */
 @keyframes beaconPulse {
   0%, 100% {
     transform: scale(1);
     opacity: 0.8;
-    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7);
   }
   50% {
     transform: scale(1.15);
     opacity: 1;
-    box-shadow: 0 0 0 8px rgba(212, 175, 55, 0);
+    box-shadow: 0 0 0 8px rgba(6, 182, 212, 0);
   }
 }
 

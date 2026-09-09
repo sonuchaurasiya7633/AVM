@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { SectionHeading } from '../components/SectionHeading';
 import { PROTOCOL_PHASES, BUYER_FAQS } from '../data/buyerGuide';
 import { DueDiligenceCalculator } from '../components/DueDiligenceCalculator';
 import { GroundAuditChecklist } from '../components/GroundAuditChecklist';
 import { ShieldCheck, ChevronDown, CheckCircle2, AlertTriangle, FileText, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 export const BuyerGuide = () => {
+  const { isHindi } = useLanguage();
   const [openFaq, setOpenFaq] = useState(null);
 
   const toggleFaq = (idx) => {
@@ -19,73 +21,94 @@ export const BuyerGuide = () => {
       <div className="text-center max-w-4xl mx-auto mb-16">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.25em] border border-luxury-gold/50 bg-luxury-emerald/30 text-luxury-goldLight mb-4">
           <ShieldCheck className="w-3.5 h-3.5" />
-          <span>The Buyer Due Diligence Protocol</span>
+          <span>{isHindi ? 'क्रेता ड्यू डिलिजेंस प्रोटोकॉल' : 'The Buyer Due Diligence Protocol'}</span>
         </div>
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-extrabold text-luxury-ivory dark:text-luxury-ivory light:text-lightBg-textPrimary leading-tight mb-6">
-          The 5-Phase Land Audit: <br />
-          <span className="text-gold-gradient italic">Protect Your Capital.</span>
+          {isHindi ? '5-फेज भूमि कानूनी ऑडिट: ' : 'The 5-Phase Land Audit: '}
+          <br />
+          <span className="text-gold-gradient italic">
+            {isHindi ? 'अपनी पूंजी को 100% सुरक्षित करें।' : 'Protect Your Capital.'}
+          </span>
         </h1>
         <p className="text-base sm:text-lg text-luxury-muted dark:text-luxury-muted light:text-lightBg-textSecondary font-light leading-relaxed">
-          Never sign an agreement or transfer advance booking money without completing every verification step in this comprehensive field-tested protocol.
+          {isHindi
+            ? 'इस व्यापक फील्ड-परीक्षित प्रोटोकॉल के प्रत्येक सत्यापन चरण को पूरा किए बिना कभी भी किसी समझौते पर हस्ताक्षर न करें और न ही अग्रिम बयाना राशि दें।'
+            : 'Never sign an agreement or transfer advance booking money without completing every verification step in this comprehensive field-tested protocol.'}
         </p>
       </div>
 
       {/* 5-Phase Protocol Timeline */}
       <div className="mb-20">
         <SectionHeading
-          badge="Procedural Timeline"
-          title="The 30-Day Forensic Due Diligence Roadmap"
-          subtitle="A systematic, step-by-step checklist designed to uncover unrecorded litigations, revenue discrepancies, and planning defects."
+          badge={isHindi ? 'प्रक्रियात्मक समयसीमा' : 'Procedural Timeline'}
+          title={isHindi ? '30-दिवसीय फोरेंसिक ड्यू डिलिजेंस रोडमैप' : 'The 30-Day Forensic Due Diligence Roadmap'}
+          subtitle={
+            isHindi
+              ? 'राजस्व विसंगतियों, अनरिकॉर्डेड मुकदमों और लेआउट दोषों को उजागर करने के लिए एक व्यवस्थित चेकलिस्ट।'
+              : 'A systematic, step-by-step checklist designed to uncover unrecorded litigations, revenue discrepancies, and planning defects.'
+          }
         />
 
         <div className="space-y-6">
-          {PROTOCOL_PHASES.map((phase, idx) => (
-            <div
-              key={idx}
-              className="rounded-2xl p-6 sm:p-8 leather-folio-card border border-luxury-gold/40 shadow-luxury-card transition-all hover:border-luxury-gold relative"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-luxury-gold/20 mb-6">
-                <div className="flex items-center gap-3">
-                  <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-gold-gradient text-luxury-darker">
-                    {phase.phase}
-                  </span>
-                  <h3 className="text-xl font-serif font-bold text-luxury-ivory dark:text-luxury-ivory light:text-lightBg-textPrimary">
-                    {phase.title}
-                  </h3>
-                </div>
-                <span className="text-xs font-mono text-luxury-gold font-semibold">
-                  Estimated Timeline: {phase.duration}
-                </span>
-              </div>
+          {PROTOCOL_PHASES.map((phase, idx) => {
+            const phaseTitle = isHindi ? (phase.titleHi || phase.title) : phase.title;
+            const phaseBadge = isHindi ? (phase.phaseHi || phase.phase) : phase.phase;
+            const phaseDuration = isHindi ? (phase.durationHi || phase.duration) : phase.duration;
+            const phaseDesc = isHindi ? (phase.descriptionHi || phase.description) : phase.description;
+            const actionItems = isHindi && phase.actionItemsHi ? phase.actionItemsHi : phase.actionItems;
 
-              <p className="text-xs sm:text-sm text-luxury-muted dark:text-luxury-muted light:text-lightBg-textSecondary font-light leading-relaxed mb-6">
-                {phase.description}
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {phase.actionItems.map((item, itemIdx) => (
-                  <div
-                    key={itemIdx}
-                    className="p-3.5 rounded-xl bg-luxury-dark/40 dark:bg-black/30 light:bg-gray-50 border border-white/5 dark:border-white/5 light:border-gray-200 flex items-start gap-3"
-                  >
-                    <CheckCircle2 className="w-4 h-4 text-luxury-gold flex-shrink-0 mt-0.5" />
-                    <span className="text-xs text-luxury-ivory/90 dark:text-luxury-ivory/90 light:text-lightBg-textPrimary font-light">
-                      {item}
+            return (
+              <div
+                key={idx}
+                className="rounded-2xl p-6 sm:p-8 leather-folio-card border border-luxury-gold/40 shadow-luxury-card transition-all hover:border-luxury-gold relative"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-luxury-gold/20 mb-6">
+                  <div className="flex items-center gap-3">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-gold-gradient text-luxury-darker">
+                      {phaseBadge}
                     </span>
+                    <h3 className="text-xl font-serif font-bold text-luxury-ivory dark:text-luxury-ivory light:text-lightBg-textPrimary">
+                      {phaseTitle}
+                    </h3>
                   </div>
-                ))}
+                  <span className="text-xs font-mono text-luxury-gold font-semibold">
+                    {isHindi ? 'अनुमानित समय:' : 'Estimated Timeline:'} {phaseDuration}
+                  </span>
+                </div>
+
+                <p className="text-xs sm:text-sm text-luxury-muted dark:text-luxury-muted light:text-lightBg-textSecondary font-light leading-relaxed mb-6">
+                  {phaseDesc}
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {actionItems.map((item, itemIdx) => (
+                    <div
+                      key={itemIdx}
+                      className="p-3.5 rounded-xl bg-luxury-dark/40 dark:bg-black/30 light:bg-gray-50 border border-white/5 dark:border-white/5 light:border-gray-200 flex items-start gap-3"
+                    >
+                      <CheckCircle2 className="w-4 h-4 text-luxury-gold flex-shrink-0 mt-0.5" />
+                      <span className="text-xs text-luxury-ivory/90 dark:text-luxury-ivory/90 light:text-lightBg-textPrimary font-light">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
       {/* Interactive Safety Scorecard */}
       <div className="mb-20">
         <SectionHeading
-          badge="Interactive Assessment"
-          title="Audit Your Deal Right Now"
-          subtitle="Check off each verified legal record you hold to calculate your Transaction Safety Score."
+          badge={isHindi ? 'इंटरैक्टिव मूल्यांकन' : 'Interactive Assessment'}
+          title={isHindi ? 'अपने सौदे का तुरंत कानूनी ऑडिट करें' : 'Audit Your Deal Right Now'}
+          subtitle={
+            isHindi
+              ? 'अपने पास उपलब्ध सत्यापित कानूनी दस्तावेजों का चयन करें और अपनी डील का सुरक्षा स्कोर जानें।'
+              : 'Check off each verified legal record you hold to calculate your Transaction Safety Score.'
+          }
         />
         <DueDiligenceCalculator />
       </div>
@@ -96,14 +119,21 @@ export const BuyerGuide = () => {
       {/* Buyer FAQs */}
       <div className="mb-20 max-w-4xl mx-auto">
         <SectionHeading
-          badge="Frequently Clarified"
-          title="Critical Legal Questions Answered"
-          subtitle="Unpacking the most crucial statutory questions about Section 90-A, RERA, and Rajasthan land revenue."
+          badge={isHindi ? 'प्रमुख स्पष्टीकरण' : 'Frequently Clarified'}
+          title={isHindi ? 'महत्वपूर्ण कानूनी प्रश्नों के उत्तर' : 'Critical Legal Questions Answered'}
+          subtitle={
+            isHindi
+              ? 'धारा 90-A, रेरा और राजस्थान भू-राजस्व से जुड़े सबसे महत्वपूर्ण सवालों का विश्लेषण।'
+              : 'Unpacking the most crucial statutory questions about Section 90-A, RERA, and Rajasthan land revenue.'
+          }
         />
 
         <div className="space-y-4">
           {BUYER_FAQS.map((faq, idx) => {
             const isOpen = openFaq === idx;
+            const q = isHindi ? (faq.qHi || faq.q) : faq.q;
+            const a = isHindi ? (faq.aHi || faq.a) : faq.a;
+
             return (
               <div
                 key={idx}
@@ -114,7 +144,7 @@ export const BuyerGuide = () => {
                   className="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none"
                 >
                   <span className="text-base sm:text-lg font-serif font-bold text-luxury-ivory dark:text-luxury-ivory light:text-lightBg-textPrimary">
-                    {faq.q}
+                    {q}
                   </span>
                   <ChevronDown
                     className={`w-5 h-5 text-luxury-gold transition-transform duration-300 flex-shrink-0 ${
@@ -125,7 +155,7 @@ export const BuyerGuide = () => {
 
                 {isOpen && (
                   <div className="px-6 pb-6 pt-2 border-t border-luxury-gold/15 text-xs sm:text-sm text-luxury-muted dark:text-luxury-muted light:text-lightBg-textSecondary font-light leading-relaxed">
-                    {faq.a}
+                    {a}
                   </div>
                 )}
               </div>
@@ -144,16 +174,18 @@ export const BuyerGuide = () => {
 
         <FileText className="w-10 h-10 text-luxury-gold mb-4" />
         <h3 className="text-2xl sm:text-3xl font-serif font-bold text-luxury-ivory mb-3">
-          Need an Independent Title Audit Review?
+          {isHindi ? 'क्या आपको स्वतंत्र टाइटल ऑडिट समीक्षा चाहिए?' : 'Need an Independent Title Audit Review?'}
         </h3>
         <p className="max-w-xl text-xs sm:text-sm text-luxury-ivory/80 font-light mb-6">
-          Schedule a direct advisory session with Avnish and his independent legal review circle before signing documents or releasing payments.
+          {isHindi
+            ? 'कागजात पर हस्ताक्षर करने या भुगतान जारी करने से पहले अवनिष और उनकी स्वतंत्र विधिक समीक्षा टीम के साथ परामर्श बुक करें।'
+            : 'Schedule a direct advisory session with Avnish and his independent legal review circle before signing documents or releasing payments.'}
         </p>
         <Link
           to="/contact"
           className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-gold-gradient text-luxury-darker shadow-luxury-gold hover:scale-105 transition-all"
         >
-          <span>Request VIP Consultation</span>
+          <span>{isHindi ? 'परामर्श सत्र बुक करें' : 'Request VIP Consultation'}</span>
           <ArrowRight className="w-4 h-4" />
         </Link>
       </div>

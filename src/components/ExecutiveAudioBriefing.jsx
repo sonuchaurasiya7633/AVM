@@ -77,7 +77,7 @@ export const ExecutiveAudioBriefing = () => {
   };
 
   return (
-    <div className="royal-obsidian-card rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-luxury-gold shadow-2xl relative overflow-hidden leather-stitch-outline">
+    <div className="leather-badge-container rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-luxury-gold shadow-2xl relative overflow-hidden leather-stitch-outline">
       {/* 4 Corner Brass Screws */}
       <div className="brass-screw absolute top-3.5 left-3.5" />
       <div className="brass-screw absolute top-3.5 right-3.5" />
@@ -87,8 +87,8 @@ export const ExecutiveAudioBriefing = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-6 border-b border-luxury-gold/30">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-luxury-emerald/30 text-luxury-goldLight border border-luxury-gold/40 mb-3">
-            <Headphones className="w-3.5 h-3.5 text-luxury-gold" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-cyan-950/40 text-cyan-300 border border-white/15 mb-3">
+            <Headphones className="w-3.5 h-3.5 text-cyan-400" />
             <span>Voice of Avnish • Executive Dispatch</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-serif font-extrabold text-white leading-tight">
@@ -125,10 +125,10 @@ export const ExecutiveAudioBriefing = () => {
             <img
               src={logoImg}
               alt="AVM Talks by Avnish"
-              className="w-14 h-14 rounded-full object-cover border-2 border-luxury-gold shadow-luxury-gold"
+              className="w-14 h-14 rounded-full object-cover shadow-md"
             />
             {isPlaying && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-black animate-ping" />
+              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-amber-400 border-2 border-black animate-ping" />
             )}
           </div>
           <div className="overflow-hidden">
@@ -194,14 +194,14 @@ export const ExecutiveAudioBriefing = () => {
             max={currentTrack.durationSec}
             value={currentTime}
             onChange={handleSeek}
-            className="w-full h-1.5 bg-luxury-emerald/40 rounded-lg appearance-none cursor-pointer accent-[#D4AF37]"
+            className="w-full h-1.5 bg-cyan-950/40 rounded-lg appearance-none cursor-pointer accent-cyan-400"
           />
 
           {/* Key Editorial Takeaway Card */}
-          <div className="p-3 rounded-xl bg-luxury-emerald/20 border border-luxury-gold/25 text-xs text-luxury-ivory font-light flex items-start gap-2">
-            <Sparkles className="w-3.5 h-3.5 text-luxury-gold flex-shrink-0 mt-0.5" />
+          <div className="p-3 rounded-xl bg-cyan-950/30 border border-white/10 text-xs text-slate-200 font-light flex items-start gap-2">
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 mt-0.5" />
             <span>
-              <strong className="text-luxury-gold font-bold">Executive Thesis: </strong>
+              <strong className="text-cyan-300 font-bold">Executive Thesis: </strong>
               {currentTrack.keyTakeaway}
             </span>
           </div>
@@ -223,7 +223,7 @@ export const ExecutiveAudioBriefing = () => {
             }}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all flex items-center gap-2 ${
               selectedTrackIndex === idx
-                ? 'bg-luxury-emerald text-white border border-luxury-gold shadow-sm font-bold'
+                ? 'bg-gradient-to-r from-amber-400 via-indigo-600 to-cyan-400 text-white border border-cyan-400/50 shadow-sm font-bold'
                 : 'bg-black/40 text-luxury-ivory border border-luxury-gold/20 hover:border-luxury-gold'
             }`}
           >

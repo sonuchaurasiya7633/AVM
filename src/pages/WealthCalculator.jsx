@@ -6,8 +6,10 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { AssetBenchmarkEngine } from '../components/AssetBenchmarkEngine';
+import { useLanguage } from '../context/LanguageContext';
 
 export const WealthCalculator = () => {
+  const { isHindi } = useLanguage();
   const [activeTab, setActiveTab] = useState('appreciation'); // 'appreciation' | 'stampDuty' | 'emi'
 
   // Tab 1: Compounding Land Appreciation Simulator
@@ -91,14 +93,16 @@ export const WealthCalculator = () => {
       <div className="text-center max-w-4xl mx-auto mb-12">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.25em] border border-theme-gold bg-luxury-emerald/20 text-luxury-goldLight mb-4">
           <Calculator className="w-3.5 h-3.5" />
-          <span>Institutional Financial Modeling</span>
+          <span>{isHindi ? 'संस्थागत वित्तीय मॉडलिंग' : 'Institutional Financial Modeling'}</span>
         </div>
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-extrabold text-theme-primary leading-tight mb-6">
-          VIP Land Wealth & <br />
-          <span className="text-gold-gradient italic">Financial Compounding Hub.</span>
+          {isHindi ? 'वीआईपी भूमि संपदा एवं' : 'VIP Land Wealth &'} <br />
+          <span className="text-gold-gradient italic">{isHindi ? 'वित्तीय चक्रवृद्धि कैलकुलेटर।' : 'Financial Compounding Hub.'}</span>
         </h1>
         <p className="text-base sm:text-lg text-theme-secondary font-light leading-relaxed">
-          Simulate 5–15 year land value compounding across Jaipur highway corridors, compute statutory Rajasthan stamp duty & registration expenses, and calculate monthly bank loan amortisation.
+          {isHindi
+            ? 'जयपुर के प्रमुख हाईवे कॉरिडोरों पर 5-15 वर्षों में भूमि मूल्य चक्रवृद्धि का सिमुलेशन करें, राजस्थान स्टाम्प ड्यूटी व पंजीयन खर्च जानें, और बैंक लोन ईएमआई की गणना करें।'
+            : 'Simulate 5–15 year land value compounding across Jaipur highway corridors, compute statutory Rajasthan stamp duty & registration expenses, and calculate monthly bank loan amortisation.'}
         </p>
       </div>
 
@@ -113,7 +117,7 @@ export const WealthCalculator = () => {
           }`}
         >
           <TrendingUp className="w-4 h-4" />
-          <span>Land Appreciation & ROI (CAGR)</span>
+          <span>{isHindi ? 'भूमि मूल्य वृद्धि एवं आरओआई (CAGR)' : 'Land Appreciation & ROI (CAGR)'}</span>
         </button>
 
         <button
@@ -125,7 +129,7 @@ export const WealthCalculator = () => {
           }`}
         >
           <Landmark className="w-4 h-4" />
-          <span>Rajasthan Stamp Duty & Registry Fees</span>
+          <span>{isHindi ? 'राजस्थान स्टाम्प ड्यूटी व रजिस्ट्री शुल्क' : 'Rajasthan Stamp Duty & Registry Fees'}</span>
         </button>
 
         <button
@@ -137,7 +141,7 @@ export const WealthCalculator = () => {
           }`}
         >
           <PieChart className="w-4 h-4" />
-          <span>Bank Loan & EMI Outlay</span>
+          <span>{isHindi ? 'बैंक ऋण एवं ईएमआई योजना' : 'Bank Loan & EMI Outlay'}</span>
         </button>
       </div>
 
@@ -156,10 +160,10 @@ export const WealthCalculator = () => {
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="text-xs uppercase tracking-wider font-bold text-luxury-gold">
-                    Initial Plot Investment
+                    {isHindi ? 'प्रारंभिक भूखंड निवेश' : 'Initial Plot Investment'}
                   </label>
                   <span className="font-mono font-bold text-lg text-theme-primary">
-                    ₹{initialInvestmentLakhs} Lakhs
+                    ₹{initialInvestmentLakhs} {isHindi ? 'लाख' : 'Lakhs'}
                   </span>
                 </div>
                 <input
@@ -172,19 +176,19 @@ export const WealthCalculator = () => {
                   className="w-full accent-luxury-gold cursor-pointer"
                 />
                 <div className="flex justify-between text-[11px] text-theme-muted font-mono mt-1">
-                  <span>₹15 L (Budget)</span>
-                  <span>₹75 L (Prime Sector)</span>
-                  <span>₹1.5 Cr (Commercial / Boulevard)</span>
+                  <span>₹15 L ({isHindi ? 'बजट' : 'Budget'})</span>
+                  <span>₹75 L ({isHindi ? 'प्राइम सेक्टर' : 'Prime Sector'})</span>
+                  <span>₹1.5 Cr ({isHindi ? 'व्यावसायिक' : 'Commercial / Boulevard'})</span>
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="text-xs uppercase tracking-wider font-bold text-luxury-gold">
-                    Holding Horizon (Tenure)
+                    {isHindi ? 'निवेश अवधि (वर्ष)' : 'Holding Horizon (Tenure)'}
                   </label>
                   <span className="font-mono font-bold text-lg text-theme-primary">
-                    {holdingYears} Years
+                    {holdingYears} {isHindi ? 'वर्ष' : 'Years'}
                   </span>
                 </div>
                 <input
@@ -197,19 +201,19 @@ export const WealthCalculator = () => {
                   className="w-full accent-luxury-gold cursor-pointer"
                 />
                 <div className="flex justify-between text-[11px] text-theme-muted font-mono mt-1">
-                  <span>3 Years</span>
-                  <span>7 Years (Recommended)</span>
-                  <span>15 Years (Generational)</span>
+                  <span>3 {isHindi ? 'वर्ष' : 'Years'}</span>
+                  <span>7 {isHindi ? 'वर्ष (अनुशंसित)' : 'Years (Recommended)'}</span>
+                  <span>15 {isHindi ? 'वर्ष (पीढ़ीगत)' : 'Years (Generational)'}</span>
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="text-xs uppercase tracking-wider font-bold text-luxury-gold">
-                    Projected Annual Appreciation Rate (CAGR)
+                    {isHindi ? 'अनुमानित वार्षिक मूल्य वृद्धि दर (CAGR)' : 'Projected Annual Appreciation Rate (CAGR)'}
                   </label>
-                  <span className="font-mono font-bold text-lg text-emerald-400">
-                    {expectedCAGR}% Per Annum
+                  <span className="font-mono font-bold text-lg text-luxury-goldLight">
+                    {expectedCAGR}% {isHindi ? 'प्रति वर्ष' : 'Per Annum'}
                   </span>
                 </div>
                 <input
@@ -222,15 +226,17 @@ export const WealthCalculator = () => {
                   className="w-full accent-luxury-gold cursor-pointer"
                 />
                 <div className="flex justify-between text-[11px] text-theme-muted font-mono mt-1">
-                  <span>8% (Conservative)</span>
-                  <span>14% (Ajmer Rd / SEZ Trend)</span>
-                  <span>22% (Ring Road Boom)</span>
+                  <span>8% ({isHindi ? 'रूढ़िवादी' : 'Conservative'})</span>
+                  <span>14% ({isHindi ? 'अजमेर रोड / सेज़ ट्रेंड' : 'Ajmer Rd / SEZ Trend'})</span>
+                  <span>22% ({isHindi ? 'रिंग रोड उछाल' : 'Ring Road Boom'})</span>
                 </div>
               </div>
 
               <div className="p-4 rounded-2xl bg-theme-card border border-theme-gold/20 text-xs text-theme-secondary font-light">
                 <p>
-                  * Projections benchmarked against actual 10-year circle rate escalations along Ajmer Road, Mahindra SEZ & 47-KM Ring Road corridors.
+                  {isHindi
+                    ? '* अजमेर रोड, महिंद्रा सेज़ और 47 किमी रिंग रोड कॉरिडोर में वास्तविक 10-वर्षीय सर्किल दरों के ऐतिहासिक आधार पर सिमुलेशन किया गया है।'
+                    : '* Projections benchmarked against actual 10-year circle rate escalations along Ajmer Road, Mahindra SEZ & 47-KM Ring Road corridors.'}
                 </p>
               </div>
             </div>
@@ -239,27 +245,27 @@ export const WealthCalculator = () => {
             <div className="lg:col-span-6 p-8 sm:p-10 rounded-3xl bg-theme-card border border-theme-gold shadow-2xl flex flex-col justify-between">
               <div>
                 <span className="text-[10px] uppercase font-bold tracking-widest text-luxury-gold block mb-1">
-                  Projected Portfolio Valuation in {holdingYears} Years
+                  {isHindi ? `${holdingYears} वर्षों में अनुमानित पोर्टफोलियो मूल्यांकन` : `Projected Portfolio Valuation in ${holdingYears} Years`}
                 </span>
                 <h3 className="text-3xl sm:text-5xl font-mono font-extrabold text-gold-gradient mb-6">
-                  ₹{(appreciationResults.futureValue / 100000).toFixed(2)} Lakhs
+                  ₹{(appreciationResults.futureValue / 100000).toFixed(2)} {isHindi ? 'लाख' : 'Lakhs'}
                 </h3>
 
                 <div className="space-y-4 pt-4 border-t border-theme-gold/20 text-xs sm:text-sm">
                   <div className="flex justify-between items-center">
-                    <span className="text-theme-muted">Initial Capital Invested:</span>
-                    <span className="font-mono font-bold text-theme-primary">₹{initialInvestmentLakhs} Lakhs</span>
+                    <span className="text-theme-muted">{isHindi ? 'प्रारंभिक निवेश पूंजी:' : 'Initial Capital Invested:'}</span>
+                    <span className="font-mono font-bold text-theme-primary">₹{initialInvestmentLakhs} {isHindi ? 'लाख' : 'Lakhs'}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-theme-muted">Net Wealth Creation (Gains):</span>
-                    <span className="font-mono font-bold text-emerald-400">
-                      +₹{(appreciationResults.wealthGain / 100000).toFixed(2)} Lakhs
+                    <span className="text-theme-muted">{isHindi ? 'शुद्ध संपत्ति सृजन (लाभ):' : 'Net Wealth Creation (Gains):'}</span>
+                    <span className="font-mono font-bold text-gold-gradient">
+                      +₹{(appreciationResults.wealthGain / 100000).toFixed(2)} {isHindi ? 'लाख' : 'Lakhs'}
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-theme-muted">Wealth Multiple:</span>
+                    <span className="text-theme-muted">{isHindi ? 'निवेश वृद्धि गुणांक:' : 'Wealth Multiple:'}</span>
                     <span className="font-mono font-bold text-luxury-goldLight text-base">
-                      {appreciationResults.multiple}x Investment Multiple
+                      {appreciationResults.multiple}x {isHindi ? 'गुना रिटर्न' : 'Investment Multiple'}
                     </span>
                   </div>
                 </div>
@@ -271,7 +277,7 @@ export const WealthCalculator = () => {
                   className="w-full py-4 rounded-2xl bg-gold-gradient text-luxury-darker font-bold text-xs uppercase tracking-wider shadow-luxury-gold flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform"
                 >
                   <Sparkles className="w-4 h-4" />
-                  <span>Inspect High-Appreciation Townships</span>
+                  <span>{isHindi ? 'उच्च रिटर्न वाली टाउनशिप देखें' : 'Inspect High-Appreciation Townships'}</span>
                 </Link>
               </div>
             </div>
@@ -293,7 +299,7 @@ export const WealthCalculator = () => {
             <div className="lg:col-span-6 space-y-7">
               <div>
                 <label className="text-xs uppercase tracking-wider font-bold text-luxury-gold block mb-2">
-                  Plot Area in Gaj (Square Yards)
+                  {isHindi ? 'भूखंड क्षेत्रफल (गज में)' : 'Plot Area in Gaj (Square Yards)'}
                 </label>
                 <div className="flex items-center gap-3">
                   <input
@@ -303,14 +309,14 @@ export const WealthCalculator = () => {
                     className="w-full px-4 py-3 rounded-xl bg-theme-card border border-theme-gold/40 text-theme-primary font-mono text-base focus:outline-none focus:border-luxury-gold"
                   />
                   <span className="text-xs text-theme-muted font-mono whitespace-nowrap">
-                    ≈ {(plotAreaGaj * 9).toFixed(0)} Sq.Ft
+                    ≈ {(plotAreaGaj * 9).toFixed(0)} {isHindi ? 'वर्ग फुट' : 'Sq.Ft'}
                   </span>
                 </div>
               </div>
 
               <div>
                 <label className="text-xs uppercase tracking-wider font-bold text-luxury-gold block mb-2">
-                  Sanctioned Rate Per Gaj (₹)
+                  {isHindi ? 'स्वीकृत दर प्रति गज (₹)' : 'Sanctioned Rate Per Gaj (₹)'}
                 </label>
                 <input
                   type="number"
@@ -322,13 +328,13 @@ export const WealthCalculator = () => {
 
               <div>
                 <label className="text-xs uppercase tracking-wider font-bold text-luxury-gold block mb-2">
-                  Buyer Title Ownership Category (For Stamp Duty Concessions)
+                  {isHindi ? 'क्रेता स्वामित्व श्रेणी (स्टाम्प शुल्क छूट हेतु)' : 'Buyer Title Ownership Category (For Stamp Duty Concessions)'}
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {[
-                    { id: 'male', label: 'Male Buyer (6%)' },
-                    { id: 'female', label: 'Female Buyer (5%)' },
-                    { id: 'joint', label: 'Joint / Co-Owner (5.5%)' }
+                    { id: 'male', labelEn: 'Male Buyer (6%)', labelHi: 'पुरुष क्रेता (6%)' },
+                    { id: 'female', labelEn: 'Female Buyer (5%)', labelHi: 'महिला क्रेता (5%)' },
+                    { id: 'joint', labelEn: 'Joint / Co-Owner (5.5%)', labelHi: 'संयुक्त नाम (5.5%)' }
                   ].map((gender) => (
                     <button
                       key={gender.id}
@@ -339,7 +345,7 @@ export const WealthCalculator = () => {
                           : 'bg-theme-card border-theme-gold/20 text-theme-secondary hover:border-theme-gold/40'
                       }`}
                     >
-                      {gender.label}
+                      {isHindi ? gender.labelHi : gender.labelEn}
                     </button>
                   ))}
                 </div>
@@ -347,7 +353,9 @@ export const WealthCalculator = () => {
 
               <div className="p-4 rounded-2xl bg-theme-card border border-theme-gold/20 text-xs text-theme-secondary font-light">
                 <p>
-                  * Rajasthan Stamp Act 1998 mandates an additional 20% surcharge on stamp duty earmarked for infrastructure and cow conservation.
+                  {isHindi
+                    ? '* राजस्थान स्टाम्प अधिनियम 1998 के तहत अवसंरचना एवं गो-संवर्धन हेतु स्टाम्प शुल्क पर 20% अतिरिक्त अधिभार (सरचार्ज) अनिवार्य है।'
+                    : '* Rajasthan Stamp Act 1998 mandates an additional 20% surcharge on stamp duty earmarked for infrastructure and cow conservation.'}
                 </p>
               </div>
             </div>
@@ -355,7 +363,7 @@ export const WealthCalculator = () => {
             {/* Statutory Expense Breakdown */}
             <div className="lg:col-span-6 p-8 rounded-3xl bg-theme-card border border-theme-gold shadow-2xl">
               <span className="text-[10px] uppercase font-bold tracking-widest text-luxury-gold block mb-1">
-                Sub-Registrar Registry Outlay Estimate
+                {isHindi ? 'उप-पंजीयक कार्यालय अनुमानित व्यय' : 'Sub-Registrar Registry Outlay Estimate'}
               </span>
               <h3 className="text-2xl sm:text-3xl font-mono font-extrabold text-theme-primary mb-6">
                 ₹{stampDutyResults.totalGovernmentOutlay.toLocaleString('en-IN')}
@@ -363,37 +371,37 @@ export const WealthCalculator = () => {
 
               <div className="space-y-3.5 text-xs sm:text-sm">
                 <div className="flex justify-between items-center pb-2 border-b border-theme-gold/10">
-                  <span className="text-theme-muted">Plot Agreement Consideration:</span>
+                  <span className="text-theme-muted">{isHindi ? 'भूखंड विलेख मूल्य (एग्रीमेंट वैल्यू):' : 'Plot Agreement Consideration:'}</span>
                   <span className="font-mono font-bold text-theme-primary">
                     ₹{stampDutyResults.plotValue.toLocaleString('en-IN')}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-theme-muted">Basic Stamp Duty ({buyerGender === 'male' ? '6%' : buyerGender === 'female' ? '5%' : '5.5%'}):</span>
+                  <span className="text-theme-muted">{isHindi ? `मूल स्टाम्प ड्यूटी (${buyerGender === 'male' ? '6%' : buyerGender === 'female' ? '5%' : '5.5%'}):` : `Basic Stamp Duty (${buyerGender === 'male' ? '6%' : buyerGender === 'female' ? '5%' : '5.5%'}):`}</span>
                   <span className="font-mono text-theme-primary">
                     ₹{stampDutyResults.basicStampDuty.toLocaleString('en-IN')}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-theme-muted">Statutory Surcharge (20% on duty):</span>
+                  <span className="text-theme-muted">{isHindi ? 'वैधानिक अधिभार (20% सरचार्ज):' : 'Statutory Surcharge (20% on duty):'}</span>
                   <span className="font-mono text-theme-primary">
                     ₹{stampDutyResults.surcharge.toLocaleString('en-IN')}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-theme-muted">Registration Fee (1%):</span>
+                  <span className="text-theme-muted">{isHindi ? 'पंजीयन शुल्क (1% फीस):' : 'Registration Fee (1%):'}</span>
                   <span className="font-mono text-theme-primary">
                     ₹{stampDutyResults.regFee.toLocaleString('en-IN')}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-theme-muted">e-Challan & Advocate Franking:</span>
+                  <span className="text-theme-muted">{isHindi ? 'ई-चालान, टाइपिंग एवं अधिवक्ता व्यय:' : 'e-Challan & Advocate Franking:'}</span>
                   <span className="font-mono text-theme-primary">₹15,000</span>
                 </div>
 
                 <div className="pt-4 border-t-2 border-theme-gold/30 flex justify-between items-center">
                   <span className="font-serif font-bold text-luxury-gold text-sm sm:text-base">
-                    Total All-Inclusive Acquisition Cost:
+                    {isHindi ? 'कुल अधिग्रहण लागत (सहित रजिस्ट्री):' : 'Total All-Inclusive Acquisition Cost:'}
                   </span>
                   <span className="font-mono font-extrabold text-luxury-goldLight text-lg sm:text-xl">
                     ₹{stampDutyResults.totalAcquisitionCost.toLocaleString('en-IN')}
@@ -407,7 +415,7 @@ export const WealthCalculator = () => {
                   className="w-full py-3.5 rounded-2xl bg-gold-gradient text-luxury-darker font-bold text-xs uppercase tracking-wider shadow-luxury-gold flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform"
                 >
                   <Landmark className="w-4 h-4" />
-                  <span>View Full 5-Step Registry Workflow</span>
+                  <span>{isHindi ? 'संपूर्ण 5-चरणीय रजिस्ट्री प्रक्रिया देखें' : 'View Full 5-Step Registry Workflow'}</span>
                 </Link>
               </div>
             </div>
@@ -430,10 +438,10 @@ export const WealthCalculator = () => {
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="text-xs uppercase tracking-wider font-bold text-luxury-gold">
-                    Target Bank Loan Amount
+                    {isHindi ? 'लक्षित बैंक ऋण राशि' : 'Target Bank Loan Amount'}
                   </label>
                   <span className="font-mono font-bold text-lg text-theme-primary">
-                    ₹{loanAmountLakhs} Lakhs
+                    ₹{loanAmountLakhs} {isHindi ? 'लाख' : 'Lakhs'}
                   </span>
                 </div>
                 <input
@@ -450,10 +458,10 @@ export const WealthCalculator = () => {
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="text-xs uppercase tracking-wider font-bold text-luxury-gold">
-                    Annual Bank Interest Rate
+                    {isHindi ? 'वार्षिक बैंक ब्याज दर' : 'Annual Bank Interest Rate'}
                   </label>
                   <span className="font-mono font-bold text-lg text-theme-primary">
-                    {interestRate}% P.A.
+                    {interestRate}% {isHindi ? 'प्रति वर्ष' : 'P.A.'}
                   </span>
                 </div>
                 <input
@@ -470,10 +478,10 @@ export const WealthCalculator = () => {
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="text-xs uppercase tracking-wider font-bold text-luxury-gold">
-                    Loan Tenure
+                    {isHindi ? 'ऋण अवधि (वर्ष)' : 'Loan Tenure'}
                   </label>
                   <span className="font-mono font-bold text-lg text-theme-primary">
-                    {loanTenureYears} Years
+                    {loanTenureYears} {isHindi ? 'वर्ष' : 'Years'}
                   </span>
                 </div>
                 <input
@@ -492,7 +500,7 @@ export const WealthCalculator = () => {
             <div className="lg:col-span-6 p-8 sm:p-10 rounded-3xl bg-theme-card border border-theme-gold shadow-2xl flex flex-col justify-between">
               <div>
                 <span className="text-[10px] uppercase font-bold tracking-widest text-luxury-gold block mb-1">
-                  Estimated Monthly EMI
+                  {isHindi ? 'अनुमानित मासिक ईएमआई' : 'Estimated Monthly EMI'}
                 </span>
                 <h3 className="text-3xl sm:text-5xl font-mono font-extrabold text-gold-gradient mb-6">
                   ₹{emiResults.monthlyEMI.toLocaleString('en-IN')}
@@ -500,19 +508,19 @@ export const WealthCalculator = () => {
 
                 <div className="space-y-4 pt-4 border-t border-theme-gold/20 text-xs sm:text-sm">
                   <div className="flex justify-between items-center">
-                    <span className="text-theme-muted">Principal Borrowed:</span>
-                    <span className="font-mono font-bold text-theme-primary">₹{loanAmountLakhs} Lakhs</span>
+                    <span className="text-theme-muted">{isHindi ? 'ऋण मूलधन राशि:' : 'Principal Borrowed:'}</span>
+                    <span className="font-mono font-bold text-theme-primary">₹{loanAmountLakhs} {isHindi ? 'लाख' : 'Lakhs'}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-theme-muted">Total Interest Payable:</span>
+                    <span className="text-theme-muted">{isHindi ? 'कुल देय ब्याज:' : 'Total Interest Payable:'}</span>
                     <span className="font-mono font-bold text-amber-400">
-                      ₹{(emiResults.totalInterest / 100000).toFixed(2)} Lakhs
+                      ₹{(emiResults.totalInterest / 100000).toFixed(2)} {isHindi ? 'लाख' : 'Lakhs'}
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-theme-muted">Total Amount Repaid:</span>
+                    <span className="text-theme-muted">{isHindi ? 'कुल चुकाई जाने वाली राशि:' : 'Total Amount Repaid:'}</span>
                     <span className="font-mono font-bold text-luxury-goldLight">
-                      ₹{(emiResults.totalRepayment / 100000).toFixed(2)} Lakhs
+                      ₹{(emiResults.totalRepayment / 100000).toFixed(2)} {isHindi ? 'लाख' : 'Lakhs'}
                     </span>
                   </div>
                 </div>
@@ -524,7 +532,7 @@ export const WealthCalculator = () => {
                   className="w-full py-4 rounded-2xl bg-gold-gradient text-luxury-darker font-bold text-xs uppercase tracking-wider shadow-luxury-gold flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform"
                 >
                   <Landmark className="w-4 h-4" />
-                  <span>Check Nationalized Bank Loan Eligibility</span>
+                  <span>{isHindi ? 'राष्ट्रीयकृत बैंक ऋण पात्रता जांचें' : 'Check Nationalized Bank Loan Eligibility'}</span>
                 </Link>
               </div>
             </div>

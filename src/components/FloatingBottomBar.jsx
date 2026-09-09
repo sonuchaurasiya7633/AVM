@@ -31,14 +31,19 @@ export const FloatingBottomBar = () => {
   return (
     <aside
       aria-label="Floating WhatsApp & Call Action Desk"
-      className="fixed bottom-5 sm:bottom-7 right-4 sm:right-7 z-40 flex flex-col items-end gap-3.5 select-none"
+      className="fixed bottom-[68px] sm:bottom-20 lg:bottom-7 right-3 sm:right-7 z-40 flex flex-col items-end gap-2.5 sm:gap-3.5 select-none"
     >
-      {/* 1. ROUND AUTHENTIC WHATSAPP BUTTON (With Emerald Radar Wave Effect) */}
+      {/* 1. ROUND AUTHENTIC WHATSAPP BUTTON (Compact Luxury Size with Clear Hover Tooltip) */}
       <div className="relative flex items-center group">
-        {/* Desktop Slide-out Tooltip */}
-        <span className="hidden sm:inline-block absolute right-18 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#021710]/95 text-emerald-300 border border-emerald-500/50 shadow-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap translate-x-2 group-hover:translate-x-0">
-          {isHindi ? 'व्हाट्सएप पर बात करें' : 'Chat on WhatsApp'}
-        </span>
+        {/* Desktop Slide-out Tooltip with Pointer Arrow */}
+        <div className="hidden sm:flex items-center gap-2 absolute right-full mr-3.5 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-xl bg-[#030712]/95 backdrop-blur-xl border border-emerald-500/50 shadow-[0_4px_25px_rgba(0,0,0,0.5)] text-white opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap translate-x-1 group-hover:translate-x-0 z-30">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-xs font-bold tracking-wide">
+            {isHindi ? 'व्हाट्सएप चैट • 99283-65001' : 'Chat on WhatsApp'}
+          </span>
+          {/* Arrow Pointer */}
+          <span className="absolute top-1/2 -right-1 -translate-y-1/2 w-2 h-2 rotate-45 bg-[#030712] border-t border-r border-emerald-500/50" />
+        </div>
 
         {/* Outer Radar Ripple Animation */}
         <span
@@ -47,50 +52,55 @@ export const FloatingBottomBar = () => {
         />
 
         {/* Circular Action Button with Stitched Leather Medallion Ring */}
-        <div className="p-1 rounded-full bg-gradient-to-tr from-[#3D2314] via-[#021710] to-[#3D2314] border-2 border-dashed border-[#D4AF37] shadow-2xl relative z-10">
+        <div className="p-0.5 sm:p-1 rounded-full bg-gradient-to-tr from-[#0b1120] via-[#0b1120] to-[#030712] border-2 border-dashed border-amber-400/70 shadow-2xl relative z-10">
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noreferrer"
-            className="relative w-[54px] h-[54px] sm:w-[60px] sm:h-[60px] rounded-full bg-gradient-to-tr from-[#128C7E] via-[#25D366] to-[#4ADE80] text-white flex items-center justify-center shadow-[0_8px_25px_rgba(37,211,102,0.55)] border-2 border-emerald-200 hover:scale-105 active:scale-95 transition-all duration-300"
+            className="relative w-[42px] h-[42px] sm:w-[48px] sm:h-[48px] rounded-full bg-gradient-to-tr from-[#128C7E] via-[#25D366] to-[#4ADE80] text-white flex items-center justify-center shadow-[0_6px_20px_rgba(37,211,102,0.5)] border-2 border-emerald-200 hover:scale-105 active:scale-95 transition-all duration-300"
             title="WhatsApp AVM Advisory Desk"
             aria-label="Chat on WhatsApp"
           >
-            <WhatsAppBrandIcon className="w-7 h-7 sm:w-8 sm:h-8 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" />
+            <WhatsAppBrandIcon className="w-5 h-5 sm:w-6 sm:h-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" />
 
             {/* Online green indicator dot */}
-            <span className="absolute top-0 right-0 w-3.5 h-3.5 bg-green-300 rounded-full border-2 border-emerald-900 shadow" />
+            <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-green-300 rounded-full border border-emerald-900 shadow" />
           </a>
         </div>
       </div>
 
-      {/* 2. ROUND CALL BUTTON (With Champagne Gold Radar Wave Effect & Stitched Leather Ring) */}
+      {/* 2. ROUND CALL BUTTON (Compact Luxury Size with Clear Hover Tooltip) */}
       <div className="relative flex items-center group">
-        {/* Desktop Slide-out Tooltip */}
-        <span className="hidden sm:inline-block absolute right-20 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#021710]/95 text-luxury-goldLight border border-luxury-gold/50 shadow-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap translate-x-2 group-hover:translate-x-0">
-          {isHindi ? `सलाहकार को कॉल करें: ${displayPhone}` : `Call Advisor: ${displayPhone}`}
-        </span>
+        {/* Desktop Slide-out Tooltip with Pointer Arrow */}
+        <div className="hidden sm:flex items-center gap-2 absolute right-full mr-3.5 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-xl bg-[#030712]/95 backdrop-blur-xl border border-amber-400/60 shadow-[0_4px_25px_rgba(0,0,0,0.5)] text-white opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap translate-x-1 group-hover:translate-x-0 z-30">
+          <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+          <span className="text-xs font-bold tracking-wide">
+            {isHindi ? `कॉल करें: ${displayPhone}` : `Call Advisor: ${displayPhone}`}
+          </span>
+          {/* Arrow Pointer */}
+          <span className="absolute top-1/2 -right-1 -translate-y-1/2 w-2 h-2 rotate-45 bg-[#030712] border-t border-r border-amber-400/60" />
+        </div>
 
         {/* Outer Gold Ripple Animation */}
         <span
-          className="absolute inset-0 rounded-full bg-amber-400/40 animate-ping pointer-events-none"
+          className="absolute inset-0 rounded-full bg-cyan-500/20 animate-ping pointer-events-none"
           style={{ animationDuration: '2.0s' }}
         />
 
         {/* Circular Action Button with Stitched Leather Medallion Ring */}
-        <div className="p-1 rounded-full bg-gradient-to-tr from-[#3D2314] via-[#021710] to-[#3D2314] border-2 border-dashed border-[#D4AF37] shadow-2xl relative z-10">
+        <div className="p-0.5 sm:p-1 rounded-full bg-gradient-to-tr from-[#0b1120] via-[#0b1120] to-[#030712] border-2 border-dashed border-amber-400/70 shadow-2xl relative z-10">
           <a
             href={`tel:${primaryPhone}`}
-            className="relative w-[54px] h-[54px] sm:w-[60px] sm:h-[60px] rounded-full bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 text-luxury-darker flex items-center justify-center shadow-[0_8px_25px_rgba(212,175,55,0.6)] border-2 border-amber-100 hover:scale-105 active:scale-95 transition-all duration-300 group/btn"
+            className="relative w-[42px] h-[42px] sm:w-[48px] sm:h-[48px] rounded-full bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 text-luxury-darker flex items-center justify-center shadow-[0_6px_20px_rgba(212,175,55,0.55)] border-2 border-amber-100 hover:scale-105 active:scale-95 transition-all duration-300 group/btn"
             title={`Direct Call: ${displayPhone}`}
             aria-label="Call AVM Advisory"
           >
-            <Phone className="w-6 h-6 sm:w-7 sm:h-7 fill-luxury-darker drop-shadow group-hover/btn:rotate-12 transition-transform duration-300" />
+            <Phone className="w-5 h-5 sm:w-5.5 sm:h-5.5 fill-luxury-darker drop-shadow group-hover/btn:rotate-12 transition-transform duration-300" />
 
             {/* Golden glimmer pulse */}
-            <span className="absolute -top-1 -right-1 flex h-4 w-4">
+            <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-300 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-4 w-4 bg-amber-500 border border-white text-[9px] font-bold text-white items-center justify-center">
+              <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-amber-500 border border-white text-[8px] font-bold text-white items-center justify-center">
                 ✦
               </span>
             </span>
@@ -101,7 +111,7 @@ export const FloatingBottomBar = () => {
       {/* Mini Close Toggle Button */}
       <button
         onClick={() => setVisible(false)}
-        className="text-[10px] uppercase font-bold tracking-wider text-theme-muted hover:text-luxury-gold transition-colors bg-[#021710]/80 backdrop-blur px-2 py-0.5 rounded-full border border-white/10 shadow"
+        className="text-[10px] uppercase font-bold tracking-wider text-cyan-300 hover:text-cyan-400 transition-colors bg-[#0b1120]/80 backdrop-blur px-2 py-0.5 rounded-full border border-white/10 shadow"
         title="Hide buttons"
         aria-label="Hide floating buttons"
       >

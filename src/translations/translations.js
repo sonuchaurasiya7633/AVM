@@ -123,7 +123,8 @@ export const TRANSLATIONS = {
       totalValue: 'Estimated Land Value',
       govtExpenses: 'Stamp Duty & Registry Outlay (≈ 7.5%)',
       netInvestment: 'Total Acquisition Cost',
-      connollyGreen: 'Connolly British Racing Green',
+      bordeauxWine: 'Cosmic Obsidian Velvet Finish',
+      connollyGreen: 'Cosmic Obsidian Velvet Finish',
       saddleCognac: 'Saddle Bourbon Cognac'
     },
     // Media & Video Vault
@@ -332,7 +333,8 @@ export const TRANSLATIONS = {
       totalValue: 'अनुमानित भूमि मूल्य',
       govtExpenses: 'स्टाम्प ड्यूटी व रजिस्ट्री खर्च (≈ 7.5%)',
       netInvestment: 'कुल लागत',
-      connollyGreen: 'कॉनॉली ब्रिटिश रेसिंग ग्रीन',
+      bordeauxWine: 'कॉस्मिक ओब्सीडियन वेलवेट फिनिश',
+      connollyGreen: 'कॉस्मिक ओब्सीडियन वेलवेट फिनिश',
       saddleCognac: 'सैडल बोरबॉन कॉन्यैक'
     },
     // Media & Video Vault

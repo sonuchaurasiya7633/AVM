@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { 
   Menu, X, ChevronDown, ChevronRight, 
   Building2, BookOpen, Film, Compass, User, Mail, Home, PhoneCall,
-  Calculator, FileCheck2, HelpCircle, Car, Sparkles, Phone, ShieldCheck,
+  Calculator, FileCheck2, HelpCircle, Sparkles, Phone, ShieldCheck,
   Search, Scale
 } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
@@ -130,6 +130,18 @@ export const Navbar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Listen for external trigger to open/toggle mobile menu (e.g. from MobileBottomNav)
+  useEffect(() => {
+    const handleOpen = () => setMobileMenuOpen(true);
+    const handleToggle = () => setMobileMenuOpen((prev) => !prev);
+    window.addEventListener('open-mobile-menu', handleOpen);
+    window.addEventListener('toggle-mobile-menu', handleToggle);
+    return () => {
+      window.removeEventListener('open-mobile-menu', handleOpen);
+      window.removeEventListener('toggle-mobile-menu', handleToggle);
+    };
+  }, []);
+
   const { t, isHindi } = useLanguage();
 
   const primaryLinks = [
@@ -186,35 +198,35 @@ export const Navbar = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'py-2.5 dark:bg-[#021710]/95 bg-white/95 backdrop-blur-2xl border-b-2 border-dashed dark:border-luxury-gold/40 border-[#D4AF37]/45 dark:shadow-[0_10px_35px_rgba(0,0,0,0.6)] shadow-[0_4px_25px_rgba(0,0,0,0.06)]'
-            : 'py-3.5 dark:bg-gradient-to-b dark:from-[#021710]/95 dark:via-[#021710]/75 dark:to-transparent bg-gradient-to-b from-white/95 via-white/80 to-transparent border-b-2 border-dashed dark:border-luxury-gold/30 border-[#D4AF37]/30'
+            ? 'py-2 sm:py-2.5 bg-white/95 dark:bg-[#030712]/95 backdrop-blur-2xl border-b border-slate-300/80 dark:border-white/15 shadow-[0_4px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.7)]'
+            : 'py-2.5 sm:py-3.5 bg-white/90 dark:bg-[#030712]/80 backdrop-blur-xl border-b border-slate-200/90 dark:border-white/10 shadow-[0_2px_15px_rgba(0,0,0,0.03)]'
         }`}
       >
-        {/* Top Hairline Gold Glow Line */}
-        <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-luxury-gold/70 to-transparent" />
+        {/* Precision Architectural Glow Line */}
+        <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-cyan-400/70 via-amber-400/50 to-transparent" />
 
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Brand Logo & Emblem (100% Static & Crisp with Leather Bezel) */}
-          <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
-            <div className="p-0.5 rounded-full bg-gradient-to-tr from-[#D4AF37] via-[#AA771C] to-[#D4AF37] shadow-md">
+        <div className="max-w-[1440px] mx-auto px-3 min-[360px]:px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-2 sm:gap-4">
+          {/* Brand Logo & Emblem with Outlined Medallion Ring */}
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 group flex-shrink-0 min-w-0">
+            <div className="relative p-0.5 rounded-full border dark:border-cyan-400/40 border-amber-500/40 group-hover:border-amber-500 dark:group-hover:border-cyan-400 transition-colors shadow-sm">
               <img
                 src={logoImg}
                 alt="AVM TALKS BY AVNISH Logo"
-                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-[#021710] flex-shrink-0"
+                className="w-7 h-7 min-[360px]:w-8 min-[360px]:h-8 min-[400px]:w-9 min-[400px]:h-9 sm:w-10 sm:h-10 rounded-full object-cover flex-shrink-0"
               />
             </div>
-            <div className="flex flex-col">
-              <span className="font-serif tracking-widest text-base sm:text-lg font-bold dark:text-[#FCF9F2] text-[#02261A] group-hover:text-luxury-gold transition-colors leading-none leather-deboss-gold">
+            <div className="flex flex-col min-w-0">
+              <span className="font-serif tracking-tight min-[380px]:tracking-wide sm:tracking-wider text-xs min-[360px]:text-sm sm:text-base lg:text-lg font-bold dark:text-white text-slate-900 group-hover:text-amber-500 transition-colors leading-none truncate">
                 AVM TALKS
               </span>
-              <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] dark:text-[#E2C178] text-[#9E7B28] font-bold mt-1">
+              <span className="text-[6.5px] min-[360px]:text-[7.5px] sm:text-[9.5px] uppercase tracking-[0.14em] min-[360px]:tracking-[0.18em] sm:tracking-[0.25em] dark:text-cyan-400 text-amber-600 font-extrabold mt-0.5 sm:mt-1 truncate">
                 BY AVNISH
               </span>
             </div>
           </Link>
 
-          {/* Desktop Luxury Navigation Architecture with Saddle Stitch Capsule */}
-          <nav className="hidden lg:flex items-center gap-1.5 dark:bg-[#042217]/95 bg-[#F3F7F4] backdrop-blur-xl px-3.5 py-1.5 rounded-full border-2 border-dashed dark:border-luxury-gold/50 border-[#D4AF37]/50 shadow-md gold-specular-border">
+          {/* Desktop Luxury Navigation Architecture with Structural Pill & Crisp Outlines */}
+          <nav className="hidden lg:flex items-center gap-1 dark:bg-[#070d18]/90 bg-slate-50/90 backdrop-blur-2xl p-1.5 rounded-full border dark:border-white/15 border-slate-300/80 shadow-[0_4px_25px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_25px_rgba(0,0,0,0.4)]">
             {/* Primary Destination Links */}
             {primaryLinks.map((link) => {
               const isActive = location.pathname === link.path;
@@ -222,16 +234,16 @@ export const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`relative px-3.5 py-1.5 text-xs font-semibold tracking-wider uppercase transition-all duration-200 rounded-full flex items-center gap-1.5 ${
+                  className={`relative px-3.5 py-1.5 text-xs font-semibold tracking-wider uppercase transition-all duration-200 rounded-full flex items-center gap-1.5 border ${
                     isActive
-                      ? 'dark:bg-luxury-emerald/60 bg-[#042217] dark:text-[#FFF0C8] text-[#FFF0C8] border dark:border-luxury-gold/50 border-[#D4AF37] shadow-sm font-bold'
+                      ? 'dark:bg-gradient-to-r dark:from-cyan-950/90 dark:to-indigo-950/90 bg-slate-900 text-white dark:text-cyan-200 border-slate-800 dark:border-cyan-400/40 shadow-[0_0_15px_rgba(6,182,212,0.25)] font-bold'
                       : link.highlight
-                      ? 'dark:text-[#E2C178] text-[#9E7B28] font-bold dark:hover:text-[#FFF0C8] hover:text-[#02261A]'
-                      : 'dark:text-[#E8DFC9] text-[#164332] dark:hover:text-[#FFF0C8] hover:text-[#9E7B28] dark:hover:bg-white/5 hover:bg-black/5'
+                      ? 'border-transparent dark:text-cyan-300 text-amber-600 font-bold hover:border-amber-400/40 dark:hover:border-cyan-400/40 hover:bg-amber-500/10 dark:hover:bg-cyan-950/40'
+                      : 'border-transparent dark:text-slate-300 text-slate-700 hover:text-slate-950 dark:hover:text-white hover:border-slate-300 dark:hover:border-white/10 hover:bg-slate-200/60 dark:hover:bg-white/5'
                   }`}
                 >
                   {link.highlight && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-luxury-gold animate-pulse"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_6px_#22d3ee]"></span>
                   )}
                   <span>{link.name}</span>
                 </Link>
@@ -243,35 +255,36 @@ export const Navbar = () => {
               <button
                 type="button"
                 onClick={() => setAdvisoryDropdownOpen(!advisoryDropdownOpen)}
-                className={`px-3.5 py-1.5 text-xs font-semibold tracking-wider uppercase transition-all duration-200 rounded-full flex items-center gap-1.5 ${
+                className={`px-3.5 py-1.5 text-xs font-semibold tracking-wider uppercase transition-all duration-200 rounded-full flex items-center gap-1.5 border ${
                   isAdvisoryActive || advisoryDropdownOpen
-                    ? 'dark:bg-luxury-emerald/50 bg-[#042217] dark:text-[#FFF0C8] text-[#FFF0C8] border dark:border-luxury-gold/40 border-[#D4AF37] font-bold'
-                    : 'dark:text-[#E8DFC9] text-[#164332] dark:hover:text-[#FFF0C8] hover:text-[#9E7B28] dark:hover:bg-white/5 hover:bg-black/5'
+                    ? 'dark:bg-cyan-950/60 bg-amber-50 dark:text-slate-200 text-amber-800 border-amber-400/50 dark:border-cyan-400/50 shadow-sm font-bold'
+                    : 'border-transparent dark:text-slate-300 text-slate-700 hover:text-slate-950 dark:hover:text-white hover:border-slate-300 dark:hover:border-white/10 hover:bg-slate-200/60 dark:hover:bg-white/5'
                 }`}
                 aria-expanded={advisoryDropdownOpen}
               >
                 <span>{t('nav.advisory', 'Advisory & Media')}</span>
                 <ChevronDown
-                  className={`w-3.5 h-3.5 text-luxury-gold transition-transform duration-200 ${
+                  className={`w-3.5 h-3.5 text-amber-500 transition-transform duration-200 ${
                     advisoryDropdownOpen ? 'rotate-180' : ''
                   }`}
                 />
               </button>
 
-              {/* Luxury Dropdown Menu */}
+              {/* Luxury Dropdown Menu with Precision Outlines */}
               <AnimatePresence>
                 {advisoryDropdownOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.96 }}
+                    initial={{ opacity: 0, y: 8, scale: 0.97 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.96 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full right-0 mt-3 w-80 rounded-2xl dark:bg-[#042217] bg-white backdrop-blur-2xl border dark:border-luxury-gold/50 border-[#D4AF37]/45 dark:shadow-[0_15px_40px_rgba(0,0,0,0.8)] shadow-[0_15px_40px_rgba(0,0,0,0.12)] p-2.5 z-50"
+                    exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                    transition={{ duration: 0.18 }}
+                    className="absolute top-full right-0 mt-3 w-80 rounded-2xl dark:bg-[#0b1120]/95 bg-white/95 backdrop-blur-2xl border dark:border-white/15 border-slate-300 shadow-[0_20px_50px_rgba(0,0,0,0.2)] p-2 z-50 ring-1 ring-black/5"
                   >
-                    <div className="px-3 py-2 border-b dark:border-theme-gold/20 border-[#D4AF37]/20 mb-1">
-                      <span className="text-[10px] uppercase font-bold tracking-widest dark:text-luxury-gold text-[#9E7B28] block">
+                    <div className="px-3 py-2 border-b dark:border-white/10 border-slate-200 mb-1 flex items-center justify-between">
+                      <span className="text-[10px] uppercase font-bold tracking-widest text-amber-500">
                         {t('nav.statutorySuite', 'Statutory Advisory Suite')}
                       </span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
                     </div>
 
                     <div className="space-y-1">
@@ -282,20 +295,20 @@ export const Navbar = () => {
                           <Link
                             key={item.name}
                             to={item.path}
-                            className={`flex items-start gap-3 p-2.5 rounded-xl transition-all ${
+                            className={`flex items-start gap-3 p-2.5 rounded-xl border transition-all ${
                               isSubActive
-                                ? 'dark:bg-luxury-emerald/50 bg-[#E8F3ED] dark:text-[#FFF0C8] text-[#02261A] border dark:border-luxury-gold/40 border-[#D4AF37]/40 font-bold'
-                                : 'dark:hover:bg-white/5 hover:bg-[#F3F7F4] dark:text-[#FCF9F2] text-[#02261A]'
+                                ? 'dark:bg-cyan-950/60 bg-amber-50/90 dark:text-[#FFF0C8] text-amber-800 border-amber-400/40 dark:border-cyan-400/40 font-bold shadow-sm'
+                                : 'border-transparent hover:border-slate-200 dark:hover:border-white/10 hover:bg-slate-50 dark:hover:bg-white/5 dark:text-slate-200 text-slate-800'
                             }`}
                           >
-                            <div className="p-1.5 rounded-lg dark:bg-luxury-emerald/30 bg-[#E8F3ED] border dark:border-theme-gold/20 border-[#D4AF37]/30 text-luxury-gold flex-shrink-0 mt-0.5">
+                            <div className="p-1.5 rounded-lg border dark:border-white/10 border-amber-300/40 dark:bg-cyan-950/40 bg-amber-100/60 text-amber-600 flex-shrink-0 mt-0.5 shadow-sm">
                               <Icon className="w-3.5 h-3.5" />
                             </div>
                             <div>
                               <p className="text-xs font-bold leading-tight">
                                 {item.name}
                               </p>
-                              <p className="text-[10px] dark:text-[#A3B8AD] text-[#4A6E5E] font-light mt-0.5 leading-snug">
+                              <p className="text-[10px] dark:text-slate-400 text-slate-500 font-light mt-0.5 leading-snug">
                                 {item.desc}
                               </p>
                             </div>
@@ -309,17 +322,17 @@ export const Navbar = () => {
             </div>
           </nav>
 
-          {/* Action Suite: Search, Compare, Language Toggle, Theme Toggle & VIP Site Visit CTA */}
+          {/* Action Suite: Search, Compare, Language Toggle & Theme Toggle with Outlines */}
           <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
-            {/* Instant Search Command Palette Trigger */}
+            {/* Instant Search Command Palette Trigger with Crisp Border */}
             <button
               onClick={() => setSearchModalOpen(true)}
-              className="relative flex items-center gap-1.5 px-3 py-1.5 rounded-full border dark:border-luxury-gold/40 border-[#D4AF37]/40 dark:bg-[#03281E] bg-[#F3F7F4] text-xs dark:text-luxury-goldLight text-[#02261A] hover:border-luxury-gold shadow-sm transition-all"
+              className="relative flex items-center gap-2 px-3.5 py-1.5 rounded-full border dark:border-white/15 border-slate-300/90 dark:bg-[#0b1120]/80 bg-white/80 dark:text-slate-200 text-slate-800 hover:border-cyan-400 dark:hover:border-cyan-400 shadow-sm hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] transition-all group"
               title={isHindi ? 'त्वरित खोज (Ctrl+K)' : 'Instant Search (Ctrl+K)'}
             >
-              <Search className="w-3.5 h-3.5 text-luxury-gold" />
-              <span className="hidden xl:inline text-[11px] font-medium">{isHindi ? 'खोजें...' : 'Search...'}</span>
-              <kbd className="hidden sm:inline px-1.5 py-0.5 rounded text-[9px] font-mono bg-black/20 dark:bg-white/10 dark:text-luxury-gold text-[#9E7B28] font-bold">
+              <Search className="w-3.5 h-3.5 text-cyan-500 group-hover:scale-110 transition-transform" />
+              <span className="text-[11px] font-medium">{isHindi ? 'खोजें...' : 'Search...'}</span>
+              <kbd className="px-1.5 py-0.5 rounded text-[9px] font-mono border dark:border-white/10 border-slate-200 dark:bg-white/10 bg-slate-100 text-cyan-600 dark:text-cyan-400 font-bold">
                 ⌘K
               </kbd>
             </button>
@@ -340,34 +353,20 @@ export const Navbar = () => {
 
             <LanguageToggle />
             <ThemeToggle />
-
-            {/* VIP Site Visit Capsule CTA */}
-            <Link
-              to="/book-visit"
-              className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider overflow-hidden group gold-shimmer-btn text-luxury-darker shadow-[0_4px_20px_rgba(212,175,55,0.4)] transition-all duration-300"
-            >
-              <Car className="w-3.5 h-3.5 text-luxury-darker" />
-              <span>{t('nav.vipVisit', 'VIP Site Visit')}</span>
-            </Link>
           </div>
 
-          {/* Mobile Menu & Language / Theme Toggle */}
-          <div className="flex items-center gap-1.5 lg:hidden">
-            <button
-              onClick={() => setSearchModalOpen(true)}
-              className="p-2 rounded-full border dark:border-luxury-gold/40 border-[#D4AF37]/40 dark:text-luxury-gold text-[#02261A] hover:bg-black/5"
-              aria-label="Search"
-            >
-              <Search className="w-4 h-4" />
-            </button>
-            <LanguageToggle />
-            <ThemeToggle />
+          {/* Mobile Header: ONLY Dotted-Outlined Menu Button (Zero Clutter, 100% Focused) */}
+          <div className="flex items-center lg:hidden flex-shrink-0">
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="p-2 rounded-full border dark:border-luxury-gold/40 border-[#D4AF37]/40 dark:text-luxury-gold text-[#02261A] dark:hover:bg-luxury-gold/10 hover:bg-black/5 transition-colors"
+              className="relative flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl border-2 border-dotted border-amber-500 dark:border-amber-400 bg-gold-gradient text-luxury-darker font-extrabold text-xs uppercase tracking-wider shadow-[0_2px_14px_rgba(212,175,55,0.45)] hover:border-amber-300 hover:scale-105 active:scale-95 transition-all flex-shrink-0 cursor-pointer"
               aria-label="Open Navigation Menu"
+              title={isHindi ? 'मेन्यू खोलें' : 'Open Menu'}
             >
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5 stroke-[2.5] text-luxury-darker" />
+              <span className="text-[11px] sm:text-xs font-black text-luxury-darker tracking-wide">
+                {isHindi ? 'मेन्यू' : 'Menu'}
+              </span>
             </button>
           </div>
         </div>
@@ -392,22 +391,24 @@ export const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 280 }}
-              className="fixed inset-y-0 right-0 w-full max-w-sm dark:bg-[#021710] bg-white border-l dark:border-luxury-gold/40 border-[#D4AF37]/40 shadow-2xl p-6 flex flex-col justify-between overflow-y-auto dark:text-[#FCF9F2] text-[#02261A]"
+              className="fixed inset-y-0 right-0 w-full max-w-sm dark:bg-[#0b1120] bg-white dark:border-l-white/15 border-l border-slate-200 shadow-2xl p-6 flex flex-col justify-between overflow-y-auto dark:text-white text-slate-900"
             >
               {/* Drawer Header */}
               <div>
-                <div className="flex items-center justify-between pb-5 border-b dark:border-theme-gold/20 border-[#D4AF37]/20 mb-5">
+                <div className="flex items-center justify-between pb-5 border-b dark:border-white/10 border-slate-200 mb-4">
                   <div className="flex items-center gap-3">
-                    <img
-                      src={logoImg}
-                      alt="AVM Talks Crest"
-                      className="w-10 h-10 rounded-full border border-luxury-gold"
-                    />
+                    <div className="p-0.5 rounded-full border border-amber-400/50 dark:border-cyan-400/50 shadow-sm">
+                      <img
+                        src={logoImg}
+                        alt="AVM Talks Crest"
+                        className="w-10 h-10 rounded-full object-cover"
+                      />
+                    </div>
                     <div>
-                      <span className="font-serif font-bold text-sm dark:text-[#FCF9F2] text-[#02261A] tracking-wider block">
+                      <span className="font-serif font-bold text-sm dark:text-white text-slate-900 tracking-wider block">
                         AVM TALKS
                       </span>
-                      <span className="text-[9px] uppercase tracking-widest dark:text-[#E2C178] text-[#9E7B28] font-bold block">
+                      <span className="text-[9px] uppercase tracking-widest text-amber-500 font-extrabold block">
                         BY AVNISH
                       </span>
                     </div>
@@ -415,15 +416,31 @@ export const Navbar = () => {
 
                   <button
                     onClick={() => setMobileMenuOpen(false)}
-                    className="p-2 rounded-full border dark:border-luxury-gold/30 border-[#D4AF37]/30 dark:text-luxury-gold text-[#02261A] dark:hover:bg-luxury-gold/20 hover:bg-black/5 transition-colors"
+                    className="p-2 rounded-xl border dark:border-white/15 border-slate-300 dark:text-cyan-300 text-slate-700 dark:hover:bg-white/10 hover:bg-slate-100 transition-colors shadow-sm"
                     aria-label="Close Menu"
                   >
                     <X className="w-5 h-5" />
                   </button>
                 </div>
 
+                {/* Mobile Drawer Quick Tools: Instant Search, Language & Theme Toggles */}
+                <div className="flex items-center gap-2 pb-4 mb-4 border-b dark:border-white/10 border-slate-200">
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setSearchModalOpen(true);
+                    }}
+                    className="flex-1 flex items-center gap-2 px-3 py-1.5 rounded-full border dark:border-white/15 border-slate-300/80 dark:bg-[#070d18] bg-slate-50 text-xs font-semibold dark:text-slate-200 text-slate-700 hover:border-cyan-400 shadow-sm"
+                  >
+                    <Search className="w-3.5 h-3.5 text-cyan-400" />
+                    <span className="text-[11px]">{isHindi ? 'खोजें...' : 'Search...'}</span>
+                  </button>
+                  <LanguageToggle />
+                  <ThemeToggle />
+                </div>
+
                 {/* Primary Destination Links */}
-                <span className="text-[10px] uppercase tracking-[0.2em] dark:text-luxury-gold text-[#9E7B28] font-bold block mb-2 px-1">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-cyan-500 dark:text-cyan-400 font-bold block mb-2 px-1">
                   {t('nav.menu', 'Core Plotted Portals')}
                 </span>
                 <div className="space-y-1 mb-5">
@@ -435,24 +452,24 @@ export const Navbar = () => {
                         key={link.name}
                         to={link.path}
                         onClick={() => setMobileMenuOpen(false)}
-                        className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all ${
+                        className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all border ${
                           isActive
-                            ? 'dark:bg-luxury-emerald/50 bg-[#042217] dark:text-[#FFF0C8] text-[#FFF0C8] border dark:border-luxury-gold border-[#D4AF37] shadow-sm font-bold'
-                            : 'dark:text-[#E8DFC9] text-[#164332] dark:hover:bg-white/5 hover:bg-[#F3F7F4] dark:hover:text-[#FFF0C8] hover:text-[#02261A]'
+                            ? 'dark:bg-cyan-950/70 bg-cyan-50 dark:text-cyan-200 text-cyan-950 border-cyan-400/50 dark:border-cyan-500/40 shadow-sm font-bold'
+                            : 'border-transparent dark:text-[#E8DFC9] text-slate-800 hover:border-slate-200 dark:hover:border-white/10 dark:hover:bg-white/5 hover:bg-slate-100 dark:hover:text-white hover:text-slate-950'
                         }`}
                       >
                         <div className="flex items-center gap-2.5">
-                          <Icon className="w-4 h-4 text-luxury-gold" />
+                          <Icon className="w-4 h-4 text-cyan-500 dark:text-cyan-400" />
                           <span>{link.name}</span>
                         </div>
-                        <ChevronRight className="w-3.5 h-3.5 dark:text-luxury-gold/40 text-black/30" />
+                        <ChevronRight className="w-3.5 h-3.5 dark:text-cyan-400/60 text-slate-400" />
                       </Link>
                     );
                   })}
                 </div>
 
                 {/* Advisory & Knowledge Links */}
-                <span className="text-[10px] uppercase tracking-[0.2em] dark:text-luxury-gold text-[#9E7B28] font-bold block mb-2 px-1">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-cyan-500 dark:text-cyan-400 font-bold block mb-2 px-1">
                   {t('nav.advisory', 'Advisory & Research')}
                 </span>
                 <div className="space-y-1">
@@ -464,44 +481,35 @@ export const Navbar = () => {
                         key={link.name}
                         to={link.path}
                         onClick={() => setMobileMenuOpen(false)}
-                        className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all ${
+                        className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all border ${
                           isActive
-                            ? 'dark:bg-luxury-emerald/50 bg-[#042217] dark:text-[#FFF0C8] text-[#FFF0C8] border dark:border-luxury-gold border-[#D4AF37] shadow-sm font-bold'
-                            : 'dark:text-[#E8DFC9] text-[#164332] dark:hover:bg-white/5 hover:bg-[#F3F7F4] dark:hover:text-[#FFF0C8] hover:text-[#02261A]'
+                            ? 'dark:bg-cyan-950/70 bg-cyan-50 dark:text-cyan-200 text-cyan-950 border-cyan-400/50 dark:border-cyan-500/40 shadow-sm font-bold'
+                            : 'border-transparent dark:text-[#E8DFC9] text-slate-800 hover:border-slate-200 dark:hover:border-white/10 dark:hover:bg-white/5 hover:bg-slate-100 dark:hover:text-white hover:text-slate-950'
                         }`}
                       >
                         <div className="flex items-center gap-2.5">
                           <Icon className="w-4 h-4 text-luxury-gold" />
                           <span>{link.name}</span>
                         </div>
-                        <ChevronRight className="w-3.5 h-3.5 dark:text-luxury-gold/40 text-black/30" />
+                        <ChevronRight className="w-3.5 h-3.5 dark:text-luxury-gold/40 text-slate-400" />
                       </Link>
                     );
                   })}
                 </div>
               </div>
 
-              {/* Drawer Footer Actions */}
-              <div className="pt-6 border-t dark:border-luxury-gold/20 border-[#D4AF37]/20 space-y-3 mt-6">
-                <Link
-                  to="/book-visit"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-gold-gradient text-luxury-darker shadow-luxury-gold"
-                >
-                  <Car className="w-4 h-4" />
-                  <span>{t('nav.vipVisit', 'Book VIP Chauffeur Visit')}</span>
-                </Link>
-
+              {/* Drawer Footer Actions (Structured & Outlined) */}
+              <div className="pt-5 border-t dark:border-white/10 border-slate-200 space-y-2.5 mt-5">
                 <a
                   href="tel:9928365001"
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-bold uppercase tracking-wider border dark:border-luxury-gold/50 border-[#D4AF37]/50 dark:bg-[#042217] bg-[#F3F7F4] dark:text-luxury-goldLight text-[#02261A] hover:border-luxury-gold"
+                  className="w-full flex items-center justify-center gap-2.5 py-3 rounded-xl text-xs font-extrabold uppercase tracking-wider border border-amber-400/80 bg-gold-gradient text-luxury-darker shadow-[0_2px_14px_rgba(212,175,55,0.35)] hover:scale-[1.02] active:scale-98 transition-all"
                 >
-                  <Phone className="w-3.5 h-3.5 fill-current" />
+                  <Phone className="w-4 h-4 fill-luxury-darker" />
                   <span>{t('floating.call', 'Call Coordinator')}: 99283-65001</span>
                 </a>
 
                 <div className="text-center pt-2">
-                  <p className="text-[10px] dark:text-[#A3B8AD] text-[#4A6E5E]">
+                  <p className="text-[10px] dark:text-slate-400 text-slate-500 font-medium">
                     © 2026 AVM TALKS BY AVNISH • Ultra-Luxury Plotted Real Estate
                   </p>
                 </div>

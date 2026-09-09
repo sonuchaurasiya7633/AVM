@@ -273,8 +273,8 @@ export const CoordinatorZoneFinder = () => {
                       <div>
                         {/* Status Beacon & Zone Badge */}
                         <div className="flex items-center justify-between gap-2 mb-3">
-                          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider text-emerald-400 bg-emerald-950/40 px-2 py-0.5 rounded-full border border-emerald-500/30">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider text-cyan-300 bg-cyan-950/40 px-2 py-0.5 rounded-full border border-white/15">
+                            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                             {isHi ? 'ऑन-ड्यूटी फील्ड' : 'On-Duty Active'}
                           </span>
                           <span className="text-[10px] font-mono text-luxury-gold/80 border border-luxury-gold/20 px-2 py-0.5 rounded-md">
@@ -343,7 +343,7 @@ export const CoordinatorZoneFinder = () => {
           <div className="my-8 max-w-2xl mx-auto p-6 sm:p-8 rounded-2xl bg-luxury-darker/70 border border-theme-gold/40 shadow-inner">
             {requestSent ? (
               <div className="text-center py-10 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500 flex items-center justify-center mx-auto text-emerald-400">
+                <div className="w-16 h-16 rounded-full bg-cyan-950/30 border border-cyan-500/40 text-cyan-400 flex items-center justify-center mx-auto shadow-[0_0_20px_rgba(6,182,212,0.25)]">
                   <CheckCircle className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-serif font-bold text-theme-primary">

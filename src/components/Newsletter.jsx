@@ -39,19 +39,19 @@ export const Newsletter = () => {
           <div className="brass-screw absolute bottom-4 right-4" />
 
           {/* Ambient Lighting */}
-          <div className="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-luxury-gold/15 blur-3xl pointer-events-none"></div>
+          <div className="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-cyan-500/15 blur-3xl pointer-events-none"></div>
 
           <div className="relative z-10 max-w-3xl mx-auto text-center">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.25em] border border-luxury-gold/50 bg-luxury-dark/60 text-luxury-goldLight mb-4 backdrop-blur-md">
-              <Mail className="w-3.5 h-3.5 text-luxury-gold" />
+            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.25em] border dark:border-white/15 border-cyan-300/50 dark:bg-cyan-950/40 bg-cyan-100/80 dark:text-cyan-300 text-cyan-800 mb-4 backdrop-blur-md">
+              <Mail className="w-3.5 h-3.5 text-cyan-500" />
               {t('footer.dispatchBadge', 'Executive Dispatch')}
             </span>
 
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold text-luxury-ivory tracking-tight mb-4">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold text-theme-primary tracking-tight mb-4">
               {t('footer.dispatchTitle', 'The Sunday Capital Dispatch')}
             </h2>
 
-            <p className="text-sm sm:text-base text-luxury-ivory/80 font-light leading-relaxed mb-8 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-theme-secondary font-light leading-relaxed mb-8 max-w-2xl mx-auto">
               {t('footer.dispatchDesc', 'Join 18,500+ HNWIs, family offices, and discerning land investors. Every Sunday morning, Avnish shares unvarnished corridor reports, title forensic case studies, and infrastructure intelligence.')}
             </p>
 
@@ -59,11 +59,11 @@ export const Newsletter = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="p-5 rounded-2xl bg-luxury-dark/90 border border-luxury-gold flex items-center justify-center gap-3 text-luxury-ivory"
+                className="p-5 rounded-2xl bg-gradient-to-r from-cyan-950/60 via-indigo-900/60 to-cyan-950/60 border border-white/15 flex items-center justify-center gap-3 text-luxury-ivory"
               >
-                <CheckCircle2 className="w-6 h-6 text-luxury-gold flex-shrink-0" />
+                <CheckCircle2 className="w-6 h-6 text-cyan-400 flex-shrink-0" />
                 <div className="text-left">
-                  <p className="text-sm font-semibold text-luxury-goldLight">
+                  <p className="text-sm font-semibold text-slate-200">
                     {isHindi ? 'इनर सर्किल में आपका स्वागत है।' : 'Welcome to the Inner Circle.'}
                   </p>
                   <p className="text-xs text-luxury-muted">
@@ -83,7 +83,7 @@ export const Newsletter = () => {
                     }}
                     placeholder={t('footer.newsletterPlaceholder', 'Enter your corporate or personal email...')}
                     required
-                    className="w-full px-5 py-3.5 rounded-full bg-luxury-dark/80 border border-luxury-gold/40 text-sm text-luxury-ivory placeholder-luxury-muted focus:outline-none focus:border-luxury-gold focus:ring-2 focus:ring-luxury-gold/20 shadow-inner"
+                    className="w-full px-5 py-3.5 rounded-full bg-theme-card border border-theme-gold/40 text-sm text-theme-primary placeholder-theme-muted focus:outline-none focus:border-luxury-gold shadow-inner"
                   />
                 </div>
                 <button

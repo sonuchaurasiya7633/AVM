@@ -72,7 +72,7 @@ export const AIAirAppreciationForecaster = () => {
   }, [ratePerGaj, plotSizeGaj, holdingYears, catalysts]);
 
   return (
-    <div className="royal-obsidian-card rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-luxury-gold shadow-2xl relative overflow-hidden leather-stitch-outline">
+    <div className="leather-badge-container rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-luxury-gold shadow-2xl relative overflow-hidden leather-stitch-outline">
       {/* 4 Corner Brass Screws */}
       <div className="brass-screw absolute top-3.5 left-3.5" />
       <div className="brass-screw absolute top-3.5 right-3.5" />
@@ -82,11 +82,11 @@ export const AIAirAppreciationForecaster = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-luxury-gold/30">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-luxury-emerald/30 text-luxury-goldLight border border-luxury-gold/40 mb-3">
-            <TrendingUp className="w-3.5 h-3.5 text-luxury-gold" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider dark:bg-cyan-950/40 bg-cyan-100/80 dark:text-cyan-300 text-cyan-800 dark:border-white/15 border-cyan-300/50 mb-3">
+            <TrendingUp className="w-3.5 h-3.5 text-cyan-500" />
             <span>Quantitative Land Economics (2026–2036)</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-serif font-extrabold text-white leading-tight">
+          <h2 className="text-2xl sm:text-3xl font-serif font-extrabold text-theme-primary leading-tight">
             AI Land Valuation & Compound Appreciation Forecaster
           </h2>
           <p className="text-xs sm:text-sm text-theme-secondary font-light mt-1">
@@ -95,7 +95,7 @@ export const AIAirAppreciationForecaster = () => {
         </div>
 
         {/* Holding Horizon Selector */}
-        <div className="flex items-center gap-2 bg-black/40 p-1.5 rounded-2xl border border-luxury-gold/30">
+        <div className="flex items-center gap-2 dark:bg-black/40 bg-theme-surface p-1.5 rounded-2xl border border-luxury-gold/30">
           {[
             { label: '3 Years (2029)', val: 3 },
             { label: '5 Years (2031)', val: 5 },
@@ -107,7 +107,7 @@ export const AIAirAppreciationForecaster = () => {
               className={`px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold transition-all ${
                 holdingYears === h.val
                   ? 'bg-gold-gradient text-luxury-darker shadow-md'
-                  : 'text-luxury-ivory hover:text-luxury-gold'
+                  : 'text-theme-secondary hover:text-luxury-gold'
               }`}
             >
               {h.label}
@@ -121,7 +121,7 @@ export const AIAirAppreciationForecaster = () => {
         {/* Left 6 Columns: Interactive Parameters */}
         <div className="lg:col-span-6 space-y-6">
           {/* Rate per Gaj Slider */}
-          <div className="p-5 rounded-2xl bg-black/40 border border-luxury-gold/25">
+          <div className="p-5 rounded-2xl dark:bg-black/40 bg-theme-surface border border-theme-gold/25">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-mono uppercase text-theme-muted">
                 Initial Plot Rate (₹ / Gaj)
@@ -137,7 +137,7 @@ export const AIAirAppreciationForecaster = () => {
               step="500"
               value={ratePerGaj}
               onChange={(e) => setRatePerGaj(parseInt(e.target.value))}
-              className="w-full h-2 bg-luxury-emerald/40 rounded-lg appearance-none cursor-pointer accent-[#D4AF37]"
+              className="w-full h-2 bg-cyan-950/40 rounded-lg appearance-none cursor-pointer accent-cyan-400"
             />
             <div className="flex justify-between text-[10px] font-mono text-theme-muted mt-2">
               <span>₹15,000 (Ring Road Belt)</span>
@@ -147,24 +147,24 @@ export const AIAirAppreciationForecaster = () => {
           </div>
 
           {/* Plot Size Selector */}
-          <div className="p-5 rounded-2xl bg-black/40 border border-luxury-gold/25">
-            <div className="flex items-center justify-between mb-3">
+          <div className="p-5 rounded-2xl dark:bg-black/40 bg-theme-surface border border-theme-gold/25">
+            <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-mono uppercase text-theme-muted">
-                Plot Sizing Enclave
+                Plot Size (Gaj)
               </span>
-              <span className="text-xs font-mono font-bold text-luxury-goldLight">
-                {plotSizeGaj} Gaj ({Math.round(plotSizeGaj * 9)} Sq. Ft)
+              <span className="text-base font-serif font-bold text-luxury-gold font-tabular">
+                {plotSizeGaj} Gaj ({Math.round(plotSizeGaj * 9)} Sq.Ft.)
               </span>
             </div>
-            <div className="grid grid-cols-4 gap-2">
-              {[150, 200, 250, 500].map((size) => (
+            <div className="grid grid-cols-3 gap-2">
+              {[111, 166, 200, 250, 311, 500].map((size) => (
                 <button
                   key={size}
                   onClick={() => setPlotSizeGaj(size)}
-                  className={`py-2 rounded-xl text-xs font-mono font-bold border transition-all ${
+                  className={`py-2 rounded-xl text-xs font-mono font-bold transition-all border ${
                     plotSizeGaj === size
-                      ? 'bg-gold-gradient text-luxury-darker border-luxury-gold shadow-sm'
-                      : 'bg-theme-card text-luxury-ivory border-luxury-gold/20 hover:border-luxury-gold'
+                      ? 'bg-gold-gradient text-luxury-darker border-luxury-gold shadow-md'
+                      : 'dark:bg-black/30 bg-theme-card border-theme-gold/20 text-theme-muted hover:text-luxury-gold'
                   }`}
                 >
                   {size} Gaj
@@ -173,10 +173,10 @@ export const AIAirAppreciationForecaster = () => {
             </div>
           </div>
 
-          {/* Infrastructure Growth Catalysts (Multipliers) */}
-          <div className="p-5 rounded-2xl bg-black/40 border border-luxury-gold/25">
+          {/* Growth Corridors & Catalysts Checklist */}
+          <div className="p-5 rounded-2xl dark:bg-black/40 bg-theme-surface border border-theme-gold/25">
             <span className="text-xs font-mono uppercase tracking-wider text-luxury-goldLight font-bold block mb-3">
-              Corridor Catalyst Multipliers (CAGR Boosters)
+              Infrastructure Appreciation Multipliers
             </span>
             <div className="space-y-2.5">
               {[
@@ -190,7 +190,7 @@ export const AIAirAppreciationForecaster = () => {
                   onClick={() => toggleCatalyst(cat.id)}
                   className={`w-full flex items-center justify-between p-2.5 rounded-xl border text-xs font-mono transition-all ${
                     catalysts[cat.id]
-                      ? 'bg-luxury-emerald/40 border-luxury-gold text-white font-bold'
+                      ? 'bg-gradient-to-r from-amber-400 via-indigo-600 to-cyan-400 border-cyan-400/50 text-white font-bold shadow-sm'
                       : 'bg-theme-card border-white/5 text-theme-muted hover:text-luxury-ivory'
                   }`}
                 >
@@ -212,7 +212,7 @@ export const AIAirAppreciationForecaster = () => {
         {/* Right 6 Columns: Executive Financial Terminal */}
         <div className="lg:col-span-6 flex flex-col justify-between space-y-4">
           {/* Main Gross Valuation Card */}
-          <div className="p-6 rounded-2xl bg-gradient-to-br from-[#063826] via-[#032418] to-[#01140D] border-2 border-luxury-gold shadow-2xl relative">
+          <div className="p-6 rounded-2xl bg-gradient-to-br from-[#0f172a] via-[#0b1120] to-[#030712] border-2 border-luxury-gold shadow-2xl relative">
             <div className="flex items-center justify-between mb-4">
               <span className="text-xs font-mono uppercase tracking-widest text-luxury-goldLight">
                 Projected Valuation ({2026 + holdingYears})
@@ -248,7 +248,7 @@ export const AIAirAppreciationForecaster = () => {
                 <span className="text-[10px] font-mono uppercase text-theme-muted block">
                   Estimated Gross Profit
                 </span>
-                <span className="text-sm font-bold text-emerald-400 font-tabular flex items-center gap-1">
+                <span className="text-sm font-bold text-gold-gradient font-tabular flex items-center gap-1">
                   +{formatPrice(forecastData.grossProfit)}
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </span>
@@ -269,7 +269,7 @@ export const AIAirAppreciationForecaster = () => {
                 Calculated after deducting annual currency depreciation
               </span>
             </div>
-            <div className="w-10 h-10 rounded-full bg-luxury-emerald/30 border border-luxury-gold/40 flex items-center justify-center text-luxury-gold">
+            <div className="w-10 h-10 rounded-full bg-cyan-950/30 border border-white/15 flex items-center justify-center text-cyan-300">
               <ShieldCheck className="w-5 h-5" />
             </div>
           </div>

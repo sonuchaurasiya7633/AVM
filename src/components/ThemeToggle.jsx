@@ -10,7 +10,7 @@ export const ThemeToggle = () => {
     <button
       onClick={toggleTheme}
       aria-label="Toggle Theme"
-      className="relative p-2 rounded-full border border-luxury-gold/30 hover:border-luxury-gold transition-all duration-300 bg-luxury-surface/60 dark:bg-luxury-surface/80 hover:shadow-luxury-gold flex items-center justify-center group"
+      className="relative p-1.5 sm:p-2 rounded-full border border-luxury-gold/30 hover:border-luxury-gold transition-all duration-300 bg-luxury-surface/60 dark:bg-luxury-surface/80 hover:shadow-luxury-gold flex items-center justify-center group flex-shrink-0"
     >
       <motion.div
         initial={false}

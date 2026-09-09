@@ -137,7 +137,7 @@ export const PlotPortfolioBasket = () => {
 
         {/* Right: Financial & Architectural Aggregation Ledger */}
         <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
-          <div className="p-6 rounded-2xl bg-gradient-to-br from-[#063826] via-[#032418] to-[#01140D] border-2 border-luxury-gold shadow-2xl relative">
+          <div className="p-6 rounded-2xl bg-gradient-to-br from-[#060b17] via-[#0b1120] to-[#030712] border-2 border-cyan-500/30 shadow-2xl relative">
             <div className="flex items-center justify-between mb-4 pb-3 border-b border-luxury-gold/30">
               <span className="text-xs font-mono uppercase tracking-widest text-luxury-goldLight font-bold">
                 Consolidated Estate Outlay

@@ -84,7 +84,7 @@ export const DueDiligenceDossierModal = ({ isOpen, onClose, plotData }) => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
-          className="relative w-full max-w-4xl rounded-3xl bg-[#021710] border-2 border-luxury-gold shadow-[0_25px_60px_rgba(0,0,0,0.95)] overflow-hidden leather-stitch-outline my-auto flex flex-col max-h-[94vh]"
+          className="relative w-full max-w-4xl rounded-3xl bg-[#0b1120] border-2 border-cyan-500/30 shadow-[0_25px_60px_rgba(0,0,0,0.95)] overflow-hidden leather-stitch-outline my-auto flex flex-col max-h-[94vh]"
         >
           {/* Action Bar (Hidden when printing) */}
           <div className="p-4 sm:p-5 border-b border-luxury-gold/30 flex items-center justify-between bg-black/50 print:hidden">
@@ -119,66 +119,66 @@ export const DueDiligenceDossierModal = ({ isOpen, onClose, plotData }) => {
             </div>
           </div>
 
-          {/* Dossier Document Sheet (Styled as an Official Parchment Deed) */}
+          {/* Dossier Document Sheet (Styled as an Official Cosmic Obsidian Certificate) */}
           <div 
             id="dossier-print-sheet" 
-            className="flex-1 overflow-y-auto p-6 sm:p-10 bg-[#FCFAF5] text-[#1A1A1A] font-serif print:p-0 print:bg-white"
+            className="flex-1 overflow-y-auto p-6 sm:p-10 bg-[#0b1120] text-white font-serif print:p-0 print:bg-white"
           >
             {/* Deed Border */}
-            <div className="border-4 border-[#3D2314] p-6 sm:p-8 rounded-2xl relative bg-[#FCFAF5]">
+            <div className="border-2 border-luxury-gold/50 p-6 sm:p-8 rounded-2xl relative bg-[#060b17]">
               {/* Inner Double Gold Hairline Border */}
-              <div className="border border-[#D4AF37] p-5 sm:p-6 rounded-xl relative">
+              <div className="border border-luxury-gold/40 p-5 sm:p-6 rounded-xl relative">
                 {/* 4 Corner Brass Ring Accents */}
-                <div className="absolute top-2 left-2 text-[#D4AF37] text-xs font-mono font-bold">✦</div>
-                <div className="absolute top-2 right-2 text-[#D4AF37] text-xs font-mono font-bold">✦</div>
-                <div className="absolute bottom-2 left-2 text-[#D4AF37] text-xs font-mono font-bold">✦</div>
-                <div className="absolute bottom-2 right-2 text-[#D4AF37] text-xs font-mono font-bold">✦</div>
+                <div className="absolute top-2 left-2 text-luxury-gold text-xs font-mono font-bold">✦</div>
+                <div className="absolute top-2 right-2 text-luxury-gold text-xs font-mono font-bold">✦</div>
+                <div className="absolute bottom-2 left-2 text-luxury-gold text-xs font-mono font-bold">✦</div>
+                <div className="absolute bottom-2 right-2 text-luxury-gold text-xs font-mono font-bold">✦</div>
 
                 {/* Header Plaque */}
-                <div className="text-center pb-6 border-b border-[#D4AF37]/40 mb-6">
+                <div className="text-center pb-6 border-b border-luxury-gold/40 mb-6">
                   <div className="flex justify-center mb-3">
                     <img
                       src={logoImg}
                       alt="AVM Crest"
-                      className="w-16 h-16 rounded-full border-2 border-[#D4AF37] object-cover shadow-sm"
+                      className="w-16 h-16 rounded-full object-cover shadow-sm"
                     />
                   </div>
-                  <span className="text-[10px] uppercase font-sans tracking-[0.3em] text-[#8B6508] font-bold block mb-1">
+                  <span className="text-[10px] uppercase font-sans tracking-[0.3em] text-amber-400 font-bold block mb-1">
                     Institutional Plotted Due Diligence Intelligence • Jaipur
                   </span>
-                  <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#2B1B10] uppercase mb-1">
+                  <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white uppercase mb-1">
                     Statutory Land Verification Dossier
                   </h1>
-                  <p className="text-xs text-[#555] font-sans font-light">
+                  <p className="text-xs text-slate-300 font-sans font-light">
                     Section 90-A Resumption • Jamabandi Revenue Chain • RERA Escrow Compliance
                   </p>
                 </div>
 
                 {/* Dossier Metadata Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-xl bg-[#F4EDE0] border border-[#D4AF37]/30 font-sans text-xs mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-xl bg-black/40 border border-luxury-gold/30 font-sans text-xs mb-6">
                   <div>
-                    <span className="text-[#8B6508] text-[10px] uppercase font-bold block">Target Property:</span>
-                    <strong className="text-sm font-serif text-[#2B1B10]">{targetPlot.name}</strong>
-                    <p className="text-[11px] text-[#555]">{targetPlot.corridor}</p>
+                    <span className="text-amber-400 text-[10px] uppercase font-bold block">Target Property:</span>
+                    <strong className="text-sm font-serif text-white">{targetPlot.name}</strong>
+                    <p className="text-[11px] text-slate-400">{targetPlot.corridor}</p>
                   </div>
                   <div>
-                    <span className="text-[#8B6508] text-[10px] uppercase font-bold block">Dossier ID:</span>
-                    <span className="font-mono font-bold text-[#2B1B10]">{dossierId}</span>
-                    <p className="text-[11px] text-[#555]">Audit Date: {currentDate}</p>
+                    <span className="text-amber-400 text-[10px] uppercase font-bold block">Dossier ID:</span>
+                    <span className="font-mono font-bold text-white">{dossierId}</span>
+                    <p className="text-[11px] text-slate-400">Audit Date: {currentDate}</p>
                   </div>
                   <div>
-                    <span className="text-[#8B6508] text-[10px] uppercase font-bold block">Fiduciary Status:</span>
-                    <span className="inline-flex items-center gap-1 font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
+                    <span className="text-amber-400 text-[10px] uppercase font-bold block">Fiduciary Status:</span>
+                    <span className="inline-flex items-center gap-1 font-bold text-cyan-300 bg-cyan-950/30 border border-cyan-400/30 px-2 py-0.5 rounded">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-300" />
                       100% Cleared for Token
                     </span>
-                    <p className="text-[11px] text-[#555]">Zero Brokerage Commission</p>
+                    <p className="text-[11px] text-slate-400">Zero Brokerage Commission</p>
                   </div>
                 </div>
 
                 {/* 7-Pillar Statutory Checklist Matrix */}
-                <h3 className="text-sm uppercase font-sans tracking-wider font-bold text-[#3D2314] mb-3 flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-[#8B6508]" />
+                <h3 className="text-sm uppercase font-sans tracking-wider font-bold text-luxury-gold mb-3 flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-amber-400" />
                   <span>7-Pillar Statutory Verification Scorecard</span>
                 </h3>
 
@@ -186,22 +186,22 @@ export const DueDiligenceDossierModal = ({ isOpen, onClose, plotData }) => {
                   {auditPillars.map((pillar) => (
                     <div 
                       key={pillar.id}
-                      className="p-3 rounded-xl bg-white border border-[#E0D5C1] flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-sm"
+                      className="p-3 rounded-xl bg-[#0b1120] border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-sm"
                     >
                       <div className="flex items-start gap-2.5">
-                        <span className="w-5 h-5 rounded-full bg-[#03281E] text-[#D4AF37] font-bold text-[10px] flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="w-5 h-5 rounded-full bg-cyan-950/80 border border-cyan-400/30 text-cyan-400 font-bold text-[10px] flex items-center justify-center flex-shrink-0 mt-0.5">
                           {pillar.id}
                         </span>
                         <div>
-                          <strong className="text-[#2B1B10] text-xs font-semibold block">
+                          <strong className="text-white text-xs font-semibold block">
                             {pillar.title}
                           </strong>
-                          <p className="text-[11px] text-[#666] font-light">
+                          <p className="text-[11px] text-slate-400 font-light">
                             {pillar.desc}
                           </p>
                         </div>
                       </div>
-                      <span className="px-2.5 py-1 rounded text-[10px] font-mono font-bold uppercase bg-emerald-50 text-emerald-800 border border-emerald-300 self-start sm:self-center flex-shrink-0">
+                      <span className="px-2.5 py-1 rounded text-[10px] font-mono font-bold uppercase bg-cyan-950/30 text-cyan-300 border border-cyan-400/30 self-start sm:self-center flex-shrink-0">
                         ✓ {pillar.status}
                       </span>
                     </div>
@@ -209,33 +209,33 @@ export const DueDiligenceDossierModal = ({ isOpen, onClose, plotData }) => {
                 </div>
 
                 {/* Certification Seal & Sign-off */}
-                <div className="pt-6 border-t-2 border-dashed border-[#D4AF37]/50 flex flex-col sm:flex-row items-center justify-between gap-6 font-sans">
+                <div className="pt-6 border-t-2 border-dashed border-luxury-gold/40 flex flex-col sm:flex-row items-center justify-between gap-6 font-sans">
                   <div className="flex items-center gap-3">
-                    <div className="w-14 h-14 rounded-full border-2 border-[#8B6508] bg-[#F7F3E9] flex flex-col items-center justify-center text-center p-1">
-                      <Award className="w-5 h-5 text-[#8B6508]" />
-                      <span className="text-[7px] font-mono uppercase font-bold text-[#8B6508]">AVM SEAL</span>
+                    <div className="w-14 h-14 rounded-full border-2 border-luxury-gold bg-[#0b1120] flex flex-col items-center justify-center text-center p-1">
+                      <Award className="w-5 h-5 text-amber-400" />
+                      <span className="text-[7px] font-mono uppercase font-bold text-amber-400">AVM SEAL</span>
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase font-bold tracking-widest text-[#8B6508] block">
+                      <span className="text-[10px] uppercase font-bold tracking-widest text-amber-400 block">
                         Editorial & Advisory Desk
                       </span>
-                      <p className="text-xs font-serif font-bold text-[#2B1B10]">
+                      <p className="text-xs font-serif font-bold text-white">
                         AVM TALKS BY AVNISH
                       </p>
-                      <p className="text-[10px] text-[#777]">
+                      <p className="text-[10px] text-slate-400">
                         Jaipur Plotted Due Diligence Mission
                       </p>
                     </div>
                   </div>
 
                   <div className="text-center sm:text-right">
-                    <div className="text-sm font-serif italic font-bold text-[#2B1B10]">
+                    <div className="text-sm font-serif italic font-bold text-white">
                       Avnish Sharma
                     </div>
-                    <div className="text-[10px] uppercase font-bold tracking-wider text-[#8B6508]">
+                    <div className="text-[10px] uppercase font-bold tracking-wider text-amber-400">
                       Principal Advisor & Real Estate Media Host
                     </div>
-                    <p className="text-[9px] text-[#888] font-mono mt-0.5">
+                    <p className="text-[9px] text-slate-400 font-mono mt-0.5">
                       Coordinator Hotline: +91 99283-65001
                     </p>
                   </div>

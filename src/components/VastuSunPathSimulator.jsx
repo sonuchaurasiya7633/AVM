@@ -65,7 +65,7 @@ export const VastuSunPathSimulator = () => {
           ishanyaScore: 98,
           kuberScore: 92,
           bramhasthan: 'Completely Open & Unobstructed',
-          color: '#10B981'
+          color: '#D4AF37'
         };
       case 'North-East':
         return {
@@ -85,7 +85,7 @@ export const VastuSunPathSimulator = () => {
           ishanyaScore: 94,
           kuberScore: 99,
           bramhasthan: 'Unrestricted Cross Ventilation',
-          color: '#38BDF8'
+          color: '#E2C178'
         };
       default: // West
         return {
@@ -112,7 +112,7 @@ export const VastuSunPathSimulator = () => {
   ];
 
   return (
-    <div className="royal-obsidian-card rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-luxury-gold shadow-2xl relative overflow-hidden leather-stitch-outline">
+    <div className="leather-badge-container rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-luxury-gold shadow-2xl relative overflow-hidden leather-stitch-outline">
       {/* 4 Corner Brass Screws */}
       <div className="brass-screw absolute top-3.5 left-3.5" />
       <div className="brass-screw absolute top-3.5 right-3.5" />
@@ -122,11 +122,11 @@ export const VastuSunPathSimulator = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-luxury-gold/30">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-luxury-emerald/30 text-luxury-goldLight border border-luxury-gold/40 mb-3">
-            <Compass className="w-3.5 h-3.5 text-luxury-gold" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-cyan-950/40 text-cyan-300 border border-white/15 mb-3">
+            <Compass className="w-3.5 h-3.5 text-cyan-400" />
             <span>Interactive Celestial Engineering</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-serif font-extrabold text-white leading-tight">
+          <h2 className="text-2xl sm:text-3xl font-serif font-extrabold text-theme-primary leading-tight">
             Vastu Compass & 3D Solar Sun-Path Simulator
           </h2>
           <p className="text-xs sm:text-sm text-theme-secondary font-light mt-1">
@@ -135,7 +135,7 @@ export const VastuSunPathSimulator = () => {
         </div>
 
         {/* Facing Selector Pills */}
-        <div className="flex flex-wrap items-center gap-2 bg-black/40 p-1.5 rounded-2xl border border-luxury-gold/30">
+        <div className="flex flex-wrap items-center gap-2 dark:bg-black/40 bg-slate-100 p-1.5 rounded-2xl border dark:border-luxury-gold/30 border-slate-200">
           {['East', 'North-East', 'North', 'West'].map((facing) => (
             <button
               key={facing}
@@ -155,7 +155,7 @@ export const VastuSunPathSimulator = () => {
       {/* Main Simulation Viewport (Canvas / SVG + Interactive Control Deck) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-8">
         {/* Left / Top: Interactive Celestial Dome Canvas */}
-        <div className="lg:col-span-7 bg-[#010D08] rounded-2xl p-4 sm:p-6 border border-luxury-gold/30 relative overflow-hidden flex flex-col items-center">
+        <div className="lg:col-span-7 bg-[#0b1120] rounded-2xl p-4 sm:p-6 border border-white/10 relative overflow-hidden flex flex-col items-center">
           {/* Subtle Celestial Coordinates Grid */}
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
 
@@ -166,7 +166,7 @@ export const VastuSunPathSimulator = () => {
             
             {/* Horizon Cardinal Points */}
             <text x="30" y="258" fill="#D4AF37" fontSize="11" fontFamily="monospace" fontWeight="bold">WEST (Ast)</text>
-            <text x="235" y="258" fill="#10B981" fontSize="11" fontFamily="monospace" fontWeight="bold">SOUTH (Zenith)</text>
+            <text x="235" y="258" fill="#D4AF37" fontSize="11" fontFamily="monospace" fontWeight="bold">SOUTH (Zenith)</text>
             <text x="420" y="258" fill="#D4AF37" fontSize="11" fontFamily="monospace" fontWeight="bold">EAST (Uday)</text>
 
             {/* Sun Trajectory Arc */}
@@ -208,21 +208,21 @@ export const VastuSunPathSimulator = () => {
                 width="100"
                 height="35"
                 rx="4"
-                fill="#04261B"
-                stroke="#D4AF37"
+                fill="#0b1120"
+                stroke="#06b6d4"
                 strokeWidth="2"
               />
               {/* Plot Label */}
               <text x="50" y="16" fill="#FFF0C8" fontSize="9" fontFamily="serif" fontWeight="bold" textAnchor="middle">
                 DEMARCATED PLOT
               </text>
-              <text x="50" y="27" fill="#A3B8AD" fontSize="8" fontFamily="monospace" textAnchor="middle">
+              <text x="50" y="27" fill="#E2C178" fontSize="8" fontFamily="monospace" textAnchor="middle">
                 {selectedFacing} Facing • 250 Gaj
               </text>
 
               {/* Entrance Gate Indicator */}
-              <circle cx="50" cy="0" r="3.5" fill="#10B981" />
-              <text x="50" y="-5" fill="#10B981" fontSize="8" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
+              <circle cx="50" cy="0" r="3.5" fill="#D4AF37" />
+              <text x="50" y="-5" fill="#D4AF37" fontSize="8" fontFamily="monospace" fontWeight="bold" textAnchor="middle">
                 GATE
               </text>
             </g>
@@ -297,7 +297,7 @@ export const VastuSunPathSimulator = () => {
         {/* Right / Bottom: Real-Time Vastu & Solar Telemetry Panel */}
         <div className="lg:col-span-5 space-y-4">
           {/* Vastu Score Medallion */}
-          <div className="p-5 rounded-2xl bg-black/40 border border-luxury-gold/40 relative">
+          <div className="p-5 rounded-2xl dark:bg-black/40 bg-slate-50 border dark:border-luxury-gold/40 border-amber-300/40 relative">
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-mono uppercase tracking-widest text-theme-muted">
                 Statutory Vastu Compliance
@@ -311,10 +311,10 @@ export const VastuSunPathSimulator = () => {
             </div>
 
             <div className="flex items-baseline gap-2 mb-2">
-              <span className="text-4xl font-serif font-black text-white font-tabular">
+              <span className="text-4xl font-serif font-black text-theme-primary font-tabular">
                 {vastuMetrics.score}
               </span>
-              <span className="text-sm font-mono text-luxury-goldLight">/ 100 Sanctity Score</span>
+              <span className="text-sm font-mono text-amber-500 font-bold">/ 100 Sanctity Score</span>
             </div>
 
             <p className="text-xs text-theme-secondary font-light leading-relaxed">
@@ -328,7 +328,7 @@ export const VastuSunPathSimulator = () => {
               <span className="text-[10px] font-mono uppercase text-theme-muted block mb-1">
                 Solar Phase
               </span>
-              <span className="text-xs font-bold text-white block">
+              <span className="text-xs font-bold text-theme-primary block">
                 {solarState.periodName}
               </span>
               <span className="text-[10px] font-mono text-luxury-gold block mt-0.5">
@@ -340,7 +340,7 @@ export const VastuSunPathSimulator = () => {
               <span className="text-[10px] font-mono uppercase text-theme-muted block mb-1">
                 Ishanya (NE) Water Energy
               </span>
-              <span className="text-xs font-bold text-emerald-400 block">
+              <span className="text-xs font-bold text-amber-500 block">
                 {vastuMetrics.ishanyaScore}% Harmonic
               </span>
               <span className="text-[10px] font-mono text-theme-muted block mt-0.5">
@@ -350,10 +350,10 @@ export const VastuSunPathSimulator = () => {
           </div>
 
           {/* Energy Summary Banner */}
-          <div className="p-4 rounded-xl bg-luxury-emerald/20 border border-luxury-gold/30 text-xs text-luxury-ivory font-light leading-relaxed flex items-start gap-2.5">
-            <Sparkles className="w-4 h-4 text-luxury-gold flex-shrink-0 mt-0.5" />
+          <div className="p-4 rounded-xl dark:bg-cyan-950/30 bg-amber-50 border dark:border-white/15 border-amber-300/40 text-xs dark:text-slate-200 text-slate-800 font-light leading-relaxed flex items-start gap-2.5">
+            <Sparkles className="w-4 h-4 text-cyan-500 flex-shrink-0 mt-0.5" />
             <span>
-              <strong className="text-luxury-gold font-semibold">Ground Audit Note: </strong>
+              <strong className="dark:text-cyan-300 text-amber-600 font-semibold">Ground Audit Note: </strong>
               {solarState.energyDesc}
             </span>
           </div>
@@ -362,21 +362,21 @@ export const VastuSunPathSimulator = () => {
 
       {/* 8-Directional Vastu Zoning Matrix Table */}
       <div className="mt-6 pt-6 border-t border-luxury-gold/20">
-        <h4 className="text-sm font-mono font-bold uppercase tracking-wider text-luxury-goldLight mb-4 flex items-center gap-2">
+        <h4 className="text-sm font-mono font-bold uppercase tracking-wider text-amber-500 mb-4 flex items-center gap-2">
           <Layers className="w-4 h-4 text-luxury-gold" />
           8-Directional Energy & Architectural Masterplan Zoning
         </h4>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {vastuZones.map((z, idx) => (
-            <div key={idx} className="p-3 rounded-xl bg-black/30 border border-luxury-gold/15">
+            <div key={idx} className="p-3 rounded-xl dark:bg-black/30 bg-slate-50 border dark:border-luxury-gold/15 border-slate-200">
               <div className="flex items-center justify-between text-[11px] font-mono font-bold text-luxury-gold mb-1">
                 <span>{z.dir}</span>
                 <span className="text-[9px] text-theme-muted">{z.elem}</span>
               </div>
-              <p className="text-[11px] text-white font-medium truncate mb-1">
+              <p className="text-[11px] text-theme-primary font-medium truncate mb-1">
                 {z.use}
               </p>
-              <span className="text-[10px] font-mono text-emerald-400">
+              <span className="text-[10px] font-mono text-amber-500 font-semibold">
                 ✓ {z.score}
               </span>
             </div>

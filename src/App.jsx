@@ -3,7 +3,9 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { FloatingBottomBar } from './components/FloatingBottomBar';
+import { MobileBottomNav } from './components/MobileBottomNav';
 import { LuxuryAmbientLayer } from './components/LuxuryAmbientLayer';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 // Direct import for instantaneous landing page
 import { Home } from './pages/Home';
@@ -49,29 +51,32 @@ export const App = () => {
       <LuxuryAmbientLayer />
       <ScrollToTop />
       <Navbar />
-      <main className="flex-1">
-        <Suspense fallback={<LuxuryRouteLoader />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/plots" element={<Plots />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/insights" element={<Insights />} />
-            <Route path="/buyer-guide" element={<BuyerGuide />} />
-            <Route path="/registry-process" element={<RegistryProcess />} />
-            <Route path="/calculator" element={<WealthCalculator />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/book-visit" element={<BookVisit />} />
-            <Route path="/media" element={<Media />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogDetails />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/legal" element={<Legal />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
+      <main className="flex-1 pb-16 lg:pb-0">
+        <ErrorBoundary>
+          <Suspense fallback={<LuxuryRouteLoader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/plots" element={<Plots />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/insights" element={<Insights />} />
+              <Route path="/buyer-guide" element={<BuyerGuide />} />
+              <Route path="/registry-process" element={<RegistryProcess />} />
+              <Route path="/calculator" element={<WealthCalculator />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/book-visit" element={<BookVisit />} />
+              <Route path="/media" element={<Media />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogDetails />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/legal" element={<Legal />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </ErrorBoundary>
       </main>
       <Footer />
       <FloatingBottomBar />
+      <MobileBottomNav />
     </div>
   );
 };

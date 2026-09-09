@@ -47,27 +47,27 @@ export const PlotInquiryModal = ({ isOpen, onClose, plot }) => {
           <div className="brass-screw absolute bottom-3 right-3" />
 
           {/* Header Banner */}
-          <div className="relative p-6 sm:p-7 bg-gradient-to-r from-luxury-emerald via-luxury-deepEmerald to-luxury-darker text-white border-b border-luxury-gold/30">
+          <div className="relative p-6 sm:p-7 bg-gradient-to-r dark:from-[#0b1120] dark:via-indigo-950 dark:to-[#030712] from-slate-900 via-slate-800 to-slate-950 text-white border-b border-white/10">
             <button
               onClick={onClose}
-              className="absolute top-5 right-5 p-1.5 rounded-full bg-black/40 text-luxury-gold hover:text-white hover:bg-black/60 transition-colors"
+              className="absolute top-5 right-5 p-1.5 rounded-full bg-black/40 text-cyan-400 hover:text-white hover:bg-black/60 transition-colors"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] uppercase font-bold tracking-widest bg-black/40 text-luxury-goldLight border border-luxury-gold/30 mb-2">
-              <Sparkles className="w-3 h-3 text-luxury-gold" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] uppercase font-bold tracking-widest bg-black/40 text-slate-200 border border-white/10 mb-2">
+              <Sparkles className="w-3 h-3 text-cyan-400" />
               <span>On-Ground Site Demarcation</span>
             </div>
             <h3 className="text-xl sm:text-2xl font-serif font-bold text-white leading-tight">
               {plot.name}
             </h3>
-            <div className="flex items-center gap-2 text-xs text-luxury-goldLight font-medium mt-1">
-              <MapPin className="w-3.5 h-3.5 text-luxury-gold" />
+            <div className="flex items-center gap-2 text-xs text-slate-200 font-medium mt-1">
+              <MapPin className="w-3.5 h-3.5 text-cyan-400" />
               <span>{plot.corridor}</span>
               <span>•</span>
-              <span className="font-mono">{plot.priceStartingGaj}</span>
+              <span className="font-mono text-amber-300">{plot.priceStartingGaj}</span>
             </div>
           </div>
 
@@ -75,14 +75,14 @@ export const PlotInquiryModal = ({ isOpen, onClose, plot }) => {
           <div className="p-6 sm:p-8">
             {submitted ? (
               <div className="py-8 text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-400 text-emerald-400 flex items-center justify-center mx-auto mb-3">
+                <div className="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-400 text-emerald-500 dark:text-emerald-400 flex items-center justify-center mx-auto mb-3">
                   <CheckCircle2 className="w-9 h-9" />
                 </div>
-                <h4 className="text-xl font-serif font-bold dark:text-[#FCF9F2] text-[#02261A]">
+                <h4 className="text-xl font-serif font-bold text-theme-primary">
                   Site Inspection Booked Successfully
                 </h4>
-                <p className="text-xs sm:text-sm dark:text-[#E8DFC9] text-[#164332] font-light leading-relaxed max-w-sm mx-auto">
-                  Your site visit request for <strong className="font-bold">{plot.name}</strong> has been logged. An authorized territory coordinator will call you within 15 minutes.
+                <p className="text-xs sm:text-sm text-theme-secondary font-light leading-relaxed max-w-sm mx-auto">
+                  Your site visit request for <strong className="font-bold text-theme-primary">{plot.name}</strong> has been logged. An authorized territory coordinator will call you within 15 minutes.
                 </p>
 
                 <div className="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
@@ -97,7 +97,7 @@ export const PlotInquiryModal = ({ isOpen, onClose, plot }) => {
                   </a>
                   <button
                     onClick={onClose}
-                    className="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider border dark:border-luxury-gold/40 border-[#D4AF37]/40 dark:text-luxury-goldLight text-[#02261A] hover:bg-black/5 transition-all"
+                    className="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider border border-theme-gold/30 text-theme-primary hover:bg-slate-200/50 dark:hover:bg-white/5 transition-all"
                   >
                     Done
                   </button>
@@ -107,7 +107,7 @@ export const PlotInquiryModal = ({ isOpen, onClose, plot }) => {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-xs uppercase font-bold tracking-wider dark:text-luxury-gold text-[#9E7B28] block mb-1.5">
+                    <label className="text-xs uppercase font-bold tracking-wider text-cyan-600 dark:text-cyan-400 block mb-1.5">
                       Your Name *
                     </label>
                     <div className="relative">
@@ -118,13 +118,13 @@ export const PlotInquiryModal = ({ isOpen, onClose, plot }) => {
                         placeholder="Vikramaditya"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full pl-9 pr-3 py-2.5 rounded-xl dark:bg-[#042217] bg-[#F4F8F5] border dark:border-luxury-gold/30 border-[#D4AF37]/35 text-xs dark:text-white text-[#02261A] focus:outline-none focus:border-luxury-gold"
+                        className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-theme-card border border-theme-gold/30 text-xs text-theme-primary placeholder:text-theme-muted focus:outline-none focus:border-cyan-400 shadow-sm"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-xs uppercase font-bold tracking-wider dark:text-luxury-gold text-[#9E7B28] block mb-1.5">
+                    <label className="text-xs uppercase font-bold tracking-wider text-cyan-600 dark:text-cyan-400 block mb-1.5">
                       Mobile Number *
                     </label>
                     <div className="relative">
@@ -135,14 +135,14 @@ export const PlotInquiryModal = ({ isOpen, onClose, plot }) => {
                         placeholder="+91 98XXX XXXXX"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full pl-9 pr-3 py-2.5 rounded-xl dark:bg-[#042217] bg-[#F4F8F5] border dark:border-luxury-gold/30 border-[#D4AF37]/35 text-xs dark:text-white text-[#02261A] focus:outline-none focus:border-luxury-gold"
+                        className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-theme-card border border-theme-gold/30 text-xs text-theme-primary placeholder:text-theme-muted focus:outline-none focus:border-cyan-400 shadow-sm"
                       />
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-xs uppercase font-bold tracking-wider dark:text-luxury-gold text-[#9E7B28] block mb-1.5">
+                  <label className="text-xs uppercase font-bold tracking-wider text-cyan-600 dark:text-cyan-400 block mb-1.5">
                     Preferred Visit Date
                   </label>
                   <div className="relative">
@@ -152,26 +152,26 @@ export const PlotInquiryModal = ({ isOpen, onClose, plot }) => {
                       required
                       value={formData.date}
                       onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 rounded-xl dark:bg-[#042217] bg-[#F4F8F5] border dark:border-luxury-gold/30 border-[#D4AF37]/35 text-xs dark:text-white text-[#02261A] focus:outline-none focus:border-luxury-gold"
+                      className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-theme-card border border-theme-gold/30 text-xs text-theme-primary placeholder:text-theme-muted focus:outline-none focus:border-cyan-400 shadow-sm"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-xs uppercase font-bold tracking-wider dark:text-luxury-gold text-[#9E7B28] block mb-1.5">
+                  <label className="text-xs uppercase font-bold tracking-wider text-cyan-600 dark:text-cyan-400 block mb-1.5">
                     What You Will Receive on Site:
                   </label>
-                  <div className="p-3 rounded-xl dark:bg-[#042217] bg-[#F4F8F5] border dark:border-theme-gold/20 border-[#D4AF37]/25 space-y-1.5 text-[11px] dark:text-[#E8DFC9] text-[#164332]">
+                  <div className="p-3 rounded-xl bg-theme-card border border-theme-gold/20 space-y-1.5 text-[11px] text-theme-secondary shadow-sm">
                     <div className="flex items-center gap-2">
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                      <ShieldCheck className="w-3.5 h-3.5 text-luxury-gold" />
                       <span>Certified Section 90-A revenue conversion order copy</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                      <ShieldCheck className="w-3.5 h-3.5 text-luxury-gold" />
                       <span>Measuring tape physical road width verification</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                      <ShieldCheck className="w-3.5 h-3.5 text-luxury-gold" />
                       <span>Sanctioned JDA layout map & corner boundary check</span>
                     </div>
                   </div>

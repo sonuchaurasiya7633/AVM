@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { useTheme } from '../context/ThemeContext';
+import ParticleCanvas from './ParticleCanvas';
+import BlurBlob from './BlurBlob';
 
 export const LuxuryAmbientLayer = React.memo(() => {
-  const { isDark } = useTheme();
   const spotlightRef = useRef(null);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export const LuxuryAmbientLayer = React.memo(() => {
       cancelAnimationFrame(animationFrameId);
       animationFrameId = requestAnimationFrame(() => {
         if (spotlight) {
-          spotlight.style.transform = `translate3d(${e.clientX - 200}px, ${e.clientY - 200}px, 0)`;
+          spotlight.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(6, 182, 212, 0.06), transparent 80%)`;
         }
       });
     };
@@ -31,37 +31,48 @@ export const LuxuryAmbientLayer = React.memo(() => {
       className="fixed inset-0 pointer-events-none overflow-hidden z-0" 
       aria-hidden="true"
     >
-      {/* Primary Floating Ambient Aurora Orb (Top Left - Emerald & Gold) */}
-      <div 
-        className={`absolute -top-24 -left-24 w-[480px] h-[480px] rounded-full blur-[70px] opacity-60 transition-opacity duration-700 animate-aurora-slow will-change-transform ${
-          isDark 
-            ? 'bg-gradient-to-br from-emerald-600/20 via-[#C9A35C]/15 to-transparent' 
-            : 'bg-gradient-to-br from-[#D4AF37]/15 via-emerald-800/10 to-transparent'
-        }`}
-      />
+      {/* 1. Interactive Constellation Stars Canvas */}
+      <ParticleCanvas />
 
-      {/* Secondary Floating Ambient Aurora Orb (Top Right - Warm Champagne Gold) */}
-      <div 
-        className={`absolute top-1/4 -right-24 w-[500px] h-[500px] rounded-full blur-[80px] opacity-50 transition-opacity duration-700 animate-aurora-slow will-change-transform ${
-          isDark 
-            ? 'bg-gradient-to-bl from-[#D4AF37]/15 via-emerald-950/20 to-transparent' 
-            : 'bg-gradient-to-bl from-[#E2C178]/20 via-[#FAF8F5]/30 to-transparent'
-        }`}
-        style={{ animationDelay: '-7s' }}
-      />
-
-      {/* Interactive Cursor Ambient Spotlight (Direct DOM manipulation, 0 React re-renders) */}
+      {/* 2. Interactive Cursor Spotlight (Buttery 60fps via direct DOM style) */}
       <div
         ref={spotlightRef}
-        className="absolute top-0 left-0 w-[400px] h-[400px] rounded-full blur-[60px] opacity-60 pointer-events-none will-change-transform"
+        className="pointer-events-none fixed inset-0 z-10 transition-opacity duration-500 hidden md:block"
         style={{
-          transform: 'translate3d(-500px, -500px, 0)',
-          background: isDark
-            ? 'radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(0, 59, 43, 0.04) 50%, transparent 70%)'
-            : 'radial-gradient(circle, rgba(201, 163, 92, 0.1) 0%, rgba(2, 38, 26, 0.03) 50%, transparent 70%)',
+          background: 'radial-gradient(600px circle at -500px -500px, rgba(6, 182, 212, 0.06), transparent 80%)',
         }}
+      />
+
+      {/* 3. Atmospheric Ambient Glow Blobs (Dark: Cool Cyan & Midnight Blue; Light: Soft Luminous Warm Champagne/Cyan) */}
+      <div className="dark:opacity-100 opacity-60 transition-opacity duration-700">
+        <BlurBlob 
+          position={{ top: '10%', left: '20%' }} 
+          size={{ width: '45vw', height: '45vw' }} 
+          color="dark:from-cyan-950/20 dark:via-blue-950/15 from-amber-200/25 via-cyan-100/30 to-transparent" 
+        />
+        <BlurBlob 
+          position={{ top: '30%', left: '85%' }} 
+          size={{ width: '40vw', height: '40vw' }} 
+          color="dark:from-blue-950/20 dark:via-slate-900/10 from-cyan-100/25 via-amber-100/20 to-transparent" 
+        />
+        <BlurBlob 
+          position={{ top: '55%', left: '15%' }} 
+          size={{ width: '45vw', height: '45vw' }} 
+          color="dark:from-cyan-900/15 dark:via-blue-950/10 from-amber-200/20 via-sky-100/25 to-transparent" 
+        />
+        <BlurBlob 
+          position={{ top: '80%', left: '80%' }} 
+          size={{ width: '40vw', height: '40vw' }} 
+          color="dark:from-blue-950/20 dark:via-slate-900/10 from-cyan-100/20 via-amber-100/20 to-transparent" 
+        />
+      </div>
+
+      {/* 4. Universal Geometric Square Grid — Persistent Across Whole Website & All Pages */}
+      <div 
+        className="pointer-events-none fixed inset-0 z-0 dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[linear-gradient(to_right,rgba(15,23,42,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem]"
       />
     </div>
   );
 });
 
+export default LuxuryAmbientLayer;

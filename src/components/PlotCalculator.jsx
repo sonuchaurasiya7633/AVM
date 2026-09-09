@@ -65,7 +65,7 @@ export const PlotCalculator = () => {
           </p>
 
           {/* Sizing Slider */}
-          <div className="space-y-3 p-5 rounded-2xl bg-luxury-dark/60 dark:bg-luxury-dark/60 light:bg-gray-100 border border-white/5">
+          <div className="space-y-3 p-5 rounded-2xl dark:bg-[#0b1120]/80 bg-slate-50 border dark:border-white/10 border-slate-200 shadow-inner">
             <div className="flex items-center justify-between">
               <label className="text-xs uppercase tracking-wider text-luxury-ivory/90 font-medium">
                 Plot Dimension in Gaj (Square Yards)
@@ -81,19 +81,19 @@ export const PlotCalculator = () => {
               step="25"
               value={gaj}
               onChange={(e) => setGaj(Number(e.target.value))}
-              className="w-full h-2 bg-luxury-dark rounded-lg appearance-none cursor-pointer accent-luxury-gold"
+              className="w-full h-2 dark:bg-[#0f172a] bg-slate-200 rounded-lg appearance-none cursor-pointer accent-cyan-400"
             />
             {/* Conversion Equivalents */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-2 text-center text-xs">
-              <div className="p-2 rounded bg-black/40 text-luxury-muted">
+              <div className="p-2 rounded dark:bg-black/40 bg-slate-100 text-luxury-muted">
                 <span className="block font-mono text-luxury-gold font-semibold">{sqFt.toLocaleString('en-IN')}</span>
                 <span className="text-[10px]">Square Feet</span>
               </div>
-              <div className="p-2 rounded bg-black/40 text-luxury-muted">
+              <div className="p-2 rounded dark:bg-black/40 bg-slate-100 text-luxury-muted">
                 <span className="block font-mono text-luxury-gold font-semibold">{sqMt}</span>
                 <span className="text-[10px]">Square Meters</span>
               </div>
-              <div className="p-2 rounded bg-black/40 text-luxury-muted col-span-2 sm:col-span-1">
+              <div className="p-2 rounded dark:bg-black/40 bg-slate-100 text-luxury-muted col-span-2 sm:col-span-1">
                 <span className="block font-mono text-luxury-gold font-semibold">{(gaj / 100).toFixed(2)}</span>
                 <span className="text-[10px]">Standard Units</span>
               </div>
@@ -101,12 +101,12 @@ export const PlotCalculator = () => {
           </div>
 
           {/* Rate Per Gaj Slider */}
-          <div className="space-y-3 p-5 rounded-2xl bg-luxury-dark/60 dark:bg-luxury-dark/60 light:bg-gray-100 border border-white/5">
+          <div className="space-y-3 p-5 rounded-2xl dark:bg-black/40 bg-slate-50 border dark:border-luxury-gold/25 border-amber-300/40 shadow-inner">
             <div className="flex items-center justify-between">
               <label className="text-xs uppercase tracking-wider text-luxury-ivory/90 font-medium">
                 Expected Rate per Gaj
               </label>
-              <div className="px-3 py-1 rounded-lg bg-luxury-emerald text-luxury-goldLight border border-luxury-gold/30 font-bold text-sm font-mono">
+              <div className="px-3 py-1 rounded-lg dark:bg-[#0b1120] bg-white text-cyan-600 dark:text-cyan-300 border dark:border-white/15 border-slate-200 font-bold text-sm font-mono">
                 ₹{ratePerGaj.toLocaleString('en-IN')} / Gaj
               </div>
             </div>
@@ -117,7 +117,7 @@ export const PlotCalculator = () => {
               step="1000"
               value={ratePerGaj}
               onChange={(e) => setRatePerGaj(Number(e.target.value))}
-              className="w-full h-2 bg-luxury-dark rounded-lg appearance-none cursor-pointer accent-luxury-gold"
+              className="w-full h-2 dark:bg-[#0f172a] bg-slate-200 rounded-lg appearance-none cursor-pointer accent-luxury-gold"
             />
             <div className="flex justify-between text-[11px] text-luxury-muted">
               <span>₹10,000 (Peripheral Corridors)</span>
@@ -136,7 +136,7 @@ export const PlotCalculator = () => {
                 className={`px-3 py-1 rounded-full text-xs font-mono font-medium transition-all ${
                   gaj === size
                     ? 'bg-luxury-gold text-luxury-darker font-bold'
-                    : 'bg-white/5 text-luxury-muted hover:text-luxury-gold hover:bg-white/10'
+                    : 'dark:bg-white/5 bg-slate-100 text-luxury-muted hover:text-luxury-gold dark:hover:bg-white/10 hover:bg-slate-200'
                 }`}
               >
                 {size} Gaj
@@ -146,7 +146,7 @@ export const PlotCalculator = () => {
         </div>
 
         {/* Right Output Card */}
-        <div className="lg:col-span-5 p-6 sm:p-8 rounded-3xl bg-luxury-dark/90 dark:bg-luxury-dark/95 light:bg-white border border-luxury-gold/40 shadow-xl space-y-6">
+        <div className="lg:col-span-5 p-6 sm:p-8 rounded-3xl dark:bg-gradient-to-b dark:from-[#0f172a] dark:via-[#0b1120] dark:to-[#030712] bg-gradient-to-b from-slate-50 to-white border-2 dark:border-cyan-500/30 border-amber-400/40 shadow-2xl space-y-6">
           <div className="border-b border-luxury-gold/20 pb-4 text-center">
             <span className="text-[11px] uppercase tracking-[0.2em] text-luxury-gold font-medium">
               Estimated Total Acquisition
@@ -161,17 +161,17 @@ export const PlotCalculator = () => {
 
           {/* Financial Breakdown Table */}
           <div className="space-y-3 text-xs">
-            <div className="flex justify-between items-center py-1.5 border-b border-white/5">
+            <div className="flex justify-between items-center py-1.5 border-b dark:border-white/5 border-slate-100">
               <span className="text-luxury-muted">Base Land Valuation ({gaj} Gaj)</span>
               <span className="font-mono text-luxury-ivory font-semibold">{formatINR(baseCost)}</span>
             </div>
-            <div className="flex justify-between items-center py-1.5 border-b border-white/5">
+            <div className="flex justify-between items-center py-1.5 border-b dark:border-white/5 border-slate-100">
               <span className="text-luxury-muted">Est. Stamp Duty & Registry (~7.5%)</span>
               <span className="font-mono text-luxury-goldLight">{formatINR(stampDutyAndRegistry)}</span>
             </div>
-            <div className="flex justify-between items-center py-1.5 border-b border-white/5">
+            <div className="flex justify-between items-center py-1.5 border-b dark:border-white/5 border-slate-100">
               <span className="text-luxury-muted">Eligible Bank Loan (75%)</span>
-              <span className="font-mono text-emerald-400 font-semibold">{formatINR(loanAmount)}</span>
+              <span className="font-mono text-luxury-goldLight font-semibold">{formatINR(loanAmount)}</span>
             </div>
             <div className="flex justify-between items-center py-1.5">
               <span className="text-luxury-muted">Own Capital Downpayment (25%)</span>
@@ -180,7 +180,7 @@ export const PlotCalculator = () => {
           </div>
 
           {/* EMI Card */}
-          <div className="p-4 rounded-2xl bg-luxury-emerald/30 border border-luxury-gold/30 text-center">
+          <div className="p-4 rounded-2xl dark:bg-cyan-950/30 bg-amber-50 border dark:border-white/15 border-amber-300/40 text-center shadow-inner">
             <span className="text-[10px] uppercase tracking-wider text-luxury-goldLight block">
               Estimated Monthly Bank EMI ({loanTenure} Years @ 8.65%)
             </span>

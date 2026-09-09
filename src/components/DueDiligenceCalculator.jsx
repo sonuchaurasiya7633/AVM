@@ -17,7 +17,7 @@ export const DueDiligenceCalculator = () => {
           particleCount: 50,
           spread: 60,
           origin: { y: 0.7 },
-          colors: ['#C9A35C', '#E2C178', '#003B2B', '#ffffff']
+          colors: ['#D4AF37', '#06B6D4', '#F59E0B', '#ffffff']
         });
       }
       return updated;
@@ -36,9 +36,9 @@ export const DueDiligenceCalculator = () => {
     if (score >= 90) {
       return {
         label: 'Institutional Investment Grade',
-        color: 'text-emerald-400',
-        border: 'border-emerald-500/50',
-        bg: 'bg-emerald-950/40',
+        color: 'text-slate-200',
+        border: 'border-amber-400/40',
+        bg: 'bg-cyan-950/40',
         icon: ShieldCheck,
         desc: 'Exceptional legal compliance. The asset demonstrates multi-decade title lineage and meets institutional acquisition standards.'
       };
@@ -79,7 +79,7 @@ export const DueDiligenceCalculator = () => {
       <div className="brass-screw absolute bottom-3.5 right-3.5" />
 
       {/* Background ambient lighting */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-luxury-emerald/20 blur-3xl pointer-events-none"></div>
+      <div className="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-cyan-500/15 blur-3xl pointer-events-none"></div>
 
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left Column: Interactive Questions */}
@@ -115,8 +115,8 @@ export const DueDiligenceCalculator = () => {
                   onClick={() => toggleItem(item.id)}
                   className={`p-4 rounded-xl border transition-all duration-300 cursor-pointer flex items-start gap-4 ${
                     isChecked
-                      ? 'bg-luxury-emerald/30 border-luxury-gold/60 shadow-sm'
-                      : 'bg-luxury-dark/40 dark:bg-luxury-dark/60 light:bg-gray-50/70 border-white/10 dark:border-white/10 light:border-gray-200 hover:border-luxury-gold/30'
+                      ? 'bg-gradient-to-r from-cyan-950/40 to-indigo-900/40 border-cyan-500/30 shadow-md'
+                      : 'bg-white/[0.03] border-white/10 hover:border-white/10'
                   }`}
                 >
                   <div className="pt-0.5 flex-shrink-0">
@@ -151,7 +151,7 @@ export const DueDiligenceCalculator = () => {
         </div>
 
         {/* Right Column: Live Safety Gauge & Assessment */}
-        <div className="lg:col-span-5 flex flex-col items-center justify-center text-center p-6 sm:p-8 rounded-2xl bg-luxury-dark/80 dark:bg-luxury-dark/90 light:bg-white border border-luxury-gold/30 shadow-xl">
+        <div className="lg:col-span-5 flex flex-col items-center justify-center text-center p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-[#0f172a] via-[#0b1120] to-[#030712] border-2 border-cyan-500/30 shadow-2xl">
           <span className="text-xs uppercase tracking-[0.2em] text-luxury-gold font-medium mb-4">
             Audited Safety Rating
           </span>

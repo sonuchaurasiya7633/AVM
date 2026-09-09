@@ -41,12 +41,12 @@ export const PlotCard = ({ plot }) => {
         {/* Top Badges */}
         <div className="absolute top-4 left-8 flex flex-wrap gap-2 z-10">
           {plot.jdaApproved && (
-            <span className="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-[#02261A] text-luxury-goldLight border border-dashed border-luxury-gold/60 shadow-md backdrop-blur-md leather-deboss-gold">
+            <span className="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-[#0b1120] text-cyan-300 border border-white/15 shadow-md backdrop-blur-md">
               {t('plots.jdaBadge', 'JDA Approved')}
             </span>
           )}
           {plot.reraRegistered && (
-            <span className="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-[#3D2314] text-luxury-goldLight border border-dashed border-luxury-gold/60 shadow-md backdrop-blur-md leather-deboss-gold">
+            <span className="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-cyan-950/70 text-cyan-300 border border-cyan-500/40 shadow-md backdrop-blur-md">
               {t('plots.reraBadge', 'RERA Sanctioned')}
             </span>
           )}
@@ -140,7 +140,7 @@ export const PlotCard = ({ plot }) => {
           <button
             type="button"
             onClick={() => setModalOpen(true)}
-            className="flex-1 py-3 rounded-xl text-center text-xs font-bold uppercase tracking-wider bg-gold-gradient text-luxury-darker shadow-luxury-gold hover:scale-[1.02] transition-transform flex items-center justify-center gap-2"
+            className="flex-1 py-3 rounded-xl text-center text-xs font-bold uppercase tracking-wider gold-shimmer-btn text-white shadow-luxury-gold hover:scale-[1.02] transition-transform flex items-center justify-center gap-2"
           >
             <Car className="w-3.5 h-3.5" />
             <span>{t('plots.bookInspection', 'Book Guided Site Visit')}</span>

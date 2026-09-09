@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MapPin, Navigation, Compass, ExternalLink, Car, Clock, ShieldCheck, CheckCircle2, Image as ImageIcon, Layers } from 'lucide-react';
 import routeMapImg from '../assets/images/route-map.jpg';
+import { useLanguage } from '../context/LanguageContext';
 
 const ROUTE_MILESTONES = [
   { step: 1, name: "Police Commissionerate / MI Road", distance: "0 KM", leg: "Start 1", landmark: "Police Headquarters" },
@@ -17,6 +18,7 @@ const ROUTE_MILESTONES = [
 ];
 
 export const RouteMapGuide = () => {
+  const { isHindi } = useLanguage();
   const [selectedMilestone, setSelectedMilestone] = useState(ROUTE_MILESTONES[10]);
   const [activeView, setActiveView] = useState('blueprint'); // 'blueprint' | 'interactive'
 
@@ -32,21 +34,23 @@ export const RouteMapGuide = () => {
         <div className="brass-screw absolute bottom-3.5 left-3.5" />
         <div className="brass-screw absolute bottom-3.5 right-3.5" />
 
-        {/* Ambient emerald backlight */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-950/40 rounded-full blur-3xl pointer-events-none"></div>
+        {/* Ambient backlight */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
 
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-8 border-b border-theme-gold/30 mb-10">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-[0.25em] bg-luxury-emerald/30 border border-luxury-gold text-luxury-goldLight mb-3">
-              <Navigation className="w-3.5 h-3.5 text-luxury-gold" />
-              <span>Sanctioned Expressway Route</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-[0.25em] dark:bg-cyan-950/40 bg-cyan-100/80 dark:border-white/15 border-cyan-300/50 dark:text-cyan-300 text-cyan-800 mb-3">
+              <Navigation className="w-3.5 h-3.5 text-cyan-500" />
+              <span>{isHindi ? 'स्वीकृत एक्सप्रेसवे मार्ग' : 'Sanctioned Expressway Route'}</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-serif font-extrabold text-theme-primary tracking-tight">
-              Route from MI Road & Rambagh Circle
+              {isHindi ? 'एमआई रोड एवं रामबाग सर्किल से मार्ग' : 'Route from MI Road & Rambagh Circle'}
             </h2>
             <p className="text-xs sm:text-sm text-theme-secondary font-light mt-2 max-w-2xl leading-relaxed">
-              The high-speed expressway route from Police Commissionerate (MI Road) and Rambagh Circle via Ajmer Road / NH-48. Total approximate transit distance: <strong>20–21 km</strong> (~25 mins).
+              {isHindi
+                ? 'पुलिस कमिश्नरेट (एमआई रोड) और रामबाग सर्किल से अजमेर रोड / NH-48 होते हुए हाई-स्पीड एक्सप्रेसवे मार्ग। कुल अनुमानित दूरी: 20-21 किमी (~25 मिनट)।'
+                : 'The high-speed expressway route from Police Commissionerate (MI Road) and Rambagh Circle via Ajmer Road / NH-48. Total approximate transit distance: 20–21 km (~25 mins).'}
             </p>
           </div>
 
@@ -63,7 +67,7 @@ export const RouteMapGuide = () => {
                 }`}
               >
                 <Layers className="w-3.5 h-3.5" />
-                <span>Live GPS & Milestones</span>
+                <span>{isHindi ? 'लाइव जीपीएस एवं मार्ग मील के पत्थर' : 'Live GPS & Milestones'}</span>
               </button>
               <button
                 type="button"
@@ -75,7 +79,7 @@ export const RouteMapGuide = () => {
                 }`}
               >
                 <ImageIcon className="w-3.5 h-3.5" />
-                <span>Official Blueprint</span>
+                <span>{isHindi ? 'आधिकारिक ब्लूप्रिंट नक्शा' : 'Official Blueprint'}</span>
               </button>
             </div>
 
@@ -86,7 +90,7 @@ export const RouteMapGuide = () => {
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-gold-gradient text-luxury-darker shadow-luxury-gold hover:scale-105 transition-all"
             >
               <MapPin className="w-4 h-4" />
-              <span>Open in Google Maps</span>
+              <span>{isHindi ? 'गूगल मैप्स में खोलें' : 'Open in Google Maps'}</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>
@@ -97,28 +101,28 @@ export const RouteMapGuide = () => {
           <div className="p-4 rounded-2xl bg-theme-card border border-theme-gold/30 flex items-center gap-3">
             <Car className="w-5 h-5 text-luxury-gold flex-shrink-0" />
             <div>
-              <span className="text-[10px] uppercase tracking-wider text-theme-muted block font-semibold">Corridor</span>
-              <span className="text-xs font-bold text-theme-primary">6-Lane NH-48 Ajmer Road</span>
+              <span className="text-[10px] uppercase tracking-wider text-theme-muted block font-semibold">{isHindi ? 'कॉरिडोर' : 'Corridor'}</span>
+              <span className="text-xs font-bold text-theme-primary">{isHindi ? '6-लेन NH-48 अजमेर रोड' : '6-Lane NH-48 Ajmer Road'}</span>
             </div>
           </div>
           <div className="p-4 rounded-2xl bg-theme-card border border-theme-gold/30 flex items-center gap-3">
             <Clock className="w-5 h-5 text-luxury-gold flex-shrink-0" />
             <div>
-              <span className="text-[10px] uppercase tracking-wider text-theme-muted block font-semibold">Travel Time</span>
-              <span className="text-xs font-bold text-theme-primary">~22 to 26 Minutes</span>
+              <span className="text-[10px] uppercase tracking-wider text-theme-muted block font-semibold">{isHindi ? 'यात्रा समय' : 'Travel Time'}</span>
+              <span className="text-xs font-bold text-theme-primary">{isHindi ? '~22 से 26 मिनट' : '~22 to 26 Minutes'}</span>
             </div>
           </div>
           <div className="p-4 rounded-2xl bg-theme-card border border-theme-gold/30 flex items-center gap-3">
             <Compass className="w-5 h-5 text-luxury-gold flex-shrink-0" />
             <div>
-              <span className="text-[10px] uppercase tracking-wider text-theme-muted block font-semibold">Interlink</span>
-              <span className="text-xs font-bold text-theme-primary">Direct Ring Road Interchange</span>
+              <span className="text-[10px] uppercase tracking-wider text-theme-muted block font-semibold">{isHindi ? 'इंटरचेंज' : 'Interlink'}</span>
+              <span className="text-xs font-bold text-theme-primary">{isHindi ? 'सीधा रिंग रोड इंटरचेंज' : 'Direct Ring Road Interchange'}</span>
             </div>
           </div>
           <div className="p-4 rounded-2xl bg-theme-card border border-theme-gold/30 flex items-center gap-3">
-            <ShieldCheck className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+            <ShieldCheck className="w-5 h-5 text-luxury-gold flex-shrink-0" />
             <div>
-              <span className="text-[10px] uppercase tracking-wider text-theme-muted block font-semibold">Coordinates</span>
+              <span className="text-[10px] uppercase tracking-wider text-theme-muted block font-semibold">{isHindi ? 'निर्देशांक' : 'Coordinates'}</span>
               <span className="text-xs font-mono font-bold text-theme-primary">26°48'41.9"N 75°35'47.8"E</span>
             </div>
           </div>
@@ -142,7 +146,7 @@ export const RouteMapGuide = () => {
               <div className="overflow-x-auto pb-4 pt-2">
                 <div className="min-w-[1000px] flex items-center relative">
                   {/* Central Highway Track Line */}
-                  <div className="absolute top-1/2 left-4 right-4 h-1.5 bg-gradient-to-r from-blue-500 via-amber-400 to-emerald-500 -translate-y-1/2 rounded-full z-0"></div>
+                  <div className="absolute top-1/2 left-4 right-4 h-1.5 bg-gradient-to-r from-[#C9A35C] via-[#E2C178] to-[#D4AF37] -translate-y-1/2 rounded-full z-0"></div>
 
                   {/* Waypoint Nodes */}
                   {ROUTE_MILESTONES.map((item, idx) => {
@@ -165,7 +169,7 @@ export const RouteMapGuide = () => {
                             isSelected
                               ? 'bg-gold-gradient border-white scale-125 shadow-luxury-gold'
                               : isDestination
-                              ? 'bg-emerald-500 border-white'
+                              ? 'bg-gold-gradient border-white shadow-luxury-gold'
                               : 'bg-theme-surface border-theme-gold group-hover:border-luxury-gold'
                           }`}
                         >

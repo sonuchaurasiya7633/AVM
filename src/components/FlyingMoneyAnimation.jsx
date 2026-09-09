@@ -83,8 +83,8 @@ export const FlyingMoneyAnimation = () => {
           style={{ perspective: 1200 }}
           aria-hidden="true"
         >
-          {/* Subtle Royal Emerald-Gold Ambient Aura */}
-          <div className="absolute inset-0 bg-gradient-to-b from-amber-500/10 via-transparent to-emerald-950/20 pointer-events-none" />
+          {/* Subtle Cosmic Obsidian & Gold Ambient Aura */}
+          <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/10 via-transparent to-[#030712]/40 pointer-events-none" />
 
           {/* Top Luxury Prosperity Banner Badge */}
           <motion.div
@@ -94,7 +94,7 @@ export const FlyingMoneyAnimation = () => {
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className="absolute top-20 sm:top-24 inset-x-0 mx-auto max-w-md px-4 pointer-events-auto flex justify-center z-10"
           >
-            <div className="px-5 py-2.5 rounded-full bg-[#021710]/92 backdrop-blur-2xl border border-luxury-gold shadow-[0_0_35px_rgba(212,175,55,0.45)] flex items-center justify-between gap-3 text-center">
+            <div className="px-5 py-2.5 rounded-full bg-[#0b1120]/92 backdrop-blur-2xl border border-cyan-500/30 shadow-[0_0_35px_rgba(6,182,212,0.3)] flex items-center justify-between gap-3 text-center">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-luxury-gold animate-spin" style={{ animationDuration: '3s' }} />
                 <span className="text-xs sm:text-sm font-serif font-bold text-luxury-goldLight tracking-wider">

@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, ArrowUpRight, Calendar, User } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 export const BlogCard = ({ blog }) => {
+  const { isHindi } = useLanguage();
   return (
     <motion.article
       whileHover={{ y: -6 }}
@@ -60,7 +62,7 @@ export const BlogCard = ({ blog }) => {
 
         <div className="pt-5 mt-5 border-t border-theme-gold/20 flex items-center justify-between">
           <span className="text-xs uppercase tracking-widest text-luxury-gold font-semibold group-hover:underline">
-            Read Full Analysis
+            {isHindi ? 'विस्तृत विश्लेषण पढ़ें' : 'Read Full Analysis'}
           </span>
           <div className="w-8 h-8 rounded-full border border-luxury-gold/30 flex items-center justify-center text-luxury-gold group-hover:bg-luxury-gold group-hover:text-luxury-dark transition-all">
             <ArrowUpRight className="w-4 h-4" />

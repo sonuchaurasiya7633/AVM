@@ -21,7 +21,7 @@ export const CurrencySelector = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-bold dark:bg-[#021710]/90 bg-white/90 border border-luxury-gold/50 dark:text-luxury-gold text-[#9E7B28] shadow-md hover:border-luxury-gold transition-all"
+        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-bold dark:bg-[#0b1120]/90 bg-white dark:border-white/15 border-slate-200 dark:text-cyan-300 text-cyan-800 shadow-md hover:border-cyan-400 transition-all"
         title="Select Global Investor Currency"
       >
         <span className="text-sm leading-none">{activeConfig.flag}</span>
@@ -32,7 +32,7 @@ export const CurrencySelector = () => {
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 rounded-2xl royal-obsidian-card p-2 z-50 shadow-2xl border-2 border-luxury-gold/50">
           <div className="px-3 py-1.5 border-b border-luxury-gold/20 mb-1">
-            <span className="text-[10px] uppercase font-mono tracking-widest text-luxury-goldLight font-bold flex items-center gap-1">
+            <span className="text-[10px] uppercase font-mono tracking-widest text-luxury-gold font-bold flex items-center gap-1">
               <Globe className="w-3 h-3 text-luxury-gold" />
               NRI Global Currency
             </span>
@@ -48,7 +48,7 @@ export const CurrencySelector = () => {
                 className={`w-full flex items-center justify-between px-3 py-1.5 rounded-xl text-xs font-mono transition-all ${
                   currency === c.code
                     ? 'bg-gold-gradient text-luxury-darker font-bold shadow-sm'
-                    : 'text-luxury-ivory hover:bg-luxury-emerald/30 hover:text-luxury-gold'
+                    : 'text-theme-primary hover:bg-luxury-emerald/30 hover:text-luxury-gold'
                 }`}
               >
                 <div className="flex items-center gap-2">
