@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Building2, FileCheck2, Calculator, Menu } from 'lucide-react';
+import { Home, Building2, Users, Calculator, Menu } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { useCRM } from '../context/CRMContext';
 
 export const MobileBottomNav = () => {
   const location = useLocation();
   const { isHindi } = useLanguage();
+  const { metrics } = useCRM();
 
   const navItems = [
     {
@@ -19,9 +21,11 @@ export const MobileBottomNav = () => {
       icon: Building2,
     },
     {
-      name: isHindi ? '90-A' : '90-A',
-      path: '/registry-process',
-      icon: FileCheck2,
+      name: isHindi ? 'CRM' : 'CRM',
+      path: '/crm',
+      icon: Users,
+      badge: metrics?.totalLeads ? metrics.totalLeads : null,
+      highlight: true,
     },
     {
       name: isHindi ? 'कैलकुलेटर' : 'Calculator',
@@ -58,7 +62,7 @@ export const MobileBottomNav = () => {
                 <span className="absolute -top-1 w-6 h-0.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
               )}
               <div
-                className={`p-1 rounded-lg transition-transform ${
+                className={`p-1 rounded-lg transition-transform relative ${
                   isActive
                     ? 'dark:bg-cyan-950/60 bg-cyan-50 scale-110 shadow-sm'
                     : ''
@@ -71,6 +75,14 @@ export const MobileBottomNav = () => {
                       : 'stroke-[1.8]'
                   }`}
                 />
+                {item.highlight && item.badge && (
+                  <span className="absolute -top-1 -right-1.5 w-3.5 h-3.5 rounded-full bg-rose-600 text-white font-mono text-[8px] font-bold flex items-center justify-center shadow-sm">
+                    {item.badge}
+                  </span>
+                )}
+                {item.highlight && !item.badge && (
+                  <span className="absolute top-0 right-0 w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                )}
               </div>
               <span className="text-[10px] tracking-tight leading-tight mt-0.5 truncate max-w-full">
                 {item.name}

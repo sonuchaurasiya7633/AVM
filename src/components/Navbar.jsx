@@ -384,8 +384,26 @@ export const Navbar = () => {
             <ThemeToggle />
           </div>
 
-          {/* Mobile Header: ONLY Dotted-Outlined Menu Button (Zero Clutter, 100% Focused) */}
-          <div className="flex items-center lg:hidden flex-shrink-0">
+          {/* Mobile Header: Direct CRM Access + Menu Button */}
+          <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden flex-shrink-0">
+            <Link
+              to="/crm"
+              className={`relative flex items-center gap-1 px-2.5 py-1.5 rounded-xl border text-xs font-bold uppercase tracking-wider transition-all ${
+                location.pathname === '/crm'
+                  ? 'border-luxury-gold bg-gold-gradient text-luxury-darker shadow-luxury-gold'
+                  : 'dark:border-white/15 border-slate-300 dark:bg-[#070d18] bg-slate-100 dark:text-cyan-300 text-slate-800 hover:border-luxury-gold'
+              }`}
+              title={isHindi ? 'रियल एस्टेट CRM पोर्टल' : 'Investor Advisory CRM Portal'}
+            >
+              <Users className="w-3.5 h-3.5 text-luxury-gold" />
+              <span>CRM</span>
+              {metrics && metrics.totalLeads > 0 && (
+                <span className="w-3.5 h-3.5 rounded-full bg-rose-600 text-white font-mono text-[8px] font-bold flex items-center justify-center shadow-sm">
+                  {metrics.totalLeads}
+                </span>
+              )}
+            </Link>
+
             <button
               onClick={() => setMobileMenuOpen(true)}
               className="relative flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl border-2 border-dotted border-amber-500 dark:border-amber-400 bg-gold-gradient text-luxury-darker font-extrabold text-xs uppercase tracking-wider shadow-[0_2px_14px_rgba(212,175,55,0.45)] hover:border-amber-300 hover:scale-105 active:scale-95 transition-all flex-shrink-0 cursor-pointer"
@@ -467,6 +485,33 @@ export const Navbar = () => {
                   <LanguageToggle />
                   <ThemeToggle />
                 </div>
+
+                {/* High-Visibility VIP CRM Portal Banner */}
+                <Link
+                  to="/crm"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-r from-amber-500/20 via-amber-400/10 to-cyan-500/10 border-2 border-amber-400/60 shadow-lg mb-5 text-theme-primary group hover:border-amber-400 transition-all"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-xl bg-gold-gradient text-luxury-darker font-bold shadow-md">
+                      <Users className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-xs font-bold font-serif uppercase tracking-wider text-amber-500 dark:text-amber-400">
+                          {isHindi ? 'इन्वेस्टर CRM पोर्टल' : 'Investor CRM Portal'}
+                        </span>
+                        <span className="px-1.5 py-0.5 rounded text-[8.5px] font-bold bg-rose-600 text-white font-mono leading-none">
+                          VIP
+                        </span>
+                      </div>
+                      <p className="text-[10px] dark:text-slate-300 text-slate-600 font-light mt-0.5">
+                        {isHindi ? 'लीड पाइपलाइन, साइट विजिट्स व डील ट्रैकिंग' : 'Lead pipeline, VIP site visits & deal velocity'}
+                      </p>
+                    </div>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
+                </Link>
 
                 {/* Primary Destination Links */}
                 <span className="text-[10px] uppercase tracking-[0.2em] text-cyan-500 dark:text-cyan-400 font-bold block mb-2 px-1">

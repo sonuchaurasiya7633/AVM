@@ -106,54 +106,54 @@ export const Home = () => {
         </div>
 
         {/* Media Switcher Capsule: Switch between Overview, 4K Drone View, 4K Drone Reel, and Masterplan Blueprint */}
-        <div className="relative z-20 mb-6 flex items-center justify-center">
-          <div className="inline-flex items-center p-1 rounded-full bg-black/80 border border-luxury-gold/40 backdrop-blur-md shadow-2xl text-xs">
+        <div className="relative z-20 mb-6 sm:mb-8 flex items-center justify-center w-full px-2 max-w-full">
+          <div className="inline-flex items-center gap-1 p-1 rounded-full bg-black/85 border border-amber-400/50 backdrop-blur-xl shadow-2xl text-xs max-w-full overflow-x-auto scrollbar-none">
             <button
               onClick={() => setHeroMode('overview')}
-              className={"flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full font-semibold transition-all duration-200 " + (heroMode === 'overview' ? 'bg-gold-gradient text-luxury-darker shadow-md' : 'text-white/80 hover:text-white hover:bg-white/10')}
+              className={"flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full font-semibold transition-all duration-200 whitespace-nowrap text-[11px] sm:text-xs " + (heroMode === 'overview' ? 'bg-gold-gradient text-luxury-darker font-bold shadow-md' : 'text-white/80 hover:text-white hover:bg-white/10')}
             >
-              <Award className="w-3.5 h-3.5" />
+              <Award className="w-3.5 h-3.5 flex-shrink-0" />
               <span>{t('hero.switcherOverview', 'Overview')}</span>
             </button>
             <button
               onClick={() => setHeroMode('drone-plots')}
-              className={"flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full font-semibold transition-all duration-200 " + (heroMode === 'drone-plots' ? 'bg-gold-gradient text-luxury-darker shadow-md' : 'text-white/80 hover:text-white hover:bg-white/10')}
+              className={"flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full font-semibold transition-all duration-200 whitespace-nowrap text-[11px] sm:text-xs " + (heroMode === 'drone-plots' ? 'bg-gold-gradient text-luxury-darker font-bold shadow-md' : 'text-white/80 hover:text-white hover:bg-white/10')}
             >
-              <Compass className="w-3.5 h-3.5" />
-              <span>{t('hero.switcherDrone', '4K Drone View')}</span>
+              <Compass className="w-3.5 h-3.5 flex-shrink-0" />
+              <span><span className="hidden sm:inline">4K </span>{isHindi ? 'ड्रोन व्यू' : 'Drone View'}</span>
             </button>
             <button
               onClick={() => setHeroMode('video')}
-              className={"flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full font-semibold transition-all duration-200 " + (heroMode === 'video' ? 'bg-gold-gradient text-luxury-darker shadow-md' : 'text-white/80 hover:text-white hover:bg-white/10')}
+              className={"flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full font-semibold transition-all duration-200 whitespace-nowrap text-[11px] sm:text-xs " + (heroMode === 'video' ? 'bg-gold-gradient text-luxury-darker font-bold shadow-md' : 'text-white/80 hover:text-white hover:bg-white/10')}
             >
-              <Video className="w-3.5 h-3.5" />
-              <span>{t('hero.switcherReel', '4K Drone Reel')}</span>
+              <Video className="w-3.5 h-3.5 flex-shrink-0" />
+              <span><span className="hidden sm:inline">4K </span>{isHindi ? 'ड्रोन रील' : 'Drone Reel'}</span>
             </button>
             <button
               onClick={() => setHeroMode('blueprint')}
-              className={"flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full font-semibold transition-all duration-200 " + (heroMode === 'blueprint' ? 'bg-gold-gradient text-luxury-darker shadow-md' : 'text-white/80 hover:text-white hover:bg-white/10')}
+              className={"flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full font-semibold transition-all duration-200 whitespace-nowrap text-[11px] sm:text-xs " + (heroMode === 'blueprint' ? 'bg-gold-gradient text-luxury-darker font-bold shadow-md' : 'text-white/80 hover:text-white hover:bg-white/10')}
             >
-              <ImageIcon className="w-3.5 h-3.5" />
-              <span>{t('hero.switcherBlueprint', 'Masterplan Blueprint')}</span>
+              <ImageIcon className="w-3.5 h-3.5 flex-shrink-0" />
+              <span><span className="hidden sm:inline">मास्टरप्लान </span>{isHindi ? 'ब्लूप्रिंट' : 'Blueprint'}</span>
             </button>
             {heroMode === 'blueprint' && (
               <button
                 onClick={() => setIsBlueprintModalOpen(true)}
                 title={t('blueprint.highResTitle', 'Inspect 8K High-Resolution Blueprint')}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 ml-1 rounded-full text-xs font-bold uppercase tracking-wider bg-gold-gradient text-luxury-darker shadow-luxury-gold hover:scale-105 transition-all"
+                className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-gold-gradient text-luxury-darker shadow-luxury-gold hover:scale-105 transition-all whitespace-nowrap flex-shrink-0"
               >
                 <Maximize2 className="w-3 h-3 text-luxury-darker" />
-                <span className="hidden sm:inline">{t('hero.inspect8k', 'Inspect 8K')}</span>
+                <span>8K</span>
               </button>
             )}
             {heroMode === 'drone-plots' && (
               <button
                 onClick={() => setIsDroneImgModalOpen(true)}
                 title="Inspect 4K Fullscreen"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 ml-1 rounded-full text-xs font-bold uppercase tracking-wider bg-gold-gradient text-luxury-darker shadow-luxury-gold hover:scale-105 transition-all"
+                className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-gold-gradient text-luxury-darker shadow-luxury-gold hover:scale-105 transition-all whitespace-nowrap flex-shrink-0"
               >
                 <ZoomIn className="w-3 h-3 text-luxury-darker" />
-                <span className="hidden sm:inline">4K Fullscreen</span>
+                <span>4K</span>
               </button>
             )}
           </div>
@@ -593,52 +593,44 @@ export const Home = () => {
               </div>
             </div>
           ) : (
-            <div className="w-full bg-[#030712]/85 backdrop-blur-xl rounded-3xl p-6 sm:p-10 lg:p-12 border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_30px_rgba(212,175,55,0.15)] relative overflow-hidden gold-specular-border">
-              {/* 4 Antiqued Solid Corner Brackets */}
-              <div className="leather-corner-bracket-tl"></div>
-              <div className="leather-corner-bracket-tr"></div>
-              <div className="leather-corner-bracket-bl"></div>
-              <div className="leather-corner-bracket-br"></div>
-
-              {/* 4 Rivets for High-Tech Engineering Look */}
-              <div className="brass-screw absolute top-4 left-4" title="Rivet"></div>
-              <div className="brass-screw absolute top-4 right-4" title="Rivet"></div>
-              <div className="brass-screw absolute bottom-4 left-4" title="Rivet"></div>
-              <div className="brass-screw absolute bottom-4 right-4" title="Rivet"></div>
-
-              {/* Brand Emblem — 100% Static & Crisp, Zero Border */}
-              <div className="mb-5 flex justify-center">
-                <img
-                  src={logoImg}
-                  alt="AVM TALKS BY AVNISH"
-                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover shadow-2xl"
-                />
+            <div className="w-full max-w-4xl mx-auto text-center relative z-10 px-3 sm:px-6 animate-fade-in py-2">
+              {/* Floating Brand Medallion */}
+              <div className="mb-4 sm:mb-6 flex justify-center">
+                <div className="relative p-1 rounded-full bg-gradient-to-tr from-[#0b1120] to-[#030712] border-2 border-amber-400/60 shadow-[0_0_35px_rgba(212,175,55,0.3)]">
+                  <img
+                    src={logoImg}
+                    alt="AVM TALKS BY AVNISH"
+                    className="w-16 h-16 sm:w-24 sm:h-24 rounded-full object-cover shadow-2xl"
+                  />
+                  {/* Gentle pulsing halo */}
+                  <span className="absolute -inset-1.5 rounded-full border border-amber-400/25 animate-pulse pointer-events-none" />
+                </div>
               </div>
 
               {/* Subtitle Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-[0.22em] border border-amber-400/30 bg-amber-400/10 text-amber-300 mb-5 shadow-xl">
+              <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full text-[10.5px] sm:text-xs font-semibold uppercase tracking-[0.2em] border border-amber-400/40 bg-amber-400/10 text-amber-300 mb-4 sm:mb-6 shadow-lg">
                 <span className="w-2 h-2 rounded-full bg-cyan-400 beacon-pulse"></span>
                 <span>{t('hero.badge', 'JDA Approved Plotted Townships • Real Estate Media')}</span>
               </div>
 
-              {/* Majestic Hero Headline: Pure Crisp White + Shimmering Imperial Gold/Cyan Gradient with High-Contrast Shadow */}
-              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] font-serif font-black tracking-tight text-white leading-[1.08] drop-shadow-[0_10px_25px_rgba(0,0,0,0.95)] max-w-5xl">
+              {/* Majestic Hero Headline: Pure Crisp White + Shimmering Imperial Gold with High Contrast */}
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-black tracking-tight text-white leading-[1.15] drop-shadow-[0_6px_25px_rgba(0,0,0,0.95)] max-w-3xl mx-auto mb-4 sm:mb-6">
                 Curated Estates & Intelligence in the{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-cyan-300 italic font-normal">
                   {t('hero.titleHighlight', 'High-Stakes Land Due Diligence.')}
                 </span>
               </h1>
 
-              {/* Subtext: Slate-300 with High Contrast */}
-              <p className="max-w-3xl mx-auto text-sm sm:text-base lg:text-lg text-slate-300 font-normal leading-relaxed mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+              {/* Subtext: High Readability with Comfortable Line-Height */}
+              <p className="max-w-2xl mx-auto text-xs sm:text-sm md:text-base text-slate-300 font-normal leading-relaxed mb-6 sm:mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] px-2">
                 {t('hero.subtitle', "From wide 60ft/80ft master-planned avenues to forensic 30-year revenue title checks. Discover verified residential and commercial plots across Greater Jaipur's highest-velocity growth corridors with AVM TALKS BY AVNISH.")}
               </p>
 
               {/* Action CTAs */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto mb-8">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3.5 w-full sm:w-auto mb-8 sm:mb-10 px-4 sm:px-0">
                 <Link
                   to="/plots"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider gold-shimmer-btn text-white shadow-[0_0_30px_rgba(130,69,236,0.5)] group font-sans"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider gold-shimmer-btn text-white shadow-[0_0_25px_rgba(212,175,55,0.4)] hover:scale-105 active:scale-95 transition-transform"
                 >
                   <Building2 className="w-4 h-4" />
                   <span>{t('hero.browsePlots', 'Explore Available Plots')}</span>
@@ -646,7 +638,7 @@ export const Home = () => {
 
                 <button
                   onClick={() => setHeroMode('video')}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider border border-amber-400/50 bg-amber-400/15 text-amber-300 hover:bg-amber-400/25 hover:border-amber-400 backdrop-blur-xl transition-all duration-300 font-sans shadow-md"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider border border-amber-400/50 bg-amber-400/15 text-amber-300 hover:bg-amber-400/25 hover:border-amber-400 backdrop-blur-xl transition-all duration-300 active:scale-95 shadow-md"
                 >
                   <Video className="w-4 h-4 text-amber-400" />
                   <span>{t('hero.switcherReel', '4K Drone Reel')}</span>
@@ -654,7 +646,7 @@ export const Home = () => {
 
                 <Link
                   to="/media"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider border border-white/15 bg-white/[0.04] text-white hover:border-cyan-400/50 hover:bg-white/[0.08] backdrop-blur-xl transition-all duration-300 font-sans hover:scale-105 shadow-md"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider border border-white/15 bg-white/[0.05] text-white hover:border-cyan-400/50 hover:bg-white/[0.1] backdrop-blur-xl transition-all duration-300 active:scale-95 shadow-md"
                 >
                   <Play className="w-4 h-4 fill-cyan-400 text-cyan-400" />
                   <span>{t('hero.watchVault', 'Watch 21+ Masterclasses')}</span>
@@ -662,49 +654,49 @@ export const Home = () => {
               </div>
 
               {/* Live Trust Metrics Bar with Animated Numbers */}
-              <div className="w-full pt-6 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
-                <div className="flex flex-col items-center p-2 rounded-xl bg-white/[0.03] border border-white/[0.05]">
-                  <span className="text-2xl sm:text-3xl font-serif font-extrabold text-gold-gradient">
+              <div className="w-full pt-6 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 text-center max-w-3xl mx-auto">
+                <div className="flex flex-col items-center p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm">
+                  <span className="text-xl sm:text-2xl lg:text-3xl font-serif font-extrabold text-gold-gradient">
                     <AnimatedCounter end={100} suffix="%" />
                   </span>
-                  <span className="text-xs text-white font-medium mt-0.5">
+                  <span className="text-[11px] sm:text-xs text-white font-medium mt-0.5">
                     {t('hero.metricPlotsLabel', 'JDA & RERA Screened')}
                   </span>
-                  <span className="text-[11px] text-white/70 font-light">
+                  <span className="text-[9.5px] sm:text-[10.5px] text-white/70 font-light">
                     {t('hero.metricPlotsSub', 'Zero illegal schemes')}
                   </span>
                 </div>
-                <div className="flex flex-col items-center p-2 rounded-xl bg-white/[0.03] border border-white/[0.05]">
-                  <span className="text-2xl sm:text-3xl font-serif font-extrabold text-gold-gradient">
+                <div className="flex flex-col items-center p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm">
+                  <span className="text-xl sm:text-2xl lg:text-3xl font-serif font-extrabold text-gold-gradient">
                     <AnimatedCounter end={30} suffix={isHindi ? ' वर्ष' : '-Year'} />
                   </span>
-                  <span className="text-xs text-white font-medium mt-0.5">
+                  <span className="text-[11px] sm:text-xs text-white font-medium mt-0.5">
                     {isHindi ? 'टाइटल सर्च ऑडिट' : 'Title Search Audits'}
                   </span>
-                  <span className="text-[11px] text-white/70 font-light">
+                  <span className="text-[9.5px] sm:text-[10.5px] text-white/70 font-light">
                     {isHindi ? 'अखंड रेवेन्यू रिकॉर्ड' : 'Unbroken revenue chain'}
                   </span>
                 </div>
-                <div className="flex flex-col items-center p-2 rounded-xl bg-white/[0.03] border border-white/[0.05]">
-                  <span className="text-2xl sm:text-3xl font-serif font-extrabold text-gold-gradient">
+                <div className="flex flex-col items-center p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm">
+                  <span className="text-xl sm:text-2xl lg:text-3xl font-serif font-extrabold text-gold-gradient">
                     <AnimatedCounter end={21} suffix={isHindi ? ' एपिसोड' : ' Episodes'} />
                   </span>
-                  <span className="text-xs text-white font-medium mt-0.5">
+                  <span className="text-[11px] sm:text-xs text-white font-medium mt-0.5">
                     {t('hero.metricVideosLabel', 'YouTube Masterclasses')}
                   </span>
-                  <span className="text-[11px] text-white/70 font-light">
+                  <span className="text-[9.5px] sm:text-[10.5px] text-white/70 font-light">
                     {t('hero.metricVideosSub', 'On-site ground reports')}
                   </span>
                 </div>
-                <div className="flex flex-col items-center p-2 rounded-xl bg-white/[0.03] border border-white/[0.05]">
-                  <span className="text-2xl sm:text-3xl font-serif font-extrabold text-gold-gradient">
-                    <AnimatedCounter end={52} suffix={isHindi ? '+ फील्ड एजेंट' : '+ Agents'} />
+                <div className="flex flex-col items-center p-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm">
+                  <span className="text-xl sm:text-2xl lg:text-3xl font-serif font-extrabold text-gold-gradient">
+                    <AnimatedCounter end={52} suffix="+" />
                   </span>
-                  <span className="text-xs text-white font-medium mt-0.5">
-                    {t('hero.metricCoordinatorsLabel', 'Territory Coordinators')}
+                  <span className="text-[11px] sm:text-xs text-white font-medium mt-0.5">
+                    {isHindi ? 'फील्ड समन्वयक' : 'Field Coordinators'}
                   </span>
-                  <span className="text-[11px] text-white/70 font-light">
-                    {t('hero.metricCoordinatorsSub', 'Jaipur on-ground support')}
+                  <span className="text-[9.5px] sm:text-[10.5px] text-white/70 font-light">
+                    {isHindi ? 'जयपुर में मौके पर' : 'Active across Jaipur'}
                   </span>
                 </div>
               </div>
