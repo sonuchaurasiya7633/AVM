@@ -406,14 +406,11 @@ export const Navbar = () => {
 
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="relative flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl border-2 border-dotted border-amber-500 dark:border-amber-400 bg-gold-gradient text-luxury-darker font-extrabold text-xs uppercase tracking-wider shadow-[0_2px_14px_rgba(212,175,55,0.45)] hover:border-amber-300 hover:scale-105 active:scale-95 transition-all flex-shrink-0 cursor-pointer"
+              className="relative flex items-center justify-center p-2 sm:p-2.5 rounded-xl border-2 border-dotted border-amber-500 dark:border-amber-400 bg-gold-gradient text-luxury-darker shadow-[0_2px_14px_rgba(212,175,55,0.45)] hover:border-amber-300 hover:scale-105 active:scale-95 transition-all flex-shrink-0 cursor-pointer"
               aria-label="Open Navigation Menu"
               title={isHindi ? 'मेन्यू खोलें' : 'Open Menu'}
             >
               <Menu className="w-5 h-5 stroke-[2.5] text-luxury-darker" />
-              <span className="text-[11px] sm:text-xs font-black text-luxury-darker tracking-wide">
-                {isHindi ? 'मेन्यू' : 'Menu'}
-              </span>
             </button>
           </div>
         </div>
