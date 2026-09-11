@@ -6,7 +6,6 @@ import { FloatingBottomBar } from './components/FloatingBottomBar';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { LuxuryAmbientLayer } from './components/LuxuryAmbientLayer';
 import { ErrorBoundary } from './components/ErrorBoundary';
-import { CustomCursorFollower } from './components/CustomCursorFollower';
 
 // Direct import for instantaneous landing page
 import { Home } from './pages/Home';
@@ -44,7 +43,6 @@ export const App = () => {
   return (
     <div className="min-h-screen flex flex-col bg-theme-base text-theme-primary transition-colors duration-300 relative">
       <Preloader />
-      <CustomCursorFollower />
       <LuxuryAmbientLayer />
       <ScrollToTop />
       <Navbar />
